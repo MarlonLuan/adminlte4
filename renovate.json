@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":separateMultipleMajorReleases",
+    ":separatePatchReleases"
+  ],
+  "ignorePresets": ["docker:pinDigests", "helpers:pinGitHubActionDigests"],
+  "recreateWhen": "always",
+  "packageRules": [
+    {
+      "matchFileNames": ["dist/**"],
+      "commitMessageSuffix": "[DRAFT]",
+      "draftPR": true
+    }
+  ]
+}
