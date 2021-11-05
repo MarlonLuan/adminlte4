@@ -1,0 +1,33 @@
+name: generate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '* * * * *'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - run: |
+          echo "y" | rm -Rf my-workspace
+
+      - run: |
+          git clone -b v4-dev --depth=1 --single-branch https://github.com/ColorlibHQ/AdminLTE.git
+
+      - run: |
+          cd AdminLTE
+          npm i
+          npx gulp production
+          mv dist ../my-workspace
+
+      - run: |
+          echo "y" | rm -R AdminLTE
+
+      - uses: peter-evans/create-pull-request@v3
