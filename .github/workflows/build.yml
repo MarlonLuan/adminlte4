@@ -1,25 +1,25 @@
-name: generate
 on:
   workflow_dispatch:
   schedule:
     - cron:  '* * * * *'
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node:
+          - lts/*
     steps:
       - uses: actions/checkout@v2
 
       - uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: ${{ matrix.node }}
 
-      - run: |
-          echo "y" | rm -Rf my-workspace
+      - run: echo "y" | rm -Rf my-workspace
 
-      - run: |
-          git clone -b v4-dev --depth=1 --single-branch https://github.com/ColorlibHQ/AdminLTE.git
+      - run: git clone -b v4-dev --depth=1 --single-branch https://github.com/ColorlibHQ/AdminLTE.git
 
       - run: |
           cd AdminLTE
@@ -27,7 +27,6 @@ jobs:
           npx gulp production
           mv dist ../my-workspace
 
-      - run: |
-          echo "y" | rm -R AdminLTE
+      - run: echo "y" | rm -R AdminLTE
 
       - uses: peter-evans/create-pull-request@v3
