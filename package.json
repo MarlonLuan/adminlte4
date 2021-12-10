@@ -1,0 +1,25 @@
+{
+  "name": "adminlte4",
+  "version": "0.0.0",
+  "description": "Admin LTE v4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarlonLuan/adminlte4.git"
+  },
+  "keywords": [
+    "admin",
+    "adminlte",
+    "adminlte4",
+    "bs5",
+    "bootstrap",
+    "bootstrap5",
+    "lte",
+    "v4"
+  ],
+  "author": "MarlonLuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarlonLuan/adminlte4/issues"
+  },
+  "homepage": "https://github.com/MarlonLuan/adminlte4#readme"
+}
