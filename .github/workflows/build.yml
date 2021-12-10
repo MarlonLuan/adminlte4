@@ -1,0 +1,37 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '* * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - lts/*
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - run: echo "y" | rm -Rf dist
+
+      - run: git clone -b v4-dev --depth=1 --single-branch https://github.com/ColorlibHQ/AdminLTE.git
+
+      - run: |
+          cd AdminLTE
+          npm i
+          npx gulp production
+          mv dist ../dist
+
+      - run: echo "y" | rm -R AdminLTE
+
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          title: build
+          body:
+          commit-message: build
+
