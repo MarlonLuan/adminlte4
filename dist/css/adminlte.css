@@ -12973,8 +12973,8 @@ html.maximized-card {
 .card-header > .card-tools .input-group,
 .card-header > .card-tools .nav,
 .card-header > .card-tools .pagination {
-  margin-top: -1rem .card-header > .card-tools .input-group, .card-header > .card-tools .nav, .card-header > .card-tools .pagination 0.4;
-  margin-bottom: -1rem .card-header > .card-tools .input-group, .card-header > .card-tools .nav, .card-header > .card-tools .pagination 0.4;
+  margin-top: -0.4rem;
+  margin-bottom: -0.4rem;
 }
 .card-header > .card-tools [data-bs-toggle=tooltip] {
   position: relative;
