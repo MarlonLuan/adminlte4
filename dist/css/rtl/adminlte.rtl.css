@@ -1984,7 +1984,7 @@ progress {
   vertical-align: bottom;
 }
 .table > :not(:first-child) {
-  border-top: 2px solid currentColor;
+  border-top: 2px solid currentcolor;
 }
 
 .caption-top {
@@ -11573,7 +11573,6 @@ textarea.form-control-lg {
   left: 5px;
   padding: 2px 4px;
   font-size: 0.6rem;
-  font-weight: 300;
 }
 
 .brand-container {
@@ -11585,6 +11584,11 @@ textarea.form-control-lg {
   font-size: 1.25rem;
   white-space: nowrap;
   transition: width 0.3s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-container {
+    transition: none;
+  }
 }
 .brand-container .brand-link {
   grid-area: brand-link;
@@ -11735,6 +11739,11 @@ textarea.form-control-lg {
   transition: none !important;
   -webkit-animation: none !important;
   animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hold-transition .main-sidebar {
+    transition: none;
+  }
 }
 
 .sidebar {
@@ -11927,11 +11936,22 @@ textarea.form-control-lg {
     margin-right: var(--lte-sidebar-width);
     transition: 0.3s ease-in-out;
   }
+}
+@media (min-width: 992px) and (prefers-reduced-motion: reduce) {
+  .layout-fixed:not(.sidebar-horizontal) .main-header,
+.layout-fixed:not(.sidebar-horizontal) .content-wrapper,
+.layout-fixed:not(.sidebar-horizontal) .main-footer {
+    transition: none;
+  }
+}
+@media (min-width: 992px) {
   .layout-fixed:not(.sidebar-horizontal).sidebar-collapse .main-header,
 .layout-fixed:not(.sidebar-horizontal).sidebar-collapse .content-wrapper,
 .layout-fixed:not(.sidebar-horizontal).sidebar-collapse .main-footer {
     margin-right: 4.6rem;
   }
+}
+@media (min-width: 992px) {
   .layout-fixed:not(.sidebar-horizontal).sidebar-close .main-header,
 .layout-fixed:not(.sidebar-horizontal).sidebar-close .content-wrapper,
 .layout-fixed:not(.sidebar-horizontal).sidebar-close .main-footer {
@@ -13062,12 +13082,12 @@ html.maximized-card {
   list-style: none;
 }
 .todo-list > li {
-  border-radius: 2px;
   padding: 10px;
   margin-bottom: 2px;
   color: #495057;
   background-color: #f8f9fa;
   border-right: 2px solid #e9ecef;
+  border-radius: 2px;
 }
 .todo-list > li:last-of-type {
   margin-bottom: 0;
@@ -13242,6 +13262,11 @@ html.maximized-card {
 [data-widget=expandable-table] i.expandable-table-caret {
   transition: transform 0.3s linear;
 }
+@media (prefers-reduced-motion: reduce) {
+  [data-widget=expandable-table] i.expandable-table-caret {
+    transition: none;
+  }
+}
 [data-widget=expandable-table][aria-expanded=true] td i.expandable-table-caret[class*=right] {
   transform: rotate(-90deg);
 }
@@ -13366,6 +13391,11 @@ html.maximized-card {
   font-size: 90px;
   transition: transform 0.3s linear;
 }
+@media (prefers-reduced-motion: reduce) {
+  .small-box .icon > i {
+    transition: none;
+  }
+}
 .small-box .icon > i.inner-icon {
   top: 20px;
   font-size: 70px;
@@ -13376,6 +13406,11 @@ html.maximized-card {
   left: 15px;
   font-size: 70px;
   transition: transform 0.3s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .small-box .icon svg {
+    transition: none;
+  }
 }
 .small-box:hover {
   text-decoration: none;
@@ -13418,13 +13453,13 @@ html.maximized-card {
   background-color: #fff;
 }
 .info-box .info-box-icon {
-  border-radius: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 70px;
   font-size: 1.875rem;
   text-align: center;
+  border-radius: 0.25rem;
 }
 .info-box .info-box-icon > img {
   max-width: 100%;
@@ -13571,6 +13606,12 @@ html.maximized-card {
 .direct-chat-messages,
 .direct-chat-contacts {
   transition: transform 0.5s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .direct-chat-messages,
+.direct-chat-contacts {
+    transition: none;
+  }
 }
 
 .direct-chat-text {
@@ -14072,6 +14113,12 @@ html.maximized-card {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .login-card-body .input-group .input-group-text,
+.register-card-body .input-group .input-group-text {
+    transition: none;
+  }
 }
 
 .login-box-msg,
