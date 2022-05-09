@@ -11822,7 +11822,7 @@ textarea.form-control-lg {
 .nav-sidebar .menu-open > .nav-link i.end,
 .nav-sidebar .menu-is-opening > .nav-link svg.end,
 .nav-sidebar .menu-is-opening > .nav-link i.end {
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
 }
 
 .nav-sidebar,
