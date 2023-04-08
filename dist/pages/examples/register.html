@@ -3,9 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- Primary Meta Tags -->
-<title>AdminLTE 4 | Login Page</title>
+<title>AdminLTE 4 | Register Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="title" content="AdminLTE 4 | Login Page">
+<meta name="title" content="AdminLTE 4 | Register Page">
 <meta name="author" content="ColorlibHQ">
 <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
 <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
@@ -28,17 +28,23 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="../../../dist/css/adminlte.css">
   </head>
-  <body class="login-page bg-body-secondary">
-    <div class="login-box">
-      <div class="login-logo">
+  <body class="register-page bg-body-secondary">
+    <div class="register-box">
+      <div class="register-logo">
         <a href="../index2.html"><b>Admin</b>LTE</a>
       </div>
-      <!-- /.login-logo -->
+      <!-- /.register-logo -->
       <div class="card">
-        <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
+        <div class="card-body register-card-body">
+          <p class="register-box-msg">Register a new membership</p>
 
           <form action="../index3.html" method="post">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Full Name">
+              <div class="input-group-text">
+                <span class="fa-solid fa-user"></span>
+              </div>
+            </div>
             <div class="input-group mb-3">
               <input type="email" class="form-control" placeholder="Email">
               <div class="input-group-text">
@@ -56,7 +62,7 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                   <label class="form-check-label" for="flexCheckDefault">
-                    Remember Me
+                    I agree to the <a href="#">terms</a>
                   </label>
                 </div>
               </div>
@@ -81,17 +87,14 @@
           </div>
           <!-- /.social-auth-links -->
 
-          <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
           <p class="mb-0">
-            <a href="register.html" class="text-center">Register a new membership</a>
+            <a href="login.html" class="text-center">I already have a membership</a>
           </p>
         </div>
-        <!-- /.login-card-body -->
+        <!-- /.register-card-body -->
       </div>
     </div>
-    <!-- /.login-box -->
+    <!-- /.register-box -->
 
     <!-- OPTIONAL SCRIPTS --><!-- overlayscrollbars --><script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-NRZchBuHZWSXldqrtAOeCZpucH/1n1ToJ3C8mSK95NU=" crossorigin="anonymous"></script>
 
