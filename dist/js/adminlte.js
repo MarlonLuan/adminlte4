@@ -1,3 +1,8 @@
+/*!
+ * AdminLTE v4.0.0-alpha1 (https://adminlte.io)
+ * Copyright 2014-2023 Colorlib <https://colorlib.com>
+ * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
+ */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -83,14 +88,14 @@
      * ------------------------------------------------------------------------
      */
     const CLASS_NAME_HOLD_TRANSITIONS = 'hold-transition';
+    const CLASS_NAME_APP_LOADED = 'app-loaded';
     /**
      * Class Definition
      * ====================================================
      */
     class Layout {
-        constructor(element, config) {
+        constructor(element) {
             this._element = element;
-            this._config = config;
         }
         holdTransition() {
             let resizeTimer;
@@ -104,8 +109,11 @@
         }
     }
     domReady(() => {
-        const data = new Layout(document.body, undefined);
+        const data = new Layout(document.body);
         data.holdTransition();
+        setTimeout(() => {
+            document.body.classList.add(CLASS_NAME_APP_LOADED);
+        }, 400);
     });
 
     /**
@@ -119,27 +127,27 @@
      * Constants
      * ------------------------------------------------------------------------
      */
+    const DATA_KEY$3 = 'lte.push-menu';
+    const EVENT_KEY$3 = `.${DATA_KEY$3}`;
+    const EVENT_OPEN = `open${EVENT_KEY$3}`;
+    const EVENT_COLLAPSE = `collapse${EVENT_KEY$3}`;
     const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
-    const CLASS_NAME_SIDEBAR_MINI_HAD = 'sidebar-mini-had';
-    const CLASS_NAME_SIDEBAR_HORIZONTAL = 'sidebar-horizontal';
     const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse';
-    const CLASS_NAME_SIDEBAR_CLOSE = 'sidebar-close';
     const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open';
-    const CLASS_NAME_SIDEBAR_OPENING = 'sidebar-is-opening';
-    const CLASS_NAME_SIDEBAR_COLLAPSING = 'sidebar-is-collapsing';
     const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover';
+    const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand';
+    const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay';
     const CLASS_NAME_MENU_OPEN$1 = 'menu-open';
-    const CLASS_NAME_LAYOUT_MOBILE = 'layout-mobile';
-    const SELECTOR_SIDEBAR = '.sidebar';
-    const SELECTOR_NAV_SIDEBAR = '.nav-sidebar';
+    const SELECTOR_APP_SIDEBAR = '.app-sidebar';
+    const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+    const SELECTOR_SIDEBAR_MENU = '.sidebar-menu';
     const SELECTOR_NAV_ITEM$1 = '.nav-item';
     const SELECTOR_NAV_TREEVIEW = '.nav-treeview';
-    const SELECTOR_MINI_TOGGLE = '[data-lte-toggle="sidebar-mini"]';
-    const SELECTOR_FULL_TOGGLE = '[data-lte-toggle="sidebar-full"]';
-    const SELECTOR_SIDEBAR_SM = `.${CLASS_NAME_LAYOUT_MOBILE}`;
-    const SELECTOR_CONTENT_WRAPPER = '.content-wrapper';
+    const SELECTOR_APP_WRAPPER = '.app-wrapper';
+    const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`;
+    const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]';
     const Defaults = {
-        onLayouMobile: 992
+        sidebarBreakpoint: 992
     };
     /**
      * Class Definition
@@ -148,108 +156,67 @@
     class PushMenu {
         constructor(element, config) {
             this._element = element;
-            const bodyElement = document.body;
-            this._bodyClass = bodyElement.classList;
-            this._config = config;
+            this._config = Object.assign(Object.assign({}, Defaults), config);
         }
-        sidebarOpening() {
-            this._bodyClass.add(CLASS_NAME_SIDEBAR_OPENING);
-            setTimeout(() => {
-                this._bodyClass.remove(CLASS_NAME_SIDEBAR_OPENING);
-            }, 1000);
-        }
-        sidebarColllapsing() {
-            this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSING);
-            setTimeout(() => {
-                this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSING);
-            }, 1000);
-        }
+        // TODO
         menusClose() {
             const navTreeview = document.querySelectorAll(SELECTOR_NAV_TREEVIEW);
-            for (const navTree of navTreeview) {
+            navTreeview.forEach(navTree => {
                 navTree.style.removeProperty('display');
                 navTree.style.removeProperty('height');
-            }
-            const navSidebar = document.querySelector(SELECTOR_NAV_SIDEBAR);
+            });
+            const navSidebar = document.querySelector(SELECTOR_SIDEBAR_MENU);
             const navItem = navSidebar === null || navSidebar === void 0 ? void 0 : navSidebar.querySelectorAll(SELECTOR_NAV_ITEM$1);
             if (navItem) {
-                for (const navI of navItem) {
+                navItem.forEach(navI => {
                     navI.classList.remove(CLASS_NAME_MENU_OPEN$1);
-                }
+                });
             }
         }
         expand() {
-            this.sidebarOpening();
-            this._bodyClass.remove(CLASS_NAME_SIDEBAR_CLOSE);
-            this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
-            this._bodyClass.add(CLASS_NAME_SIDEBAR_OPEN);
+            const event = new Event(EVENT_OPEN);
+            document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
+            document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN);
+            this._element.dispatchEvent(event);
         }
         collapse() {
-            this.sidebarColllapsing();
-            this._bodyClass.add(CLASS_NAME_SIDEBAR_COLLAPSE);
-        }
-        close() {
-            this._bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE);
-            this._bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN);
-            this._bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
-            if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_HORIZONTAL)) {
-                this.menusClose();
-            }
+            const event = new Event(EVENT_COLLAPSE);
+            document.body.classList.remove(CLASS_NAME_SIDEBAR_OPEN);
+            document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE);
+            this._element.dispatchEvent(event);
         }
         sidebarHover() {
-            const selSidebar = document.querySelector(SELECTOR_SIDEBAR);
+            const selSidebar = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
             if (selSidebar) {
                 selSidebar.addEventListener('mouseover', () => {
-                    this._bodyClass.add(CLASS_NAME_SIDEBAR_IS_HOVER);
+                    document.body.classList.add(CLASS_NAME_SIDEBAR_IS_HOVER);
                 });
                 selSidebar.addEventListener('mouseout', () => {
-                    this._bodyClass.remove(CLASS_NAME_SIDEBAR_IS_HOVER);
+                    document.body.classList.remove(CLASS_NAME_SIDEBAR_IS_HOVER);
                 });
             }
         }
-        addSidebaBreakPoint() {
-            const bodyClass = document.body.classList;
-            const widthOutput = window.innerWidth;
-            if (widthOutput < Defaults.onLayouMobile) {
-                bodyClass.add(CLASS_NAME_LAYOUT_MOBILE);
-            }
-            if (widthOutput >= Defaults.onLayouMobile) {
-                bodyClass.remove(CLASS_NAME_LAYOUT_MOBILE);
-                this.expand();
-            }
-        }
-        removeOverlaySidebar() {
-            const bodyClass = document.body.classList;
-            if (bodyClass.contains(CLASS_NAME_LAYOUT_MOBILE)) {
-                bodyClass.remove(CLASS_NAME_SIDEBAR_OPEN);
-                bodyClass.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
-                bodyClass.add(CLASS_NAME_SIDEBAR_CLOSE);
-            }
-        }
-        closeSidebar() {
-            const widthOutput = window.innerWidth;
-            if (widthOutput < Defaults.onLayouMobile) {
-                document.body.classList.add(CLASS_NAME_SIDEBAR_CLOSE);
-            }
-        }
-        toggleFull() {
-            if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_CLOSE)) {
-                this.expand();
+        addSidebarBreakPoint() {
+            var _a, _b, _c;
+            const sidebarExpandList = (_b = (_a = document.querySelector(SELECTOR_SIDEBAR_EXPAND)) === null || _a === void 0 ? void 0 : _a.classList) !== null && _b !== void 0 ? _b : [];
+            const sidebarExpand = (_c = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND))) !== null && _c !== void 0 ? _c : '';
+            const sidebar = document.getElementsByClassName(sidebarExpand)[0];
+            const sidebarContent = window.getComputedStyle(sidebar, '::before').getPropertyValue('content');
+            this._config = Object.assign(Object.assign({}, this._config), { sidebarBreakpoint: Number(sidebarContent.replace(/[^\d.-]/g, '')) });
+            if (window.innerWidth <= this._config.sidebarBreakpoint) {
+                this.collapse();
             }
             else {
-                this.close();
-            }
-            if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI)) {
-                this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI);
-                this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI_HAD);
+                if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
+                    this.expand();
+                }
+                if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
+                    this.collapse();
+                }
             }
         }
-        toggleMini() {
-            if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_MINI_HAD)) {
-                this._bodyClass.remove(CLASS_NAME_SIDEBAR_MINI_HAD);
-                this._bodyClass.add(CLASS_NAME_SIDEBAR_MINI);
-            }
-            if (this._bodyClass.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
+        toggle() {
+            if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
                 this.expand();
             }
             else {
@@ -257,15 +224,8 @@
             }
         }
         init() {
-            this.addSidebaBreakPoint();
+            this.addSidebarBreakPoint();
             this.sidebarHover();
-            const selSidebarSm = document.querySelector(SELECTOR_SIDEBAR_SM);
-            const selContentWrapper = selSidebarSm === null || selSidebarSm === void 0 ? void 0 : selSidebarSm.querySelector(SELECTOR_CONTENT_WRAPPER);
-            if (selContentWrapper) {
-                selContentWrapper.addEventListener('touchstart', this.removeOverlaySidebar);
-                selContentWrapper.addEventListener('click', this.removeOverlaySidebar);
-            }
-            this.closeSidebar();
         }
     }
     /**
@@ -274,39 +234,45 @@
      * ------------------------------------------------------------------------
      */
     domReady(() => {
-        const data = new PushMenu(undefined, undefined);
-        data.init();
-        window.addEventListener('resize', () => {
+        var _a;
+        const sidebar = document === null || document === void 0 ? void 0 : document.querySelector(SELECTOR_APP_SIDEBAR);
+        if (sidebar) {
+            const data = new PushMenu(sidebar, Defaults);
             data.init();
+            window.addEventListener('resize', () => {
+                data.init();
+            });
+        }
+        const sidebarOverlay = document.createElement('div');
+        sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY;
+        (_a = document.querySelector(SELECTOR_APP_WRAPPER)) === null || _a === void 0 ? void 0 : _a.append(sidebarOverlay);
+        sidebarOverlay.addEventListener('touchstart', event => {
+            event.preventDefault();
+            const target = event.currentTarget;
+            const data = new PushMenu(target, Defaults);
+            data.collapse();
         });
-        const fullBtn = document.querySelectorAll(SELECTOR_FULL_TOGGLE);
-        for (const btn of fullBtn) {
+        sidebarOverlay.addEventListener('click', event => {
+            event.preventDefault();
+            const target = event.currentTarget;
+            const data = new PushMenu(target, Defaults);
+            data.collapse();
+        });
+        const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE);
+        fullBtn.forEach(btn => {
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 let button = event.currentTarget;
-                if ((button === null || button === void 0 ? void 0 : button.dataset.lteToggle) !== 'sidebar-full') {
-                    button = button === null || button === void 0 ? void 0 : button.closest(SELECTOR_FULL_TOGGLE);
+                if ((button === null || button === void 0 ? void 0 : button.dataset.lteToggle) !== 'sidebar') {
+                    button = button === null || button === void 0 ? void 0 : button.closest(SELECTOR_SIDEBAR_TOGGLE);
                 }
                 if (button) {
-                    const data = new PushMenu(button, undefined);
-                    data.toggleFull();
+                    event === null || event === void 0 ? void 0 : event.preventDefault();
+                    const data = new PushMenu(button, Defaults);
+                    data.toggle();
                 }
             });
-        }
-        const miniBtn = document.querySelectorAll(SELECTOR_MINI_TOGGLE);
-        for (const btn of miniBtn) {
-            btn.addEventListener('click', event => {
-                event.preventDefault();
-                let button = event.currentTarget;
-                if ((button === null || button === void 0 ? void 0 : button.dataset.lteToggle) !== 'sidebar-mini') {
-                    button = button === null || button === void 0 ? void 0 : button.closest(SELECTOR_FULL_TOGGLE);
-                }
-                if (button) {
-                    const data = new PushMenu(button, undefined);
-                    data.toggleMini();
-                }
-            });
-        }
+        });
     });
 
     /**
@@ -321,13 +287,12 @@
      * ------------------------------------------------------------------------
      */
     // const NAME = 'Treeview'
-    const DATA_KEY = 'lte.treeview';
-    const EVENT_KEY = `.${DATA_KEY}`;
-    const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
-    const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
+    const DATA_KEY$2 = 'lte.treeview';
+    const EVENT_KEY$2 = `.${DATA_KEY$2}`;
+    const EVENT_EXPANDED$2 = `expanded${EVENT_KEY$2}`;
+    const EVENT_COLLAPSED$2 = `collapsed${EVENT_KEY$2}`;
     // const EVENT_LOAD_DATA_API = `load${EVENT_KEY}`
     const CLASS_NAME_MENU_OPEN = 'menu-open';
-    const CLASS_NAME_MENU_IS_OPEN = 'menu-is-open';
     const SELECTOR_NAV_ITEM = '.nav-item';
     const SELECTOR_TREEVIEW_MENU = '.nav-treeview';
     const SELECTOR_DATA_TOGGLE$1 = '[data-lte-toggle="treeview"]';
@@ -340,37 +305,28 @@
      */
     class Treeview {
         constructor(element, config) {
-            var _a, _b;
             this._element = element;
-            this._config = { ...Default$1, ...config };
-            this._navItem = (_a = this._element) === null || _a === void 0 ? void 0 : _a.closest(SELECTOR_NAV_ITEM);
-            this._childNavItem = (_b = this._navItem) === null || _b === void 0 ? void 0 : _b.querySelector(SELECTOR_TREEVIEW_MENU);
+            this._config = Object.assign(Object.assign({}, Default$1), config);
+            this._childNavItem = this._element.querySelector(SELECTOR_TREEVIEW_MENU);
         }
         open() {
-            const event = new CustomEvent(EVENT_EXPANDED);
-            if (this._navItem) {
-                this._navItem.classList.add(CLASS_NAME_MENU_OPEN);
-                this._navItem.classList.add(CLASS_NAME_MENU_IS_OPEN);
-            }
+            const event = new Event(EVENT_EXPANDED$2);
+            this._element.classList.add(CLASS_NAME_MENU_OPEN);
             if (this._childNavItem) {
                 slideDown(this._childNavItem, this._config.animationSpeed);
-                this._element.dispatchEvent(event);
             }
+            this._element.dispatchEvent(event);
         }
         close() {
-            const event = new CustomEvent(EVENT_COLLAPSED);
-            if (this._navItem) {
-                this._navItem.classList.remove(CLASS_NAME_MENU_IS_OPEN);
-                this._navItem.classList.remove(CLASS_NAME_MENU_OPEN);
-            }
+            const event = new Event(EVENT_COLLAPSED$2);
+            this._element.classList.remove(CLASS_NAME_MENU_OPEN);
             if (this._childNavItem) {
                 slideUp(this._childNavItem, this._config.animationSpeed);
-                this._element.dispatchEvent(event);
             }
+            this._element.dispatchEvent(event);
         }
         toggle() {
-            var _a;
-            if ((_a = this._navItem) === null || _a === void 0 ? void 0 : _a.classList.contains(CLASS_NAME_MENU_OPEN)) {
+            if (this._element.classList.contains(CLASS_NAME_MENU_OPEN)) {
                 this.close();
             }
             else {
@@ -385,14 +341,16 @@
      */
     domReady(() => {
         const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE$1);
-        for (const btn of button) {
+        button.forEach(btn => {
             btn.addEventListener('click', event => {
-                // event.preventDefault()
-                const treeviewMenu = event.target;
-                const data = new Treeview(treeviewMenu, Default$1);
-                data.toggle();
+                const target = event.target;
+                const targetItem = target.closest(SELECTOR_NAV_ITEM);
+                if (targetItem) {
+                    const data = new Treeview(targetItem, Default$1);
+                    data.toggle();
+                }
             });
-        }
+        });
     });
 
     /**
@@ -405,6 +363,10 @@
      * Constants
      * ====================================================
      */
+    const DATA_KEY$1 = 'lte.direct-chat';
+    const EVENT_KEY$1 = `.${DATA_KEY$1}`;
+    const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$1}`;
+    const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$1}`;
     const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="chat-pane"]';
     const SELECTOR_DIRECT_CHAT = '.direct-chat';
     const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open';
@@ -413,10 +375,20 @@
      * ====================================================
      */
     class DirectChat {
-        toggle(chatPane) {
-            var _a;
-            // chatPane
-            (_a = chatPane.closest(SELECTOR_DIRECT_CHAT)) === null || _a === void 0 ? void 0 : _a.classList.toggle(CLASS_NAME_DIRECT_CHAT_OPEN);
+        constructor(element) {
+            this._element = element;
+        }
+        toggle() {
+            if (this._element.classList.contains(CLASS_NAME_DIRECT_CHAT_OPEN)) {
+                const event = new Event(EVENT_COLLAPSED$1);
+                this._element.classList.remove(CLASS_NAME_DIRECT_CHAT_OPEN);
+                this._element.dispatchEvent(event);
+            }
+            else {
+                const event = new Event(EVENT_EXPANDED$1);
+                this._element.classList.add(CLASS_NAME_DIRECT_CHAT_OPEN);
+                this._element.dispatchEvent(event);
+            }
         }
     }
     /**
@@ -426,14 +398,17 @@
      */
     domReady(() => {
         const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE);
-        for (const btn of button) {
+        button.forEach(btn => {
             btn.addEventListener('click', event => {
                 event.preventDefault();
-                const chatPane = event.target;
-                const data = new DirectChat();
-                data.toggle(chatPane);
+                const target = event.target;
+                const chatPane = target.closest(SELECTOR_DIRECT_CHAT);
+                if (chatPane) {
+                    const data = new DirectChat(chatPane);
+                    data.toggle();
+                }
             });
-        }
+        });
     });
 
     /**
@@ -446,6 +421,13 @@
      * Constants
      * ====================================================
      */
+    const DATA_KEY = 'lte.card-widget';
+    const EVENT_KEY = `.${DATA_KEY}`;
+    const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
+    const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
+    const EVENT_REMOVE = `remove${EVENT_KEY}`;
+    const EVENT_MAXIMIZED = `maximized${EVENT_KEY}`;
+    const EVENT_MINIMIZED = `minimized${EVENT_KEY}`;
     const CLASS_NAME_CARD = 'card';
     const CLASS_NAME_COLLAPSED = 'collapsed-card';
     const CLASS_NAME_COLLAPSING = 'collapsing-card';
@@ -476,20 +458,19 @@
             if (element.classList.contains(CLASS_NAME_CARD)) {
                 this._parent = element;
             }
-            this._config = { ...Default, ...config };
+            this._config = Object.assign(Object.assign({}, Default), config);
         }
         collapse() {
-            var _a, _b;
+            var _a, _b, _c;
+            const event = new Event(EVENT_COLLAPSED);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_COLLAPSING);
                 const elm = (_a = this._parent) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
-                if (elm !== undefined) {
-                    for (const el of elm) {
-                        if (el instanceof HTMLElement) {
-                            slideUp(el, this._config.animationSpeed);
-                        }
+                elm.forEach(el => {
+                    if (el instanceof HTMLElement) {
+                        slideUp(el, this._config.animationSpeed);
                     }
-                }
+                });
                 setTimeout(() => {
                     if (this._parent) {
                         this._parent.classList.add(CLASS_NAME_COLLAPSED);
@@ -502,19 +483,19 @@
                 icon.classList.remove(this._config.collapseIcon);
                 icon.classList.add(this._config.expandIcon);
             }
+            (_c = this._element) === null || _c === void 0 ? void 0 : _c.dispatchEvent(event);
         }
         expand() {
-            var _a, _b;
+            var _a, _b, _c;
+            const event = new Event(EVENT_EXPANDED);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_EXPANDING);
                 const elm = (_a = this._parent) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
-                if (elm !== undefined) {
-                    for (const el of elm) {
-                        if (el instanceof HTMLElement) {
-                            slideDown(el, this._config.animationSpeed);
-                        }
+                elm.forEach(el => {
+                    if (el instanceof HTMLElement) {
+                        slideDown(el, this._config.animationSpeed);
                     }
-                }
+                });
                 setTimeout(() => {
                     if (this._parent) {
                         this._parent.classList.remove(CLASS_NAME_COLLAPSED);
@@ -527,11 +508,15 @@
                 icon.classList.add(this._config.collapseIcon);
                 icon.classList.remove(this._config.expandIcon);
             }
+            (_c = this._element) === null || _c === void 0 ? void 0 : _c.dispatchEvent(event);
         }
         remove() {
+            var _a;
+            const event = new Event(EVENT_REMOVE);
             if (this._parent) {
                 slideUp(this._parent, this._config.animationSpeed);
             }
+            (_a = this._element) === null || _a === void 0 ? void 0 : _a.dispatchEvent(event);
         }
         toggle() {
             var _a;
@@ -542,6 +527,8 @@
             this.collapse();
         }
         maximize() {
+            var _a;
+            const event = new Event(EVENT_MAXIMIZED);
             if (this._parent) {
                 const maxElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.maximizeIcon}`);
                 if (maxElm) {
@@ -564,8 +551,11 @@
                     }
                 }, 150);
             }
+            (_a = this._element) === null || _a === void 0 ? void 0 : _a.dispatchEvent(event);
         }
         minimize() {
+            var _a;
+            const event = new Event(EVENT_MINIMIZED);
             if (this._parent) {
                 const minElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.minimizeIcon}`);
                 if (minElm) {
@@ -587,6 +577,7 @@
                     }
                 }, 10);
             }
+            (_a = this._element) === null || _a === void 0 ? void 0 : _a.dispatchEvent(event);
         }
         toggleMaximize() {
             var _a;
@@ -604,32 +595,32 @@
      */
     domReady(() => {
         const collapseBtn = document.querySelectorAll(SELECTOR_DATA_COLLAPSE);
-        for (const btn of collapseBtn) {
+        collapseBtn.forEach(btn => {
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 const target = event.target;
                 const data = new CardWidget(target, Default);
                 data.toggle();
             });
-        }
+        });
         const removeBtn = document.querySelectorAll(SELECTOR_DATA_REMOVE);
-        for (const btn of removeBtn) {
+        removeBtn.forEach(btn => {
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 const target = event.target;
                 const data = new CardWidget(target, Default);
                 data.remove();
             });
-        }
+        });
         const maxBtn = document.querySelectorAll(SELECTOR_DATA_MAXIMIZE);
-        for (const btn of maxBtn) {
+        maxBtn.forEach(btn => {
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 const target = event.target;
                 const data = new CardWidget(target, Default);
                 data.toggleMaximize();
             });
-        }
+        });
     });
 
     exports.CardWidget = CardWidget;
@@ -637,8 +628,6 @@
     exports.Layout = Layout;
     exports.PushMenu = PushMenu;
     exports.Treeview = Treeview;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 //# sourceMappingURL=adminlte.js.map
