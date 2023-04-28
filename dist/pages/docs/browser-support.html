@@ -3,9 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- Primary Meta Tags -->
-<title>AdminLTE 4 | Simple Tables</title>
+<title>Browser Support | AdminLTE 4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="title" content="AdminLTE 4 | Simple Tables">
+<meta name="title" content="Browser Support | AdminLTE 4">
 <meta name="author" content="ColorlibHQ">
 <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
 <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
@@ -338,8 +338,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item menu-open">
-          <a href="javascript:;" class="nav-link active">
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-link">
             <i class="nav-icon fa-solid fa-table"></i>
             <p>
               Tables
@@ -348,7 +348,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="../tables/simple.html" class="nav-link active">
+              <a href="../tables/simple.html" class="nav-link">
                 <i class="nav-icon fa-regular fa-circle"></i>
                 <p>Simple Tables</p>
               </a>
@@ -389,7 +389,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="../docs/browser-support.html" class="nav-link">
+          <a href="../docs/browser-support.html" class="nav-link active">
             <i class="nav-icon fa-solid fa-edge"></i>
             <p>Browser Support</p>
           </a>
@@ -496,12 +496,14 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Simple Tables</h3>
+                <h3 class="mb-0">Browser Support</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Simple Tables</li>
+                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Browser Support
+                  </li>
                 </ol>
               </div>
             </div>
@@ -510,284 +512,24 @@
         <!-- Main content -->
         <div class="app-content">
           <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Bordered Table</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-danger">55%</span></td>
-                        </tr>
-                        <tr>
-                          <td>2.</td>
-                          <td>Clean database</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar text-bg-warning" style="width: 70%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-warning">70%</span></td>
-                        </tr>
-                        <tr>
-                          <td>3.</td>
-                          <td>Cron job running</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-primary" style="width: 30%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-primary">30%</span></td>
-                        </tr>
-                        <tr>
-                          <td>4.</td>
-                          <td>Fix and squish bugs</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-success" style="width: 90%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-success">90%</span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                      <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- /.card -->
-
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Condensed Full Width Table</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <table class="table table-sm">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-danger">55%</span></td>
-                        </tr>
-                        <tr>
-                          <td>2.</td>
-                          <td>Clean database</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar text-bg-warning" style="width: 70%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-warning">70%</span></td>
-                        </tr>
-                        <tr>
-                          <td>3.</td>
-                          <td>Cron job running</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-primary" style="width: 30%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-primary">30%</span></td>
-                        </tr>
-                        <tr>
-                          <td>4.</td>
-                          <td>Fix and squish bugs</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-success" style="width: 90%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-success">90%</span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Simple Full Width Table</h3>
-
-                    <div class="card-tools">
-                      <ul class="pagination pagination-sm float-end">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-danger">55%</span></td>
-                        </tr>
-                        <tr>
-                          <td>2.</td>
-                          <td>Clean database</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar text-bg-warning" style="width: 70%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-warning">70%</span></td>
-                        </tr>
-                        <tr>
-                          <td>3.</td>
-                          <td>Cron job running</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-primary" style="width: 30%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-primary">30%</span></td>
-                        </tr>
-                        <tr>
-                          <td>4.</td>
-                          <td>Fix and squish bugs</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-success" style="width: 90%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-success">90%</span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Striped Full Width Table</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Task</th>
-                          <th>Progress</th>
-                          <th style="width: 40px">Label</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1.</td>
-                          <td>Update software</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-danger">55%</span></td>
-                        </tr>
-                        <tr>
-                          <td>2.</td>
-                          <td>Clean database</td>
-                          <td>
-                            <div class="progress progress-xs">
-                              <div class="progress-bar text-bg-warning" style="width: 70%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-warning">70%</span></td>
-                        </tr>
-                        <tr>
-                          <td>3.</td>
-                          <td>Cron job running</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-primary" style="width: 30%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-primary">30%</span></td>
-                        </tr>
-                        <tr>
-                          <td>4.</td>
-                          <td>Fix and squish bugs</td>
-                          <td>
-                            <div class="progress progress-xs progress-striped active">
-                              <div class="progress-bar text-bg-success" style="width: 90%"></div>
-                            </div>
-                          </td>
-                          <td><span class="badge text-bg-success">90%</span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
+            <p>AdminLTE comes with the same browser support as Bootstrap 5.</p>
+<blockquote>
+<h5 id="excerpt-from-bootstraps-official-documentation">Excerpt from Bootstrap’s official Documentation!</h5>
+<p>Bootstrap supports the <strong>latest, stable releases</strong> of all major browsers and platforms.</p>
+<p>For more details <a href="https://getbootstrap.com/docs/5.0/getting-started/browsers-devices/#supported-browsers">look here</a>.</p>
+</blockquote>
+<p>You can find our supported range of browsers and their versions in <a href="https://github.com/ColorlibHQ/AdminLTE/blob/master/.browserslistrc">our .browserslistrc file</a>:</p>
+<pre is:raw="" class="astro-code" style="background-color: #1E1E1E; overflow-x: auto;"><code><span class="line"><span style="color: #D4D4D4"># https://github.com/browserslist/browserslist#readme</span></span>
+<span class="line"><span style="color: #D4D4D4"></span></span>
+<span class="line"><span style="color: #D4D4D4">>= 0.5%</span></span>
+<span class="line"><span style="color: #D4D4D4">last 2 major versions</span></span>
+<span class="line"><span style="color: #D4D4D4">not dead</span></span>
+<span class="line"><span style="color: #D4D4D4">Chrome >= 60</span></span>
+<span class="line"><span style="color: #D4D4D4">Firefox >= 60</span></span>
+<span class="line"><span style="color: #D4D4D4">Firefox ESR</span></span>
+<span class="line"><span style="color: #D4D4D4">iOS >= 12</span></span>
+<span class="line"><span style="color: #D4D4D4">Safari >= 12</span></span>
+<span class="line"><span style="color: #D4D4D4">not Explorer &#x3C;= 11</span></span></code></pre>
           </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
