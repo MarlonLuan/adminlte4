@@ -14180,6 +14180,14 @@ html.maximized-card {
   --lte-card-variant-color-rgb: 255, 255, 255;
 }
 
+.card-body > .table {
+  margin-bottom: 0;
+}
+.card-body > .table > thead > tr > th,
+.card-body > .table > thead > tr > td {
+  border-top-width: 0;
+}
+
 .table:not(.table-dark) {
   color: inherit;
 }
