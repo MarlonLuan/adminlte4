@@ -13848,6 +13848,72 @@ body:not(.app-loaded) .app-footer {
   }
 }
 
+.callout {
+  --bs-link-color-rgb: var(--lte-callout-link);
+  --bs-code-color: var(--lte-callout-code-color);
+  padding: 1.25rem;
+  color: var(--lte-callout-color, inherit);
+  background-color: var(--lte-callout-bg, var(--bs-gray-100));
+  border-right: 0.25rem solid var(--lte-callout-border, var(--bs-gray-300));
+}
+.callout h4, .callout .h4 {
+  margin-bottom: 0.25rem;
+}
+.callout > :last-child {
+  margin-bottom: 0;
+}
+.callout + .callout {
+  margin-top: -0.25rem;
+}
+
+.callout-primary {
+  --lte-callout-color: var(--bs-primary-text-emphasis);
+  --lte-callout-bg: var(--bs-primary-bg-subtle);
+  --lte-callout-border: var(--bs-primary-border-subtle);
+}
+
+.callout-secondary {
+  --lte-callout-color: var(--bs-secondary-text-emphasis);
+  --lte-callout-bg: var(--bs-secondary-bg-subtle);
+  --lte-callout-border: var(--bs-secondary-border-subtle);
+}
+
+.callout-success {
+  --lte-callout-color: var(--bs-success-text-emphasis);
+  --lte-callout-bg: var(--bs-success-bg-subtle);
+  --lte-callout-border: var(--bs-success-border-subtle);
+}
+
+.callout-info {
+  --lte-callout-color: var(--bs-info-text-emphasis);
+  --lte-callout-bg: var(--bs-info-bg-subtle);
+  --lte-callout-border: var(--bs-info-border-subtle);
+}
+
+.callout-warning {
+  --lte-callout-color: var(--bs-warning-text-emphasis);
+  --lte-callout-bg: var(--bs-warning-bg-subtle);
+  --lte-callout-border: var(--bs-warning-border-subtle);
+}
+
+.callout-danger {
+  --lte-callout-color: var(--bs-danger-text-emphasis);
+  --lte-callout-bg: var(--bs-danger-bg-subtle);
+  --lte-callout-border: var(--bs-danger-border-subtle);
+}
+
+.callout-light {
+  --lte-callout-color: var(--bs-light-text-emphasis);
+  --lte-callout-bg: var(--bs-light-bg-subtle);
+  --lte-callout-border: var(--bs-light-border-subtle);
+}
+
+.callout-dark {
+  --lte-callout-color: var(--bs-dark-text-emphasis);
+  --lte-callout-bg: var(--bs-dark-bg-subtle);
+  --lte-callout-border: var(--bs-dark-border-subtle);
+}
+
 .astro-code {
   padding: 0.75rem;
   border-radius: 0.375rem;
