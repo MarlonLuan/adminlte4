@@ -4,9 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Primary Meta Tags -->
-    <title>AdminLTE 4 | Unfixed Sidebar</title>
+    <title>Layout | AdminLTE 4</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="AdminLTE 4 | Unfixed Sidebar">
+    <meta name="title" content="Layout | AdminLTE 4">
     <meta name="author" content="ColorlibHQ">
     <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
     <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="../../../dist/css/adminlte.css">
 </head>
 
-<body class="sidebar-expand-lg bg-body-tertiary">
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
         <!-- Navbar -->
         <nav class="app-header navbar navbar-expand bg-body">
@@ -272,8 +272,8 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item menu-open">
-                            <a href="javascript:;" class="nav-link active">
+                        <li class="nav-item">
+                            <a href="javascript:;" class="nav-link">
                                 <i class="nav-icon fa-solid fa-copy"></i>
                                 <p>
                                     Layout Options
@@ -283,7 +283,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../../layout/unfixed-sidebar.html" class="nav-link active">
+                                    <a href="../../layout/unfixed-sidebar.html" class="nav-link">
                                         <i class="nav-icon fa-regular fa-circle"></i>
                                         <p>Unfixed Sidebar</p>
                                     </a>
@@ -393,7 +393,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../docs/layout.html" class="nav-link">
+                            <a href="../../docs/layout.html" class="nav-link active">
                                 <i class="nav-icon fa-solid fa-grip"></i>
                                 <p>Layout</p>
                             </a>
@@ -523,12 +523,14 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Unfixed Layout</h3>
+                            <h3 class="mb-0">Layout</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Unfixed Layout</li>
+                                <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Layout
+                                </li>
                             </ol>
                         </div>
                     </div>
@@ -537,36 +539,28 @@
             <!-- Main content -->
             <div class="app-content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Default box -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Title</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-lte-dismiss="card-remove" title="Remove">
-                                            <i class="fa-solid fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    Start creating your amazing application!
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    Footer
-                                </div>
-                                <!-- /.card-footer-->
-                            </div>
-                            <!-- /.card -->
-                        </div>
+                    <div class="callout callout-info mb-4">
+                        <h5 class="fw-bold">Tips</h5>
+                        <p>The <a href="/starter.html" class="link-primary">starter page</a> is a good place to start building your app if you’d like to start from scratch.</p>
                     </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
+
+                    <p>The layout consists of five major parts:</p>
+                    <ul>
+                        <li>Wrapper <code>.app-wrapper</code> . A div that wraps the whole site.</li>
+                        <li>Main Header <code>.app-header</code> . Contains the logo and navbar.</li>
+                        <li>Main Sidebar <code>.app-sidebar</code> . Contains the sidebar user panel and menu.</li>
+                        <li>Content <code>.app-main</code> . Contains the page header and content.</li>
+                        <li>Main Footer <code>.app-footer</code> . Contains the footer.</li>
+                    </ul>
+
+                    <h4>Layout Options</h4>
+                    <p>AdminLTE v4 provides a set of options to apply to your main layout. Each one of these classes can be added to the <code>body</code> tag to get the desired goal.</p>
+                    <ul>
+                        <li>Fixed Sidebar: use the class <code>.layout-fixed</code> to get a fixed sidebar.</li>
+                        <li>Collapsed Sidebar: use the class <code>.sidebar-expand-lg .sidebar-mini .sidebar-collapse</code> to have a collapsed sidebar upon loading.</li>
+                    </ul>
+                </div>
+                <!-- /.container-fluid -->
             </div>
             <!-- /.content -->
         </main>
