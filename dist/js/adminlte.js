@@ -134,12 +134,10 @@
     const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
     const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse';
     const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open';
-    const CLASS_NAME_SIDEBAR_IS_HOVER = 'sidebar-is-hover';
     const CLASS_NAME_SIDEBAR_EXPAND = 'sidebar-expand';
     const CLASS_NAME_SIDEBAR_OVERLAY = 'sidebar-overlay';
     const CLASS_NAME_MENU_OPEN$1 = 'menu-open';
     const SELECTOR_APP_SIDEBAR = '.app-sidebar';
-    const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
     const SELECTOR_SIDEBAR_MENU = '.sidebar-menu';
     const SELECTOR_NAV_ITEM$1 = '.nav-item';
     const SELECTOR_NAV_TREEVIEW = '.nav-treeview';
@@ -185,17 +183,6 @@
             document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE);
             this._element.dispatchEvent(event);
         }
-        sidebarHover() {
-            const selSidebar = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-            if (selSidebar) {
-                selSidebar.addEventListener('mouseover', () => {
-                    document.body.classList.add(CLASS_NAME_SIDEBAR_IS_HOVER);
-                });
-                selSidebar.addEventListener('mouseout', () => {
-                    document.body.classList.remove(CLASS_NAME_SIDEBAR_IS_HOVER);
-                });
-            }
-        }
         addSidebarBreakPoint() {
             var _a, _b, _c;
             const sidebarExpandList = (_b = (_a = document.querySelector(SELECTOR_SIDEBAR_EXPAND)) === null || _a === void 0 ? void 0 : _a.classList) !== null && _b !== void 0 ? _b : [];
@@ -210,7 +197,7 @@
                 if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
                     this.expand();
                 }
-                if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
+                if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI) && document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
                     this.collapse();
                 }
             }
@@ -225,7 +212,6 @@
         }
         init() {
             this.addSidebarBreakPoint();
-            this.sidebarHover();
         }
     }
     /**
