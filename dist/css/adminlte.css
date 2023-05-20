@@ -12844,21 +12844,17 @@ textarea.form-control-lg {
 }
 @keyframes fadeIn {
   from {
-    visibility: hidden;
     opacity: 0;
   }
   to {
-    visibility: visible;
     opacity: 1;
   }
 }
 @keyframes fadeOut {
   from {
-    visibility: visible;
     opacity: 1;
   }
   to {
-    visibility: hidden;
     opacity: 0;
   }
 }
@@ -13024,6 +13020,21 @@ textarea.form-control-lg {
   margin-left: 0.8rem;
   line-height: 0.8;
 }
+.sidebar-brand .brand-link .brand-image-xs {
+  float: left;
+  width: auto;
+  max-height: 33px;
+  margin-top: -0.1rem;
+  line-height: 0.8;
+}
+.sidebar-brand .brand-link .brand-image-xl {
+  width: auto;
+  max-height: 40px;
+  line-height: 0.8;
+}
+.sidebar-brand .brand-link .brand-image-xl.single {
+  margin-top: -0.3rem;
+}
 .sidebar-brand .brand-text {
   color: rgba(var(--bs-emphasis-color-rgb), 0.8);
   transition: flex 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -13166,6 +13177,36 @@ textarea.form-control-lg {
   white-space: nowrap;
 }
 
+.logo-xs,
+.logo-xl {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+}
+.logo-xs.brand-image-xs,
+.logo-xl.brand-image-xs {
+  top: 12px;
+  left: 18px;
+}
+.logo-xs.brand-image-xl,
+.logo-xl.brand-image-xl {
+  top: 6px;
+  left: 12px;
+}
+
+.logo-xs {
+  visibility: hidden;
+  opacity: 0;
+}
+.logo-xs.brand-image-xl {
+  top: 8px;
+  left: 16px;
+}
+
+.brand-link.logo-switch::before {
+  content: " ";
+}
+
 .sidebar-mini.sidebar-collapse .app-sidebar {
   min-width: 4.6rem;
   max-width: 4.6rem;
@@ -13181,26 +13222,42 @@ textarea.form-control-lg {
   white-space: nowrap;
 }
 .sidebar-mini.sidebar-collapse .sidebar-menu .nav-link p,
-.sidebar-mini.sidebar-collapse .brand-text {
+.sidebar-mini.sidebar-collapse .brand-text,
+.sidebar-mini.sidebar-collapse .logo-xl {
   visibility: hidden;
   animation-name: fadeOut;
+  animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse.sidebar-is-hover .app-sidebar {
+.sidebar-mini.sidebar-collapse .logo-xs {
+  display: inline-block;
+  visibility: visible;
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+.sidebar-mini.sidebar-collapse .app-sidebar:hover {
   min-width: var(--lte-sidebar-width);
   max-width: var(--lte-sidebar-width);
 }
-.sidebar-mini.sidebar-collapse.sidebar-is-hover .sidebar-menu .nav-header {
+.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-header {
   display: inline-block;
 }
-.sidebar-mini.sidebar-collapse.sidebar-is-hover .sidebar-menu .nav-link {
+.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link {
   width: calc(var(--lte-sidebar-width) - 1rem);
 }
-.sidebar-mini.sidebar-collapse.sidebar-is-hover .sidebar-menu .nav-link p,
-.sidebar-mini.sidebar-collapse.sidebar-is-hover .brand-text {
+.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link p,
+.sidebar-mini.sidebar-collapse .app-sidebar:hover .brand-text,
+.sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xl {
   margin-left: 0;
   visibility: visible;
   animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+.sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xs {
+  visibility: hidden;
+  animation-name: fadeOut;
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
@@ -13275,6 +13332,7 @@ textarea.form-control-lg {
     z-index: 1037;
     width: 100%;
     height: 100%;
+    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13338,6 +13396,7 @@ textarea.form-control-lg {
     z-index: 1037;
     width: 100%;
     height: 100%;
+    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13401,6 +13460,7 @@ textarea.form-control-lg {
     z-index: 1037;
     width: 100%;
     height: 100%;
+    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13464,6 +13524,7 @@ textarea.form-control-lg {
     z-index: 1037;
     width: 100%;
     height: 100%;
+    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13527,6 +13588,7 @@ textarea.form-control-lg {
     z-index: 1037;
     width: 100%;
     height: 100%;
+    visibility: visible;
     background-color: rgba(0, 0, 0, 0.2);
     animation-name: fadeIn;
     animation-fill-mode: both;
@@ -13587,9 +13649,25 @@ textarea.form-control-lg {
   z-index: 1037;
   width: 100%;
   height: 100%;
+  visibility: visible;
   background-color: rgba(0, 0, 0, 0.2);
   animation-name: fadeIn;
   animation-fill-mode: both;
+}
+
+.sidebar-menu .nav-link p,
+.app-sidebar .brand-text,
+.app-sidebar .logo-xs,
+.app-sidebar .logo-xl {
+  transition: margin-left 0.3s linear, opacity 0.3s ease, visibility 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-menu .nav-link p,
+  .app-sidebar .brand-text,
+  .app-sidebar .logo-xs,
+  .app-sidebar .logo-xl {
+    transition: none;
+  }
 }
 
 .app-loaded.sidebar-mini.sidebar-collapse .sidebar-menu .nav-link p,
