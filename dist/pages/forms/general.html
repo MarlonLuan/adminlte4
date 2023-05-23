@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--begin::Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!-- Primary Meta Tags -->
     <title>AdminLTE 4 | General Form Elements</title>
+    <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="AdminLTE 4 | General Form Elements">
     <meta name="author" content="ColorlibHQ">
     <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
     <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
-
-    <!-- OPTIONAL LINKS -->
-
-    <!-- Google Font: Source Sans Pro -->
+    <!--end::Primary Meta Tags-->
+    <!--begin::Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-
-    <!-- overlayscrollbars -->
+    <!--end::Fonts-->
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/styles/overlayscrollbars.min.css" integrity="sha256-LWLZPJ7X1jJLI5OG5695qDemW1qQ7lNdbTfQ64ylbUY=" crossorigin="anonymous">
-
-    <!-- @fortawesome/fontawesome-free -->
+    <!--end::Third Party Plugin(OverlayScrollbars)-->
+    <!--begin::Third Party Plugin(Font Awesome)-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
-
-    <!-- REQUIRED LINKS -->
-
-    <!-- Theme style -->
+    <!--end::Third Party Plugin(Font Awesome)-->
+    <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../../dist/css/adminlte.css">
+    <!--end::Required Plugin(AdminLTE)-->
 </head>
+<!--end::Head-->
+<!--begin::Body-->
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <!--begin::App Wrapper-->
     <div class="app-wrapper">
-        <!-- Navbar -->
+        <!--begin::Header-->
         <nav class="app-header navbar navbar-expand bg-body">
             <div class="container-fluid">
-                <!-- Start navbar links -->
+                <!--begin::Start Navbar Links-->
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"><i class="fa-solid fa-bars"></i></a>
@@ -47,17 +48,19 @@
                         <a href="#" class="nav-link">Contact</a>
                     </li>
                 </ul>
-                <!-- End navbar links -->
+                <!--end::Start Navbar Links-->
 
+                <!--begin::End Navbar Links-->
                 <ul class="navbar-nav ms-auto">
-                    <!-- Navbar Search -->
+                    <!--begin::Navbar Search-->
                     <li class="nav-item">
                         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                             <i class="fa-solid fa-search"></i>
                         </a>
                     </li>
+                    <!--end::Navbar Search-->
 
-                    <!-- Messages Dropdown Menu -->
+                    <!--begin::Messages Dropdown Menu-->
                     <li class="nav-item dropdown">
                         <a class="nav-link" data-bs-toggle="dropdown" href="#">
                             <i class="fa-regular fa-comments"></i>
@@ -65,7 +68,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
+                                <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
                                         <img src="../../../dist/assets/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3">
@@ -79,11 +82,11 @@
                                         <p class="fs-7 text-secondary"><i class="fa-regular fa-clock me-1"></i> 4 Hours Ago</p>
                                     </div>
                                 </div>
-                                <!-- Message End -->
+                                <!--end::Message-->
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
+                                <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
                                         <img src="../../../dist/assets/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3">
@@ -97,11 +100,11 @@
                                         <p class="fs-7 text-secondary"><i class="fa-regular fa-clock me-1"></i> 4 Hours Ago</p>
                                     </div>
                                 </div>
-                                <!-- Message End -->
+                                <!--end::Message-->
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item">
-                                <!-- Message Start -->
+                                <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
                                         <img src="../../../dist/assets/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 rounded-circle me-3">
@@ -115,13 +118,15 @@
                                         <p class="fs-7 text-secondary"><i class="fa-regular fa-clock me-1"></i> 4 Hours Ago</p>
                                     </div>
                                 </div>
-                                <!-- Message End -->
+                                <!--end::Message-->
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                         </div>
                     </li>
-                    <!-- Notifications Dropdown Menu -->
+                    <!--end::Messages Dropdown Menu-->
+
+                    <!--begin::Notifications Dropdown Menu-->
                     <li class="nav-item dropdown">
                         <a class="nav-link" data-bs-toggle="dropdown" href="#">
                             <i class="fa-regular fa-bell"></i>
@@ -148,13 +153,16 @@
                             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                         </div>
                     </li>
+                    <!--end::Notifications Dropdown Menu-->
+
+                    <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img src="../../../dist/assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image">
                             <span class="d-none d-md-inline">Alexander Pierce</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                            <!-- User image -->
+                            <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
                                 <img src="../../../dist/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image">
 
@@ -163,7 +171,8 @@
                                     <small>Member since Nov. 2023</small>
                                 </p>
                             </li>
-                            <!-- Menu Body -->
+                            <!--end::User Image-->
+                            <!--begin::Menu Body-->
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-4 text-center">
@@ -176,42 +185,42 @@
                                         <a href="#">Friends</a>
                                     </div>
                                 </div>
-                                <!-- /.row -->
                             </li>
-                            <!-- Menu Footer-->
+                            <!--end::Menu Body-->
+                            <!--begin::Menu Footer-->
                             <li class="user-footer">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
                             </li>
+                            <!--end::Menu Footer-->
                         </ul>
                     </li>
-                    <!-- TODO tackel in v4.1 -->
-                    <!-- <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fa-solid fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fa-solid fa-th-large"></i>
-        </a>
-      </li> -->
+                    <!--end::User Menu Dropdown-->
                 </ul>
+                <!--end::End Navbar Links-->
             </div>
         </nav>
-        <!-- /.navbar -->
-        <!-- Sidebar Container -->
+        <!--end::Header-->
+        <!--begin::Sidebar-->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+            <!--begin::Sidebar Brand-->
             <div class="sidebar-brand">
+                <!--begin::Brand Link-->
                 <a href="../../index.html" class="brand-link">
+                    <!--begin::Brand Image-->
                     <img src="../../../dist/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow">
+                    <!--end::Brand Image-->
+                    <!--begin::Brand Text-->
                     <span class="brand-text fw-light">AdminLTE 4</span>
+                    <!--end::Brand Text-->
                 </a>
+                <!--end::Brand Link-->
             </div>
-            <!-- Sidebar -->
+            <!--end::Sidebar Brand-->
+            <!--begin::Sidebar Wrapper-->
             <div class="sidebar-wrapper">
                 <nav class="mt-2">
-                    <!-- Sidebar Menu -->
+                    <!--begin::Sidebar Menu-->
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a href="javascript:;" class="nav-link">
@@ -271,7 +280,6 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a href="javascript:;" class="nav-link">
                                 <i class="nav-icon fa-solid fa-copy"></i>
@@ -431,6 +439,12 @@
                                         <p>Main Header</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="../../docs/components/main-sidebar.html" class="nav-link">
+                                        <i class="nav-icon fa-regular fa-circle"></i>
+                                        <p>Main Sidebar</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -505,6 +519,7 @@
                                 <p>Level 1</p>
                             </a>
                         </li>
+
                         <li class="nav-header">LABELS</li>
                         <li class="nav-item">
                             <a href="javascript:;" class="nav-link">
@@ -525,12 +540,15 @@
                             </a>
                         </li>
                     </ul>
+                    <!--end::Sidebar Menu-->
                 </nav>
             </div>
-            <!-- /.sidebar -->
+            <!--end::Sidebar Wrapper-->
         </aside>
-        <!-- Main content -->
+        <!--end::Sidebar-->
+        <!--begin::App Main-->
         <main class="app-main">
+            <!--begin::App Content Header-->
             <div class="app-content-header">
                 <div class="container-fluid">
                     <div class="row">
@@ -546,7 +564,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Main content -->
+            <!--end::App Content Header-->
+            <!--begin::App Content-->
             <div class="app-content">
                 <div class="container-fluid">
                     <div class="row g-4">
@@ -590,35 +609,33 @@
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
-            <!-- /.content -->
+            <!--end::App Content-->
         </main>
-        <!-- /.app-content -->
-
-        <!-- Main Footer -->
+        <!--end::App Main-->
+        <!--begin::Footer-->
         <footer class="app-footer">
-            <!-- To the end -->
+            <!--begin::To the end-->
             <div class="float-end d-none d-sm-inline">
                 Anything you want
             </div>
-            <!-- Default to the start -->
+            <!--end::To the end-->
+            <!--begin::Copyright-->
             <strong>Copyright &copy; 2014-2023 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <!--end::Copyright-->
         </footer>
+        <!--end::Footer-->
     </div>
-    <!--  ./app-wrapper -->
-
-    <!-- OPTIONAL SCRIPTS --><!-- overlayscrollbars -->
+    <!--end::App Wrapper-->
+    <!--begin::Script-->
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-NRZchBuHZWSXldqrtAOeCZpucH/1n1ToJ3C8mSK95NU=" crossorigin="anonymous"></script>
-
-    <!-- @popperjs for Bootstrap 5 -->
+    <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-
-    <!-- Bootstrap 5 -->
+    <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-
-    <!-- REQUIRED SCRIPTS --><!-- AdminLTE App -->
+    <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="../../../dist/js/adminlte.js"></script>
-
-    <!-- OPTIONAL SCRIPTS -->
+    <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
         const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
         const Default = {
@@ -640,6 +657,8 @@
             }
         })
     </script>
-</body>
+    <!--end::OverlayScrollbars Configure-->
+    <!--end::Script-->
+</body><!--end::Body-->
 
 </html>
