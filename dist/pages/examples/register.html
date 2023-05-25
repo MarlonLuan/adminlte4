@@ -59,6 +59,7 @@
                             <span class="fa-solid fa-lock"></span>
                         </div>
                     </div>
+                    <!--begin::Row-->
                     <div class="row">
                         <div class="col-8">
                             <div class="form-check">
@@ -76,6 +77,7 @@
                         </div>
                         <!-- /.col -->
                     </div>
+                    <!--end::Row-->
                 </form>
 
                 <div class="social-auth-links text-center mb-3 d-grid gap-2">
@@ -90,7 +92,9 @@
                 <!-- /.social-auth-links -->
 
                 <p class="mb-0">
-                    <a href="login.html" class="text-center">I already have a membership</a>
+                    <a href="login.html" class="text-center">
+                        I already have a membership
+                    </a>
                 </p>
             </div>
             <!-- /.register-card-body -->
@@ -108,25 +112,28 @@
     <script src="../../../dist/js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
-        const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper'
+        const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
         const Default = {
-            scrollbarTheme: 'os-theme-light',
-            scrollbarAutoHide: 'leave',
-            scrollbarClickScroll: true
-        }
+            scrollbarTheme: "os-theme-light",
+            scrollbarAutoHide: "leave",
+            scrollbarClickScroll: true,
+        };
 
         document.addEventListener("DOMContentLoaded", function() {
-            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER)
-            if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+            if (
+                sidebarWrapper &&
+                typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
+            ) {
                 OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
                     scrollbars: {
                         theme: Default.scrollbarTheme,
                         autoHide: Default.scrollbarAutoHide,
-                        clickScroll: Default.scrollbarClickScroll
-                    }
-                })
+                        clickScroll: Default.scrollbarClickScroll,
+                    },
+                });
             }
-        })
+        });
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
