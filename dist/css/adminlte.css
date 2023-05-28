@@ -14081,11 +14081,11 @@ body:not(.app-loaded) .app-footer {
   box-shadow: 0 0 1px rgba(var(--bs-body-color-rgb), 0.125), 0 1px 3px rgba(var(--bs-body-color-rgb), 0.2);
   margin-bottom: 1rem;
 }
-.card[class*=card-]:not(.card-outline) > .card-header {
+.card[class*=card-]:not(.card-outline) > .card-header, .card[class*=text-bg-]:not(.card-outline) > .card-header {
   color: var(--lte-card-variant-color);
   background-color: var(--lte-card-variant-bg);
 }
-.card[class*=card-]:not(.card-outline) > .card-header .btn-tool {
+.card[class*=card-]:not(.card-outline) > .card-header .btn-tool, .card[class*=text-bg-]:not(.card-outline) > .card-header .btn-tool {
   --bs-btn-color: rgba(var(--lte-card-variant-color-rgb), .8);
   --bs-btn-hover-color: var(--lte-card-variant-color);
 }
