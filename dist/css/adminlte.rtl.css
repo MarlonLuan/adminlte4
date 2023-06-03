@@ -13139,20 +13139,12 @@ textarea.form-control-lg {
 .sidebar-menu .nav-link > p > .nav-badge {
   position: absolute;
   left: 1rem;
-  animation-name: fadeIn;
-  animation-duration: 0.3s;
-  animation-fill-mode: both;
-  animation-delay: 0.3s;
 }
 .sidebar-menu .nav-link > .nav-arrow,
 .sidebar-menu .nav-link > p > .nav-arrow {
   position: absolute;
   top: 50%;
   left: 1rem;
-  animation-name: fadeIn;
-  animation-duration: 0.3s;
-  animation-fill-mode: both;
-  animation-delay: 0.3s;
 }
 .sidebar-menu .nav-link {
   position: relative;
@@ -13243,7 +13235,6 @@ textarea.form-control-lg {
   animation-name: fadeOut;
   animation-duration: 0.3s;
   animation-fill-mode: both;
-  animation-delay: 0.3s;
 }
 .sidebar-mini.sidebar-collapse .brand-text {
   display: inline-block;
@@ -13350,6 +13341,20 @@ textarea.form-control-lg {
   .sidebar-expand-sm.layout-fixed-complete .app-main-wrapper {
     max-height: 100vh;
   }
+  .sidebar-expand-sm.sidebar-open .nav-link > .nav-badge,
+  .sidebar-expand-sm.sidebar-open .nav-link > p > .nav-badge {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
+  .sidebar-expand-sm.sidebar-open .nav-link > .nav-arrow,
+  .sidebar-expand-sm.sidebar-open .nav-link > p > .nav-arrow {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
 }
 @media (max-width: 575.98px) {
   .sidebar-expand-sm::before {
@@ -13404,6 +13409,20 @@ textarea.form-control-lg {
   }
   .sidebar-expand-md.layout-fixed-complete .app-main-wrapper {
     max-height: 100vh;
+  }
+  .sidebar-expand-md.sidebar-open .nav-link > .nav-badge,
+  .sidebar-expand-md.sidebar-open .nav-link > p > .nav-badge {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
+  .sidebar-expand-md.sidebar-open .nav-link > .nav-arrow,
+  .sidebar-expand-md.sidebar-open .nav-link > p > .nav-arrow {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
   }
 }
 @media (max-width: 767.98px) {
@@ -13460,6 +13479,20 @@ textarea.form-control-lg {
   .sidebar-expand-lg.layout-fixed-complete .app-main-wrapper {
     max-height: 100vh;
   }
+  .sidebar-expand-lg.sidebar-open .nav-link > .nav-badge,
+  .sidebar-expand-lg.sidebar-open .nav-link > p > .nav-badge {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
+  .sidebar-expand-lg.sidebar-open .nav-link > .nav-arrow,
+  .sidebar-expand-lg.sidebar-open .nav-link > p > .nav-arrow {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
 }
 @media (max-width: 991.98px) {
   .sidebar-expand-lg::before {
@@ -13514,6 +13547,20 @@ textarea.form-control-lg {
   }
   .sidebar-expand-xl.layout-fixed-complete .app-main-wrapper {
     max-height: 100vh;
+  }
+  .sidebar-expand-xl.sidebar-open .nav-link > .nav-badge,
+  .sidebar-expand-xl.sidebar-open .nav-link > p > .nav-badge {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
+  .sidebar-expand-xl.sidebar-open .nav-link > .nav-arrow,
+  .sidebar-expand-xl.sidebar-open .nav-link > p > .nav-arrow {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
   }
 }
 @media (max-width: 1199.98px) {
@@ -13570,6 +13617,20 @@ textarea.form-control-lg {
   .sidebar-expand-xxl.layout-fixed-complete .app-main-wrapper {
     max-height: 100vh;
   }
+  .sidebar-expand-xxl.sidebar-open .nav-link > .nav-badge,
+  .sidebar-expand-xxl.sidebar-open .nav-link > p > .nav-badge {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
+  .sidebar-expand-xxl.sidebar-open .nav-link > .nav-arrow,
+  .sidebar-expand-xxl.sidebar-open .nav-link > p > .nav-arrow {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+  }
 }
 @media (max-width: 1399.98px) {
   .sidebar-expand-xxl::before {
@@ -13623,6 +13684,20 @@ textarea.form-control-lg {
 }
 .sidebar-expand.layout-fixed-complete .app-main-wrapper {
   max-height: 100vh;
+}
+.sidebar-expand.sidebar-open .nav-link > .nav-badge,
+.sidebar-expand.sidebar-open .nav-link > p > .nav-badge {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-delay: 0.3s;
+}
+.sidebar-expand.sidebar-open .nav-link > .nav-arrow,
+.sidebar-expand.sidebar-open .nav-link > p > .nav-arrow {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-delay: 0.3s;
 }
 .sidebar-expand::before {
   display: none;
@@ -13690,7 +13765,9 @@ body:not(.app-loaded) .app-footer {
 .hold-transition .app-header,
 .hold-transition .app-sidebar,
 .hold-transition .app-main,
-.hold-transition .app-footer {
+.hold-transition .app-footer,
+.hold-transition .nav-arrow,
+.hold-transition .nav-badge {
   transition: none !important;
   animation-duration: 0s !important;
 }
@@ -13698,7 +13775,9 @@ body:not(.app-loaded) .app-footer {
   .hold-transition .app-header,
   .hold-transition .app-sidebar,
   .hold-transition .app-main,
-  .hold-transition .app-footer {
+  .hold-transition .app-footer,
+  .hold-transition .nav-arrow,
+  .hold-transition .nav-badge {
     transition: none;
   }
 }
@@ -14052,6 +14131,10 @@ body:not(.app-loaded) .app-footer {
 }
 .compact-mode .app-footer {
   padding: 0.5rem;
+}
+.compact-mode .sidebar-wrapper .nav-icon {
+  min-width: 1.1rem;
+  max-width: 1.1rem;
 }
 
 .astro-code {
