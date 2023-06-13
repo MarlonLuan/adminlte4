@@ -13431,14 +13431,17 @@ textarea.form-control-lg {
     content: "575.98px";
   }
   .sidebar-expand-sm .app-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     bottom: 0;
     max-height: 100vh;
+    margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-sm .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+  }
+  .sidebar-expand-sm.sidebar-open .app-sidebar {
+    margin-left: 0;
   }
   .sidebar-expand-sm.sidebar-open .sidebar-overlay {
     position: absolute;
@@ -13500,14 +13503,17 @@ textarea.form-control-lg {
     content: "767.98px";
   }
   .sidebar-expand-md .app-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     bottom: 0;
     max-height: 100vh;
+    margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-md .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+  }
+  .sidebar-expand-md.sidebar-open .app-sidebar {
+    margin-left: 0;
   }
   .sidebar-expand-md.sidebar-open .sidebar-overlay {
     position: absolute;
@@ -13569,14 +13575,17 @@ textarea.form-control-lg {
     content: "991.98px";
   }
   .sidebar-expand-lg .app-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     bottom: 0;
     max-height: 100vh;
+    margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-lg .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+  }
+  .sidebar-expand-lg.sidebar-open .app-sidebar {
+    margin-left: 0;
   }
   .sidebar-expand-lg.sidebar-open .sidebar-overlay {
     position: absolute;
@@ -13638,14 +13647,17 @@ textarea.form-control-lg {
     content: "1199.98px";
   }
   .sidebar-expand-xl .app-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     bottom: 0;
     max-height: 100vh;
+    margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-xl .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+  }
+  .sidebar-expand-xl.sidebar-open .app-sidebar {
+    margin-left: 0;
   }
   .sidebar-expand-xl.sidebar-open .sidebar-overlay {
     position: absolute;
@@ -13707,14 +13719,17 @@ textarea.form-control-lg {
     content: "1399.98px";
   }
   .sidebar-expand-xxl .app-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     bottom: 0;
     max-height: 100vh;
+    margin-left: calc(var(--lte-sidebar-width) * -1);
   }
   .sidebar-expand-xxl .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
+  }
+  .sidebar-expand-xxl.sidebar-open .app-sidebar {
+    margin-left: 0;
   }
   .sidebar-expand-xxl.sidebar-open .sidebar-overlay {
     position: absolute;
@@ -13773,14 +13788,17 @@ textarea.form-control-lg {
   content: "";
 }
 .sidebar-expand .app-sidebar {
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   bottom: 0;
   max-height: 100vh;
+  margin-left: calc(var(--lte-sidebar-width) * -1);
 }
 .sidebar-expand .app-sidebar .sidebar-wrapper {
   height: calc(100vh - (calc(3.5rem + 1px)));
+}
+.sidebar-expand.sidebar-open .app-sidebar {
+  margin-left: 0;
 }
 .sidebar-expand.sidebar-open .sidebar-overlay {
   position: absolute;
