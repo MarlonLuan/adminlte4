@@ -14297,12 +14297,24 @@ body:not(.app-loaded) .app-footer {
 .card.maximized-card [data-lte-toggle=card-collapse] {
   display: none;
 }
+.card.maximized-card [data-lte-icon=maximize] {
+  display: none;
+}
 .card.maximized-card .card-header,
 .card.maximized-card .card-footer {
   border-radius: 0 !important;
 }
+.card:not(.maximized-card) [data-lte-icon=minimize] {
+  display: none;
+}
+.card.collapsed-card [data-lte-icon=collapse] {
+  display: none;
+}
 .card.collapsed-card .card-body,
 .card.collapsed-card .card-footer {
+  display: none;
+}
+.card:not(.collapsed-card) [data-lte-icon=expand] {
   display: none;
 }
 .card .nav.flex-column > li {
