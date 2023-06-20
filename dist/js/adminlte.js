@@ -437,22 +437,17 @@
     const CLASS_NAME_EXPANDING = 'expanding-card';
     const CLASS_NAME_WAS_COLLAPSED = 'was-collapsed';
     const CLASS_NAME_MAXIMIZED = 'maximized-card';
-    const SELECTOR_DATA_REMOVE = '[data-lte-dismiss="card-remove"]';
+    const SELECTOR_DATA_REMOVE = '[data-lte-toggle="card-remove"]';
     const SELECTOR_DATA_COLLAPSE = '[data-lte-toggle="card-collapse"]';
     const SELECTOR_DATA_MAXIMIZE = '[data-lte-toggle="card-maximize"]';
     const SELECTOR_CARD = `.${CLASS_NAME_CARD}`;
-    const SELECTOR_CARD_HEADER = '.card-header';
     const SELECTOR_CARD_BODY = '.card-body';
     const SELECTOR_CARD_FOOTER = '.card-footer';
     const Default = {
         animationSpeed: 500,
         collapseTrigger: SELECTOR_DATA_COLLAPSE,
         removeTrigger: SELECTOR_DATA_REMOVE,
-        maximizeTrigger: SELECTOR_DATA_MAXIMIZE,
-        collapseIcon: 'fa-minus',
-        expandIcon: 'fa-plus',
-        maximizeIcon: 'fa-expand',
-        minimizeIcon: 'fa-compress'
+        maximizeTrigger: SELECTOR_DATA_MAXIMIZE
     };
     class CardWidget {
         constructor(element, config) {
@@ -464,7 +459,7 @@
             this._config = Object.assign(Object.assign({}, Default), config);
         }
         collapse() {
-            var _a, _b, _c;
+            var _a, _b;
             const event = new Event(EVENT_COLLAPSED);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_COLLAPSING);
@@ -481,15 +476,10 @@
                     }
                 }, this._config.animationSpeed);
             }
-            const icon = (_b = this._parent) === null || _b === void 0 ? void 0 : _b.querySelector(`${SELECTOR_CARD_HEADER} ${this._config.collapseTrigger} .${this._config.collapseIcon}`);
-            if (icon) {
-                icon.classList.remove(this._config.collapseIcon);
-                icon.classList.add(this._config.expandIcon);
-            }
-            (_c = this._element) === null || _c === void 0 ? void 0 : _c.dispatchEvent(event);
+            (_b = this._element) === null || _b === void 0 ? void 0 : _b.dispatchEvent(event);
         }
         expand() {
-            var _a, _b, _c;
+            var _a, _b;
             const event = new Event(EVENT_EXPANDED);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_EXPANDING);
@@ -506,12 +496,7 @@
                     }
                 }, this._config.animationSpeed);
             }
-            const icon = (_b = this._parent) === null || _b === void 0 ? void 0 : _b.querySelector(`${SELECTOR_CARD_HEADER} ${this._config.collapseTrigger} .${this._config.expandIcon}`);
-            if (icon) {
-                icon.classList.add(this._config.collapseIcon);
-                icon.classList.remove(this._config.expandIcon);
-            }
-            (_c = this._element) === null || _c === void 0 ? void 0 : _c.dispatchEvent(event);
+            (_b = this._element) === null || _b === void 0 ? void 0 : _b.dispatchEvent(event);
         }
         remove() {
             var _a;
@@ -533,13 +518,8 @@
             var _a;
             const event = new Event(EVENT_MAXIMIZED);
             if (this._parent) {
-                const maxElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.maximizeIcon}`);
-                if (maxElm) {
-                    maxElm.classList.add(this._config.minimizeIcon);
-                    maxElm.classList.remove(this._config.maximizeIcon);
-                }
-                this._parent.style.height = `${this._parent.scrollHeight}px`;
-                this._parent.style.width = `${this._parent.scrollWidth}px`;
+                this._parent.style.height = `${this._parent.offsetHeight}px`;
+                this._parent.style.width = `${this._parent.offsetWidth}px`;
                 this._parent.style.transition = 'all .15s';
                 setTimeout(() => {
                     const htmlTag = document.querySelector('html');
@@ -560,12 +540,9 @@
             var _a;
             const event = new Event(EVENT_MINIMIZED);
             if (this._parent) {
-                const minElm = this._parent.querySelector(`${this._config.maximizeTrigger} .${this._config.minimizeIcon}`);
-                if (minElm) {
-                    minElm.classList.add(this._config.maximizeIcon);
-                    minElm.classList.remove(this._config.minimizeIcon);
-                }
-                this._parent.style.cssText = `height: ${this._parent.style.height} !important; width: ${this._parent.style.width} !important; transition: all .15s;`;
+                this._parent.style.height = 'auto';
+                this._parent.style.width = 'auto';
+                this._parent.style.transition = 'all .15s';
                 setTimeout(() => {
                     var _a;
                     const htmlTag = document.querySelector('html');
