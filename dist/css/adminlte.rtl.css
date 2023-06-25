@@ -12931,25 +12931,21 @@ textarea.form-control-lg {
 .app-content-bottom-area.app-content-top-area-sm,
 .app-content-bottom-area.app-content-bottom-area-sm {
   min-height: 3.5rem;
-  max-height: 3.5rem;
 }
 .app-content-top-area.app-content-top-area-md, .app-content-top-area.app-content-bottom-area-md,
 .app-content-bottom-area.app-content-top-area-md,
 .app-content-bottom-area.app-content-bottom-area-md {
   min-height: 6rem;
-  max-height: 6rem;
 }
 .app-content-top-area.app-content-top-area-lg, .app-content-top-area.app-content-bottom-area-lg,
 .app-content-bottom-area.app-content-top-area-lg,
 .app-content-bottom-area.app-content-bottom-area-lg {
   min-height: 9rem;
-  max-height: 9rem;
 }
 .app-content-top-area.app-content-top-area-xl, .app-content-top-area.app-content-bottom-area-xl,
 .app-content-bottom-area.app-content-top-area-xl,
 .app-content-bottom-area.app-content-bottom-area-xl {
   min-height: 12rem;
-  max-height: 12rem;
 }
 
 .app-content-top-area:not(.app-content-top-area-sm):not(.app-content-top-area-md):not(.app-content-top-area-lg):not(.app-content-top-area-xl),
@@ -13101,9 +13097,17 @@ textarea.form-control-lg {
   width: 0.5rem;
   height: 0.5rem;
 }
+.sidebar-wrapper .nav-item {
+  max-width: 100%;
+}
 .sidebar-wrapper .nav-link {
   display: flex;
   justify-content: flex-start;
+}
+.sidebar-wrapper .nav-link p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .sidebar-wrapper .nav-icon {
   display: flex;
@@ -13182,7 +13186,6 @@ textarea.form-control-lg {
 }
 .sidebar-menu .nav-link {
   position: relative;
-  width: calc(var(--lte-sidebar-width) - 1rem);
   transition: width ease-in-out 0.3s;
   border-radius: 0.375rem;
 }
@@ -13205,11 +13208,37 @@ textarea.form-control-lg {
   padding: 0;
   list-style: none;
 }
+.nav-indent .sidebar-menu .nav-treeview {
+  padding-right: 0.5rem;
+}
 .sidebar-menu .menu-open > .nav-treeview {
   display: block;
 }
 .sidebar-menu .menu-open > .nav-link .nav-arrow {
   transform: rotate(90deg);
+}
+
+.nav-compact.nav-indent .nav-treeview {
+  padding-right: 0;
+}
+.nav-compact.nav-indent .nav-treeview .nav-item {
+  padding-right: 0.5rem;
+}
+
+.sidebar-mini.sidebar-collapse.nav-indent .app-sidebar:hover .nav-treeview {
+  padding-right: 0;
+}
+.sidebar-mini.sidebar-collapse.nav-indent .app-sidebar:hover .nav-treeview .nav-item {
+  padding-right: 0.5rem;
+}
+
+.sidebar-collapse.nav-compact.nav-indent .nav-treeview .nav-item {
+  padding-right: 0;
+}
+
+.nav-compact .nav-link {
+  border-radius: 0;
+  margin-bottom: 0 !important;
 }
 
 .sidebar-menu,
@@ -13299,11 +13328,12 @@ textarea.form-control-lg {
   display: inline-block;
 }
 .sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link {
-  width: calc(var(--lte-sidebar-width) - 1rem);
+  width: auto;
 }
 .sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link p,
 .sidebar-mini.sidebar-collapse .app-sidebar:hover .brand-text,
 .sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xl {
+  width: auto;
   margin-right: 0;
   visibility: visible;
   animation-name: fadeIn;
@@ -14161,22 +14191,18 @@ body:not(.app-loaded) .app-footer {
 .compact-mode .app-content-top-area-sm,
 .compact-mode .app-content-bottom-area-sm {
   min-height: 2.8875rem;
-  max-height: 2.8875rem;
 }
 .compact-mode .app-content-top-area-md,
 .compact-mode .app-content-bottom-area-md {
   min-height: 4.95rem;
-  max-height: 4.95rem;
 }
 .compact-mode .app-content-top-area-lg,
 .compact-mode .app-content-bottom-area-lg {
   min-height: 7.425rem;
-  max-height: 7.425rem;
 }
 .compact-mode .app-content-top-area-xl,
 .compact-mode .app-content-bottom-area-xl {
   min-height: 9.9rem;
-  max-height: 9.9rem;
 }
 .compact-mode .app-header {
   max-height: 2.75rem;
@@ -14441,13 +14467,15 @@ html.maximized-card {
 .btn-tool {
   --bs-btn-padding-x: .5rem;
   --bs-btn-padding-y: .25rem;
+  margin: -1rem 0;
+  font-size: 0.875rem;
+}
+.btn-tool:not(.btn-tool-custom) {
   --bs-btn-color: var(--bs-tertiary-color);
   --bs-btn-bg: transparent;
   --bs-btn-box-shadow: none;
   --bs-btn-hover-color: var(--bs-secondary-color);
   --bs-btn-active-border-color: transparent;
-  margin: -1rem 0;
-  font-size: 0.875rem;
 }
 
 .card-primary,
