@@ -24,7 +24,7 @@ jobs:
       - run: |
           cd AdminLTE
           npm i
-          npm run production
+          npm run compile
           mv dist ../dist
 
       - run: echo "y" | rm -R AdminLTE
