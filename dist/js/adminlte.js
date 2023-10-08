@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.0.0-alpha2 (https://adminlte.io)
+ * AdminLTE v4.0.0-alpha3 (https://adminlte.io)
  * Copyright 2014-2023 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -87,8 +87,9 @@
 
     /**
      * --------------------------------------------
-     * AdminLTE layout.ts
-     * License MIT
+     * @file AdminLTE layout.ts
+     * @description Layout for AdminLTE.
+     * @license MIT
      * --------------------------------------------
      */
     /**
@@ -127,8 +128,9 @@
 
     /**
      * --------------------------------------------
-     * AdminLTE push-menu.ts
-     * License MIT
+     * @file AdminLTE push-menu.ts
+     * @description Push menu for AdminLTE.
+     * @license MIT
      * --------------------------------------------
      */
     /**
@@ -136,10 +138,10 @@
      * Constants
      * ------------------------------------------------------------------------
      */
-    const DATA_KEY$3 = 'lte.push-menu';
-    const EVENT_KEY$3 = `.${DATA_KEY$3}`;
-    const EVENT_OPEN = `open${EVENT_KEY$3}`;
-    const EVENT_COLLAPSE = `collapse${EVENT_KEY$3}`;
+    const DATA_KEY$4 = 'lte.push-menu';
+    const EVENT_KEY$4 = `.${DATA_KEY$4}`;
+    const EVENT_OPEN = `open${EVENT_KEY$4}`;
+    const EVENT_COLLAPSE = `collapse${EVENT_KEY$4}`;
     const CLASS_NAME_SIDEBAR_MINI = 'sidebar-mini';
     const CLASS_NAME_SIDEBAR_COLLAPSE = 'sidebar-collapse';
     const CLASS_NAME_SIDEBAR_OPEN = 'sidebar-open';
@@ -272,8 +274,9 @@
 
     /**
      * --------------------------------------------
-     * AdminLTE treeview.ts
-     * License MIT
+     * @file AdminLTE treeview.ts
+     * @description Treeview plugin for AdminLTE.
+     * @license MIT
      * --------------------------------------------
      */
     /**
@@ -282,10 +285,10 @@
      * ------------------------------------------------------------------------
      */
     // const NAME = 'Treeview'
-    const DATA_KEY$2 = 'lte.treeview';
-    const EVENT_KEY$2 = `.${DATA_KEY$2}`;
-    const EVENT_EXPANDED$2 = `expanded${EVENT_KEY$2}`;
-    const EVENT_COLLAPSED$2 = `collapsed${EVENT_KEY$2}`;
+    const DATA_KEY$3 = 'lte.treeview';
+    const EVENT_KEY$3 = `.${DATA_KEY$3}`;
+    const EVENT_EXPANDED$2 = `expanded${EVENT_KEY$3}`;
+    const EVENT_COLLAPSED$2 = `collapsed${EVENT_KEY$3}`;
     // const EVENT_LOAD_DATA_API = `load${EVENT_KEY}`
     const CLASS_NAME_MENU_OPEN = 'menu-open';
     const SELECTOR_NAV_ITEM = '.nav-item';
@@ -358,18 +361,19 @@
 
     /**
      * --------------------------------------------
-     * AdminLTE direct-chat.ts
-     * License MIT
+     * @file AdminLTE direct-chat.ts
+     * @description Direct chat for AdminLTE.
+     * @license MIT
      * --------------------------------------------
      */
     /**
      * Constants
      * ====================================================
      */
-    const DATA_KEY$1 = 'lte.direct-chat';
-    const EVENT_KEY$1 = `.${DATA_KEY$1}`;
-    const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$1}`;
-    const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$1}`;
+    const DATA_KEY$2 = 'lte.direct-chat';
+    const EVENT_KEY$2 = `.${DATA_KEY$2}`;
+    const EVENT_EXPANDED$1 = `expanded${EVENT_KEY$2}`;
+    const EVENT_COLLAPSED$1 = `collapsed${EVENT_KEY$2}`;
     const SELECTOR_DATA_TOGGLE = '[data-lte-toggle="chat-pane"]';
     const SELECTOR_DIRECT_CHAT = '.direct-chat';
     const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open';
@@ -416,21 +420,22 @@
 
     /**
      * --------------------------------------------
-     * AdminLTE card-widget.ts
-     * License MIT
+     * @file AdminLTE card-widget.ts
+     * @description Card widget for AdminLTE.
+     * @license MIT
      * --------------------------------------------
      */
     /**
      * Constants
      * ====================================================
      */
-    const DATA_KEY = 'lte.card-widget';
-    const EVENT_KEY = `.${DATA_KEY}`;
-    const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`;
-    const EVENT_EXPANDED = `expanded${EVENT_KEY}`;
-    const EVENT_REMOVE = `remove${EVENT_KEY}`;
-    const EVENT_MAXIMIZED = `maximized${EVENT_KEY}`;
-    const EVENT_MINIMIZED = `minimized${EVENT_KEY}`;
+    const DATA_KEY$1 = 'lte.card-widget';
+    const EVENT_KEY$1 = `.${DATA_KEY$1}`;
+    const EVENT_COLLAPSED = `collapsed${EVENT_KEY$1}`;
+    const EVENT_EXPANDED = `expanded${EVENT_KEY$1}`;
+    const EVENT_REMOVE = `remove${EVENT_KEY$1}`;
+    const EVENT_MAXIMIZED$1 = `maximized${EVENT_KEY$1}`;
+    const EVENT_MINIMIZED$1 = `minimized${EVENT_KEY$1}`;
     const CLASS_NAME_CARD = 'card';
     const CLASS_NAME_COLLAPSED = 'collapsed-card';
     const CLASS_NAME_COLLAPSING = 'collapsing-card';
@@ -516,7 +521,7 @@
         }
         maximize() {
             var _a;
-            const event = new Event(EVENT_MAXIMIZED);
+            const event = new Event(EVENT_MAXIMIZED$1);
             if (this._parent) {
                 this._parent.style.height = `${this._parent.offsetHeight}px`;
                 this._parent.style.width = `${this._parent.offsetWidth}px`;
@@ -538,7 +543,7 @@
         }
         minimize() {
             var _a;
-            const event = new Event(EVENT_MINIMIZED);
+            const event = new Event(EVENT_MINIMIZED$1);
             if (this._parent) {
                 this._parent.style.height = 'auto';
                 this._parent.style.width = 'auto';
@@ -603,8 +608,92 @@
         });
     });
 
+    /**
+     * --------------------------------------------
+     * @file AdminLTE fullscreen.ts
+     * @description Fullscreen plugin for AdminLTE.
+     * @license MIT
+     * --------------------------------------------
+     */
+    /**
+     * Constants
+     * ============================================================================
+     */
+    const DATA_KEY = 'lte.fullscreen';
+    const EVENT_KEY = `.${DATA_KEY}`;
+    const EVENT_MAXIMIZED = `maximized${EVENT_KEY}`;
+    const EVENT_MINIMIZED = `minimized${EVENT_KEY}`;
+    const SELECTOR_FULLSCREEN_TOGGLE = '[data-lte-toggle="fullscreen"]';
+    const SELECTOR_MAXIMIZE_ICON = '[data-lte-icon="maximize"]';
+    const SELECTOR_MINIMIZE_ICON = '[data-lte-icon="minimize"]';
+    /**
+     * Class Definition.
+     * ============================================================================
+     */
+    class FullScreen {
+        constructor(element, config) {
+            this._element = element;
+            this._config = config;
+        }
+        inFullScreen() {
+            const event = new Event(EVENT_MAXIMIZED);
+            const iconMaximize = document.querySelector(SELECTOR_MAXIMIZE_ICON);
+            const iconMinimize = document.querySelector(SELECTOR_MINIMIZE_ICON);
+            void document.documentElement.requestFullscreen();
+            if (iconMaximize) {
+                iconMaximize.style.display = 'none';
+            }
+            if (iconMinimize) {
+                iconMinimize.style.display = 'block';
+            }
+            this._element.dispatchEvent(event);
+        }
+        outFullscreen() {
+            const event = new Event(EVENT_MINIMIZED);
+            const iconMaximize = document.querySelector(SELECTOR_MAXIMIZE_ICON);
+            const iconMinimize = document.querySelector(SELECTOR_MINIMIZE_ICON);
+            void document.exitFullscreen();
+            if (iconMaximize) {
+                iconMaximize.style.display = 'block';
+            }
+            if (iconMinimize) {
+                iconMinimize.style.display = 'none';
+            }
+            this._element.dispatchEvent(event);
+        }
+        toggleFullScreen() {
+            if (document.fullscreenEnabled) {
+                if (document.fullscreenElement) {
+                    this.outFullscreen();
+                }
+                else {
+                    this.inFullScreen();
+                }
+            }
+        }
+    }
+    /**
+     * Data Api implementation
+     * ============================================================================
+     */
+    onDOMContentLoaded(() => {
+        const buttons = document.querySelectorAll(SELECTOR_FULLSCREEN_TOGGLE);
+        buttons.forEach(btn => {
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                const target = event.target;
+                const button = target.closest(SELECTOR_FULLSCREEN_TOGGLE);
+                if (button) {
+                    const data = new FullScreen(button, undefined);
+                    data.toggleFullScreen();
+                }
+            });
+        });
+    });
+
     exports.CardWidget = CardWidget;
     exports.DirectChat = DirectChat;
+    exports.FullScreen = FullScreen;
     exports.Layout = Layout;
     exports.PushMenu = PushMenu;
     exports.Treeview = Treeview;
