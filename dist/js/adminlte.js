@@ -296,7 +296,8 @@
     const SELECTOR_TREEVIEW_MENU = '.nav-treeview';
     const SELECTOR_DATA_TOGGLE$1 = '[data-lte-toggle="treeview"]';
     const Default$1 = {
-        animationSpeed: 300
+        animationSpeed: 300,
+        accordion: true
     };
     /**
      * Class Definition
@@ -308,10 +309,22 @@
             this._config = Object.assign(Object.assign({}, Default$1), config);
         }
         open() {
-            var _a;
+            var _a, _b;
             const event = new Event(EVENT_EXPANDED$2);
+            if (this._config.accordion) {
+                const openMenuList = (_a = this._element.parentElement) === null || _a === void 0 ? void 0 : _a.querySelectorAll(`${SELECTOR_NAV_ITEM}.${CLASS_NAME_MENU_OPEN}`);
+                openMenuList === null || openMenuList === void 0 ? void 0 : openMenuList.forEach(openMenu => {
+                    if (openMenu !== this._element.parentElement) {
+                        openMenu.classList.remove(CLASS_NAME_MENU_OPEN);
+                        const childElement = openMenu === null || openMenu === void 0 ? void 0 : openMenu.querySelector(SELECTOR_TREEVIEW_MENU);
+                        if (childElement) {
+                            slideUp(childElement, this._config.animationSpeed);
+                        }
+                    }
+                });
+            }
             this._element.classList.add(CLASS_NAME_MENU_OPEN);
-            const childElement = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(SELECTOR_TREEVIEW_MENU);
+            const childElement = (_b = this._element) === null || _b === void 0 ? void 0 : _b.querySelector(SELECTOR_TREEVIEW_MENU);
             if (childElement) {
                 slideDown(childElement, this._config.animationSpeed);
             }
