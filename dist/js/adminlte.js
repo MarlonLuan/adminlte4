@@ -248,7 +248,7 @@
             const target = event.currentTarget;
             const data = new PushMenu(target, Defaults);
             data.collapse();
-        });
+        }, { passive: true });
         sidebarOverlay.addEventListener('click', event => {
             event.preventDefault();
             const target = event.currentTarget;
