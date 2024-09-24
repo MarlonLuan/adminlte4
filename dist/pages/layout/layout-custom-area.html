@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>AdminLTE 4 | Unfixed Sidebar</title><!--begin::Primary Meta Tags-->
+    <title>AdminLTE 4 | Layout Custom Area</title><!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="AdminLTE 4 | Unfixed Sidebar">
+    <meta name="title" content="AdminLTE 4 | Layout Custom Area">
     <meta name="author" content="ColorlibHQ">
     <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
     <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard"><!--end::Primary Meta Tags--><!--begin::Fonts-->
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../../dist/css/adminlte.css"><!--end::Required Plugin(AdminLTE)-->
 </head> <!--end::Head--> <!--begin::Body-->
 
-<body class="sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
     <div class="app-wrapper"> <!--begin::Header-->
         <nav class="app-header navbar navbar-expand bg-body"> <!--begin::Container-->
             <div class="container-fluid"> <!--begin::Start Navbar Links-->
@@ -158,13 +158,13 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="../layout/unfixed-sidebar.html" class="nav-link active"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="../layout/unfixed-sidebar.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Default Sidebar</p>
                                     </a> </li>
                                 <li class="nav-item"> <a href="../layout/fixed-sidebar.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Fixed Sidebar</p>
                                     </a> </li>
-                                <li class="nav-item"> <a href="../layout/layout-custom-area.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="../layout/layout-custom-area.html" class="nav-link active"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Layout <small>+ Custom Area </small></p>
                                     </a> </li>
                                 <li class="nav-item"> <a href="../layout/sidebar-mini.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
@@ -369,18 +369,28 @@
                 </nav>
             </div> <!--end::Sidebar Wrapper-->
         </aside> <!--end::Sidebar--> <!--begin::App Main-->
-        <main class="app-main"> <!--begin::App Content Header-->
+        <main class="app-main"> <!--begin::App Content Top Area-->
+            <div class="app-content-top-area"> <!--begin::Container-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>App Content Top Area</div>
+                        </div>
+                        <div class="col-md-6 text-end"> <button type="submit" class="btn btn-primary" name="save" value="create">Create Admin</button> </div>
+                    </div>
+                </div> <!--end::Container-->
+            </div> <!--end::App Content Bottom Area--> <!--begin::App Content Header-->
             <div class="app-content-header"> <!--begin::Container-->
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
-                        <div class="col-sm-6">
-                            <h3 class="mb-0">Unfixed Layout</h3>
+                        <div class="col-sm-8">
+                            <h3 class="mb-0"> Layout Custom Area </h3>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-end">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Unfixed Layout
+                                    Fixed Layout
                                 </li>
                             </ol>
                         </div>
@@ -403,8 +413,18 @@
                             </div> <!-- /.card -->
                         </div>
                     </div> <!--end::Row-->
-                </div>
-            </div> <!--end::App Content-->
+                </div> <!--end::Container-->
+            </div> <!--end::App Content--> <!--begin::App Content Bottom Area-->
+            <div class="app-content-bottom-area"> <!--begin::Container-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>App Content Bottom Area</div>
+                        </div>
+                        <div class="col-md-6 text-end"> <button type="submit" class="btn btn-secondary" name="save" value="create">Refresh</button> </div>
+                    </div>
+                </div> <!--end::Container-->
+            </div> <!--end::App Content Bottom Area-->
         </main> <!--end::App Main--> <!--begin::Footer-->
         <footer class="app-footer"> <!--begin::To the end-->
             <div class="float-end d-none d-sm-inline">Anything you want</div> <!--end::To the end--> <!--begin::Copyright--> <strong>

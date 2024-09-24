@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.0.0-beta1
+ *   AdminLTE v4.0.0-beta2
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -12916,56 +12916,6 @@ textarea.form-control-lg {
   padding: 0 0.5rem;
 }
 
-.app-content-top-area,
-.app-content-bottom-area {
-  display: flex;
-  align-items: center;
-  padding: 0 0.5rem;
-  overflow: auto;
-  background: var(--bs-body-bg);
-}
-.app-content-top-area > .row,
-.app-content-bottom-area > .row {
-  display: contents;
-}
-.app-content-top-area.app-content-top-area-sm, .app-content-top-area.app-content-bottom-area-sm,
-.app-content-bottom-area.app-content-top-area-sm,
-.app-content-bottom-area.app-content-bottom-area-sm {
-  min-height: 3.5rem;
-}
-.app-content-top-area.app-content-top-area-md, .app-content-top-area.app-content-bottom-area-md,
-.app-content-bottom-area.app-content-top-area-md,
-.app-content-bottom-area.app-content-bottom-area-md {
-  min-height: 6rem;
-}
-.app-content-top-area.app-content-top-area-lg, .app-content-top-area.app-content-bottom-area-lg,
-.app-content-bottom-area.app-content-top-area-lg,
-.app-content-bottom-area.app-content-bottom-area-lg {
-  min-height: 9rem;
-}
-.app-content-top-area.app-content-top-area-xl, .app-content-top-area.app-content-bottom-area-xl,
-.app-content-bottom-area.app-content-top-area-xl,
-.app-content-bottom-area.app-content-bottom-area-xl {
-  min-height: 12rem;
-}
-
-.app-content-top-area:not(.app-content-top-area-sm):not(.app-content-top-area-md):not(.app-content-top-area-lg):not(.app-content-top-area-xl),
-.app-content-bottom-area:not(.app-content-bottom-area-sm):not(.app-content-bottom-area-md):not(.app-content-bottom-area-lg):not(.app-content-bottom-area-xl) {
-  padding-top: 0.9375rem;
-  padding-bottom: 0.9375rem;
-}
-
-.app-content-bottom-area {
-  border-top: 1px solid var(--bs-border-color);
-}
-
-.app-content-top-area {
-  border-bottom: 1px solid var(--bs-border-color);
-}
-.app-content-top-area + .app-main {
-  padding-top: 0.75rem;
-}
-
 .app-header {
   z-index: 1034;
   grid-area: lte-app-header;
@@ -13376,30 +13326,27 @@ textarea.form-control-lg {
   /* stylelint-disable-next-line scss/selector-no-union-class-name */
 }
 @media (min-width: 576px) {
-  .sidebar-expand-sm.layout-fixed-complete .app-main-wrapper, .sidebar-expand-sm.layout-fixed .app-main-wrapper {
+  .sidebar-expand-sm.layout-fixed .app-main-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  .sidebar-expand-sm.layout-fixed-complete .app-sidebar-wrapper, .sidebar-expand-sm.layout-fixed .app-sidebar-wrapper {
+  .sidebar-expand-sm.layout-fixed .app-sidebar-wrapper {
     position: relative;
   }
-  .sidebar-expand-sm.layout-fixed-complete .app-main, .sidebar-expand-sm.layout-fixed .app-main {
+  .sidebar-expand-sm.layout-fixed .app-main {
     flex: 1 1 auto;
     overflow: auto;
   }
-  .sidebar-expand-sm.layout-fixed-complete .app-sidebar, .sidebar-expand-sm.layout-fixed .app-sidebar {
+  .sidebar-expand-sm.layout-fixed .app-sidebar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     bottom: 0;
     max-height: 100vh;
   }
-  .sidebar-expand-sm.layout-fixed-complete .app-sidebar .sidebar-wrapper, .sidebar-expand-sm.layout-fixed .app-sidebar .sidebar-wrapper {
+  .sidebar-expand-sm.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
-  }
-  .sidebar-expand-sm.layout-fixed-complete .app-main-wrapper {
-    max-height: 100vh;
   }
   .sidebar-expand-sm.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-sm.sidebar-open .nav-link > p > .nav-badge {
@@ -13448,30 +13395,27 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 768px) {
-  .sidebar-expand-md.layout-fixed-complete .app-main-wrapper, .sidebar-expand-md.layout-fixed .app-main-wrapper {
+  .sidebar-expand-md.layout-fixed .app-main-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  .sidebar-expand-md.layout-fixed-complete .app-sidebar-wrapper, .sidebar-expand-md.layout-fixed .app-sidebar-wrapper {
+  .sidebar-expand-md.layout-fixed .app-sidebar-wrapper {
     position: relative;
   }
-  .sidebar-expand-md.layout-fixed-complete .app-main, .sidebar-expand-md.layout-fixed .app-main {
+  .sidebar-expand-md.layout-fixed .app-main {
     flex: 1 1 auto;
     overflow: auto;
   }
-  .sidebar-expand-md.layout-fixed-complete .app-sidebar, .sidebar-expand-md.layout-fixed .app-sidebar {
+  .sidebar-expand-md.layout-fixed .app-sidebar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     bottom: 0;
     max-height: 100vh;
   }
-  .sidebar-expand-md.layout-fixed-complete .app-sidebar .sidebar-wrapper, .sidebar-expand-md.layout-fixed .app-sidebar .sidebar-wrapper {
+  .sidebar-expand-md.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
-  }
-  .sidebar-expand-md.layout-fixed-complete .app-main-wrapper {
-    max-height: 100vh;
   }
   .sidebar-expand-md.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-md.sidebar-open .nav-link > p > .nav-badge {
@@ -13520,30 +13464,27 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 992px) {
-  .sidebar-expand-lg.layout-fixed-complete .app-main-wrapper, .sidebar-expand-lg.layout-fixed .app-main-wrapper {
+  .sidebar-expand-lg.layout-fixed .app-main-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  .sidebar-expand-lg.layout-fixed-complete .app-sidebar-wrapper, .sidebar-expand-lg.layout-fixed .app-sidebar-wrapper {
+  .sidebar-expand-lg.layout-fixed .app-sidebar-wrapper {
     position: relative;
   }
-  .sidebar-expand-lg.layout-fixed-complete .app-main, .sidebar-expand-lg.layout-fixed .app-main {
+  .sidebar-expand-lg.layout-fixed .app-main {
     flex: 1 1 auto;
     overflow: auto;
   }
-  .sidebar-expand-lg.layout-fixed-complete .app-sidebar, .sidebar-expand-lg.layout-fixed .app-sidebar {
+  .sidebar-expand-lg.layout-fixed .app-sidebar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     bottom: 0;
     max-height: 100vh;
   }
-  .sidebar-expand-lg.layout-fixed-complete .app-sidebar .sidebar-wrapper, .sidebar-expand-lg.layout-fixed .app-sidebar .sidebar-wrapper {
+  .sidebar-expand-lg.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
-  }
-  .sidebar-expand-lg.layout-fixed-complete .app-main-wrapper {
-    max-height: 100vh;
   }
   .sidebar-expand-lg.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-lg.sidebar-open .nav-link > p > .nav-badge {
@@ -13592,30 +13533,27 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 1200px) {
-  .sidebar-expand-xl.layout-fixed-complete .app-main-wrapper, .sidebar-expand-xl.layout-fixed .app-main-wrapper {
+  .sidebar-expand-xl.layout-fixed .app-main-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  .sidebar-expand-xl.layout-fixed-complete .app-sidebar-wrapper, .sidebar-expand-xl.layout-fixed .app-sidebar-wrapper {
+  .sidebar-expand-xl.layout-fixed .app-sidebar-wrapper {
     position: relative;
   }
-  .sidebar-expand-xl.layout-fixed-complete .app-main, .sidebar-expand-xl.layout-fixed .app-main {
+  .sidebar-expand-xl.layout-fixed .app-main {
     flex: 1 1 auto;
     overflow: auto;
   }
-  .sidebar-expand-xl.layout-fixed-complete .app-sidebar, .sidebar-expand-xl.layout-fixed .app-sidebar {
+  .sidebar-expand-xl.layout-fixed .app-sidebar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     bottom: 0;
     max-height: 100vh;
   }
-  .sidebar-expand-xl.layout-fixed-complete .app-sidebar .sidebar-wrapper, .sidebar-expand-xl.layout-fixed .app-sidebar .sidebar-wrapper {
+  .sidebar-expand-xl.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
-  }
-  .sidebar-expand-xl.layout-fixed-complete .app-main-wrapper {
-    max-height: 100vh;
   }
   .sidebar-expand-xl.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-xl.sidebar-open .nav-link > p > .nav-badge {
@@ -13664,30 +13602,27 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 1400px) {
-  .sidebar-expand-xxl.layout-fixed-complete .app-main-wrapper, .sidebar-expand-xxl.layout-fixed .app-main-wrapper {
+  .sidebar-expand-xxl.layout-fixed .app-main-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
-  .sidebar-expand-xxl.layout-fixed-complete .app-sidebar-wrapper, .sidebar-expand-xxl.layout-fixed .app-sidebar-wrapper {
+  .sidebar-expand-xxl.layout-fixed .app-sidebar-wrapper {
     position: relative;
   }
-  .sidebar-expand-xxl.layout-fixed-complete .app-main, .sidebar-expand-xxl.layout-fixed .app-main {
+  .sidebar-expand-xxl.layout-fixed .app-main {
     flex: 1 1 auto;
     overflow: auto;
   }
-  .sidebar-expand-xxl.layout-fixed-complete .app-sidebar, .sidebar-expand-xxl.layout-fixed .app-sidebar {
+  .sidebar-expand-xxl.layout-fixed .app-sidebar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     bottom: 0;
     max-height: 100vh;
   }
-  .sidebar-expand-xxl.layout-fixed-complete .app-sidebar .sidebar-wrapper, .sidebar-expand-xxl.layout-fixed .app-sidebar .sidebar-wrapper {
+  .sidebar-expand-xxl.layout-fixed .app-sidebar .sidebar-wrapper {
     height: calc(100vh - (calc(3.5rem + 1px)));
-  }
-  .sidebar-expand-xxl.layout-fixed-complete .app-main-wrapper {
-    max-height: 100vh;
   }
   .sidebar-expand-xxl.sidebar-open .nav-link > .nav-badge,
   .sidebar-expand-xxl.sidebar-open .nav-link > p > .nav-badge {
@@ -13735,30 +13670,27 @@ textarea.form-control-lg {
     animation-fill-mode: both;
   }
 }
-.sidebar-expand.layout-fixed-complete .app-main-wrapper, .sidebar-expand.layout-fixed .app-main-wrapper {
+.sidebar-expand.layout-fixed .app-main-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-.sidebar-expand.layout-fixed-complete .app-sidebar-wrapper, .sidebar-expand.layout-fixed .app-sidebar-wrapper {
+.sidebar-expand.layout-fixed .app-sidebar-wrapper {
   position: relative;
 }
-.sidebar-expand.layout-fixed-complete .app-main, .sidebar-expand.layout-fixed .app-main {
+.sidebar-expand.layout-fixed .app-main {
   flex: 1 1 auto;
   overflow: auto;
 }
-.sidebar-expand.layout-fixed-complete .app-sidebar, .sidebar-expand.layout-fixed .app-sidebar {
+.sidebar-expand.layout-fixed .app-sidebar {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   bottom: 0;
   max-height: 100vh;
 }
-.sidebar-expand.layout-fixed-complete .app-sidebar .sidebar-wrapper, .sidebar-expand.layout-fixed .app-sidebar .sidebar-wrapper {
+.sidebar-expand.layout-fixed .app-sidebar .sidebar-wrapper {
   height: calc(100vh - (calc(3.5rem + 1px)));
-}
-.sidebar-expand.layout-fixed-complete .app-main-wrapper {
-  max-height: 100vh;
 }
 .sidebar-expand.sidebar-open .nav-link > .nav-badge,
 .sidebar-expand.sidebar-open .nav-link > p > .nav-badge {
@@ -13879,6 +13811,8 @@ body:not(.app-loaded) .app-footer {
 
 .app-main {
   position: relative;
+  display: flex;
+  flex-direction: column;
   grid-area: lte-app-main;
   max-width: 100vw;
   padding-bottom: 0.75rem;
@@ -13899,6 +13833,21 @@ body:not(.app-loaded) .app-footer {
 }
 .app-main .app-content-header .breadcrumb a {
   text-decoration: none;
+}
+.app-main .app-content-top-area,
+.app-main .app-content-bottom-area {
+  color: var(--bs-secondary-color);
+  background-color: var(--bs-body-bg);
+}
+.app-main .app-content-top-area {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.app-main .app-content-bottom-area {
+  padding: 1rem 0;
+  margin-top: auto;
+  margin-bottom: -0.75rem;
+  border-top: 1px solid var(--bs-border-color);
 }
 
 .app-footer {
@@ -14197,27 +14146,6 @@ body:not(.app-loaded) .app-footer {
   --bs-callout-link-color: var(--bs-dark-text-emphasis);
 }
 
-.compact-mode .app-content-top-area:not(.app-content-top-area-sm):not(.app-content-top-area-md):not(.app-content-top-area-lg):not(.app-content-top-area-xl),
-.compact-mode .app-content-bottom-area:not(.app-content-bottom-area-sm):not(.app-content-bottom-area-md):not(.app-content-bottom-area-lg):not(.app-content-bottom-area-xl) {
-  padding-top: 0.6375rem;
-  padding-bottom: 0.6375rem;
-}
-.compact-mode .app-content-top-area-sm,
-.compact-mode .app-content-bottom-area-sm {
-  min-height: 2.8875rem;
-}
-.compact-mode .app-content-top-area-md,
-.compact-mode .app-content-bottom-area-md {
-  min-height: 4.95rem;
-}
-.compact-mode .app-content-top-area-lg,
-.compact-mode .app-content-bottom-area-lg {
-  min-height: 7.425rem;
-}
-.compact-mode .app-content-top-area-xl,
-.compact-mode .app-content-bottom-area-xl {
-  min-height: 9.9rem;
-}
 .compact-mode .app-header {
   max-height: 2.75rem;
 }
