@@ -1076,7 +1076,7 @@
       };
       document.addEventListener('DOMContentLoaded', function () {
         const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-        if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+        if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
           OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
             scrollbars: {
               theme: Default.scrollbarTheme,
@@ -1100,11 +1100,11 @@
             return storedTheme;
           }
 
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          return globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
 
         const setTheme = function (theme) {
-          if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          if (theme === 'auto' && globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.setAttribute('data-bs-theme', 'dark');
           } else {
             document.documentElement.setAttribute('data-bs-theme', theme);
@@ -1141,13 +1141,13 @@
           }
         };
 
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
           if (storedTheme !== 'light' || storedTheme !== 'dark') {
             setTheme(getPreferredTheme());
           }
         });
 
-        window.addEventListener('DOMContentLoaded', () => {
+        globalThis.addEventListener('DOMContentLoaded', () => {
           showActiveTheme(getPreferredTheme());
 
           for (const toggle of document.querySelectorAll('[data-bs-theme-value]')) {

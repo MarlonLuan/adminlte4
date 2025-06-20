@@ -1219,7 +1219,7 @@
       };
       document.addEventListener('DOMContentLoaded', function () {
         const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-        if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
+        if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
           OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
             scrollbars: {
               theme: Default.scrollbarTheme,
@@ -1240,12 +1240,9 @@
     ></script>
     <!-- sortablejs -->
     <script>
-      const connectedSortables = document.querySelectorAll('.connectedSortable');
-      connectedSortables.forEach((connectedSortable) => {
-        let sortable = new Sortable(connectedSortable, {
-          group: 'shared',
-          handle: '.card-header',
-        });
+      new Sortable(document.querySelector('.connectedSortable'), {
+        group: 'shared',
+        handle: '.card-header',
       });
 
       const cardHeaders = document.querySelectorAll('.connectedSortable .card-header');
@@ -1331,22 +1328,8 @@
     ></script>
     <!-- jsvectormap -->
     <script>
-      const visitorsData = {
-        US: 398, // USA
-        SA: 400, // Saudi Arabia
-        CA: 1000, // Canada
-        DE: 500, // Germany
-        FR: 760, // France
-        CN: 300, // China
-        AU: 700, // Australia
-        BR: 600, // Brazil
-        IN: 800, // India
-        GB: 320, // Great Britain
-        RU: 3000, // Russia
-      };
-
       // World map by jsVectorMap
-      const map = new jsVectorMap({
+      new jsVectorMap({
         selector: '#world-map',
         map: 'world',
       });
