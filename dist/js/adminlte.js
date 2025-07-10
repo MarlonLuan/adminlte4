@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.0.0-rc3 (https://adminlte.io)
+ * AdminLTE v4.0.0-rc4 (https://adminlte.io)
  * Copyright 2014-2025 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -682,12 +682,21 @@
         const sidebarOverlay = document.createElement('div');
         sidebarOverlay.className = CLASS_NAME_SIDEBAR_OVERLAY;
         document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay);
-        sidebarOverlay.addEventListener('touchstart', event => {
-            event.preventDefault();
-            const target = event.currentTarget;
-            const data = new PushMenu(target, Defaults);
-            data.collapse();
+        let isTouchMoved = false;
+        sidebarOverlay.addEventListener('touchstart', () => {
+            isTouchMoved = false;
         }, { passive: true });
+        sidebarOverlay.addEventListener('touchmove', () => {
+            isTouchMoved = true;
+        }, { passive: true });
+        sidebarOverlay.addEventListener('touchend', event => {
+            if (!isTouchMoved) {
+                event.preventDefault();
+                const target = event.currentTarget;
+                const data = new PushMenu(target, Defaults);
+                data.collapse();
+            }
+        }, { passive: false });
         sidebarOverlay.addEventListener('click', event => {
             event.preventDefault();
             const target = event.currentTarget;
@@ -1122,7 +1131,7 @@
     };
 
     /**
-     * AdminLTE v4.0.0-rc1
+     * AdminLTE v4.0.0-rc3
      * Author: Colorlib
      * Website: AdminLTE.io <https://adminlte.io>
      * License: Open source - MIT <https://opensource.org/licenses/MIT>
