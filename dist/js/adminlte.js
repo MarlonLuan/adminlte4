@@ -1,5 +1,5 @@
 /*!
- * AdminLTE v4.0.0-rc5 (https://adminlte.io)
+ * AdminLTE v4.0.0-rc6 (https://adminlte.io)
  * Copyright 2014-2025 Colorlib <https://colorlib.com>
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
@@ -180,7 +180,8 @@
             const event = new Event(EVENT_COLLAPSED$2);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_COLLAPSING);
-                const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
+                // Only target direct children to avoid affecting nested cards
+                const elm = this._parent?.querySelectorAll(`:scope > ${SELECTOR_CARD_BODY}, :scope > ${SELECTOR_CARD_FOOTER}`);
                 elm.forEach(el => {
                     if (el instanceof HTMLElement) {
                         slideUp(el, this._config.animationSpeed);
@@ -199,7 +200,8 @@
             const event = new Event(EVENT_EXPANDED$2);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_EXPANDING);
-                const elm = this._parent?.querySelectorAll(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`);
+                // Only target direct children to avoid affecting nested cards
+                const elm = this._parent?.querySelectorAll(`:scope > ${SELECTOR_CARD_BODY}, :scope > ${SELECTOR_CARD_FOOTER}`);
                 elm.forEach(el => {
                     if (el instanceof HTMLElement) {
                         slideDown(el, this._config.animationSpeed);
@@ -609,8 +611,10 @@
     const SELECTOR_APP_WRAPPER = '.app-wrapper';
     const SELECTOR_SIDEBAR_EXPAND = `[class*="${CLASS_NAME_SIDEBAR_EXPAND}"]`;
     const SELECTOR_SIDEBAR_TOGGLE = '[data-lte-toggle="sidebar"]';
+    const STORAGE_KEY_SIDEBAR_STATE = 'lte.sidebar.state';
     const Defaults = {
-        sidebarBreakpoint: 992
+        sidebarBreakpoint: 992,
+        enablePersistence: true
     };
     /**
      * Class Definition
@@ -680,9 +684,62 @@
             else {
                 this.collapse();
             }
+            this.saveSidebarState();
+        }
+        /**
+         * Save sidebar state to localStorage
+         */
+        saveSidebarState() {
+            if (!this._config.enablePersistence) {
+                return;
+            }
+            // Check for SSR environment
+            if (globalThis.window === undefined || globalThis.localStorage === undefined) {
+                return;
+            }
+            try {
+                const state = document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE) ?
+                    CLASS_NAME_SIDEBAR_COLLAPSE :
+                    CLASS_NAME_SIDEBAR_OPEN;
+                localStorage.setItem(STORAGE_KEY_SIDEBAR_STATE, state);
+            }
+            catch {
+                // localStorage may be unavailable (private browsing, quota exceeded, etc.)
+            }
+        }
+        /**
+         * Load sidebar state from localStorage
+         * Only applies on desktop; mobile always starts collapsed
+         */
+        loadSidebarState() {
+            if (!this._config.enablePersistence) {
+                return;
+            }
+            // Check for SSR environment
+            if (globalThis.window === undefined || globalThis.localStorage === undefined) {
+                return;
+            }
+            // Don't restore state on mobile - let responsive behavior handle it
+            if (globalThis.innerWidth <= this._config.sidebarBreakpoint) {
+                return;
+            }
+            try {
+                const storedState = localStorage.getItem(STORAGE_KEY_SIDEBAR_STATE);
+                if (storedState === CLASS_NAME_SIDEBAR_COLLAPSE) {
+                    this.collapse();
+                }
+                else if (storedState === CLASS_NAME_SIDEBAR_OPEN) {
+                    this.expand();
+                }
+                // If null (never saved), let default behavior apply
+            }
+            catch {
+                // localStorage may be unavailable
+            }
         }
         init() {
             this.addSidebarBreakPoint();
+            this.loadSidebarState();
         }
     }
     /**
