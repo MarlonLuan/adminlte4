@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- *   AdminLTE v4.0.0-rc5
+ *   AdminLTE v4.0.0-rc7
  *   Author: Colorlib
  *   Website: AdminLTE.io <https://adminlte.io>
  *   License: Open source - MIT <https://opensource.org/licenses/MIT>
@@ -4755,10 +4755,15 @@ textarea.form-control-lg {
 }
 
 .page-item:not(:first-child) .page-link {
-  margin-right: calc(var(--bs-border-width) * -1);
+  margin-right: calc(-1 * var(--bs-border-width));
 }
-.page-item .page-link {
-  border-radius: var(--bs-pagination-border-radius);
+.page-item:first-child .page-link {
+  border-top-right-radius: var(--bs-pagination-border-radius);
+  border-bottom-right-radius: var(--bs-pagination-border-radius);
+}
+.page-item:last-child .page-link {
+  border-top-left-radius: var(--bs-pagination-border-radius);
+  border-bottom-left-radius: var(--bs-pagination-border-radius);
 }
 
 .pagination-lg {
@@ -12922,6 +12927,7 @@ textarea.form-control-lg {
   padding-left: 0.5rem;
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;
+  overscroll-behavior: contain;
   scrollbar-color: var(--bs-secondary-bg) transparent;
 }
 .sidebar-wrapper::-webkit-scrollbar-thumb {
@@ -13185,19 +13191,19 @@ textarea.form-control-lg {
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover {
   min-width: var(--lte-sidebar-width);
   max-width: var(--lte-sidebar-width);
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-header {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-header {
   display: inline;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-link {
   width: auto;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .sidebar-menu .nav-link p,
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .brand-text,
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xl {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .sidebar-menu .nav-link p,
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .brand-text,
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .logo-xl {
   width: auto;
   margin-right: 0;
   visibility: visible;
@@ -13205,7 +13211,7 @@ textarea.form-control-lg {
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .brand-text {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .brand-text {
   display: inline;
   max-width: inherit;
   margin-right: 0.5rem;
@@ -13213,8 +13219,8 @@ textarea.form-control-lg {
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .nav-badge,
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .nav-arrow {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-badge,
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-arrow {
   display: inline-block;
   visibility: visible;
   animation-name: fadeIn;
@@ -13222,10 +13228,10 @@ textarea.form-control-lg {
   animation-fill-mode: both;
   animation-delay: 0.3s;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .nav-link p {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .nav-link p {
   padding-right: 0.5rem;
 }
-.sidebar-mini.sidebar-collapse .app-sidebar:hover .logo-xs {
+.sidebar-mini.sidebar-collapse:not(.sidebar-without-hover) .app-sidebar:hover .logo-xs {
   visibility: hidden;
   animation-name: fadeOut;
   animation-duration: 0.3s;
@@ -13830,6 +13836,9 @@ body:not(.app-loaded) .app-footer {
   position: sticky;
   bottom: 0;
   z-index: 1030;
+}
+.fixed-footer.layout-fixed .app-main {
+  min-height: 0;
 }
 
 .dropdown-menu {
@@ -15152,7 +15161,7 @@ html.maximized-card {
 
 .login-box,
 .register-box {
-  width: 360px;
+  width: 400px;
 }
 @media (max-width: 576px) {
   .login-box,
