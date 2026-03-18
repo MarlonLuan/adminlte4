@@ -12965,20 +12965,24 @@ textarea.form-control-lg {
   min-width: 1.5rem;
   max-width: 1.5rem;
 }
-.sidebar-wrapper .sidebar-menu > .nav-item.menu-open .nav-link.active:not(:hover) {
-  --lte-sidebar-menu-active-bg: transparent;
-}
-.sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:active, .sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:focus {
+.sidebar-wrapper .sidebar-menu > .nav-item > .nav-link {
   color: var(--lte-sidebar-color);
 }
-.sidebar-wrapper .sidebar-menu > .nav-item > .nav-link.active:not(:hover) {
+.sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:hover, .sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:focus {
+  color: var(--lte-sidebar-hover-color);
+  background-color: var(--lte-sidebar-hover-bg);
+}
+.sidebar-wrapper .sidebar-menu > .nav-item > .nav-link.active {
   color: var(--lte-sidebar-menu-active-color);
   background-color: var(--lte-sidebar-menu-active-bg);
 }
-.sidebar-wrapper .sidebar-menu > .nav-item.menu-open > .nav-link, .sidebar-wrapper .sidebar-menu > .nav-item:hover > .nav-link,
-.sidebar-wrapper .sidebar-menu > .nav-item > .nav-link:focus {
+.sidebar-wrapper .sidebar-menu > .nav-item.menu-open > .nav-link {
   color: var(--lte-sidebar-hover-color);
   background-color: var(--lte-sidebar-hover-bg);
+}
+.sidebar-wrapper .sidebar-menu > .nav-item.menu-open > .nav-link.active {
+  color: var(--lte-sidebar-menu-active-color);
+  background-color: var(--lte-sidebar-menu-active-bg);
 }
 .sidebar-wrapper .sidebar-menu > .nav-item > .nav-treeview {
   background-color: var(--lte-sidebar-submenu-bg);
@@ -12998,13 +13002,11 @@ textarea.form-control-lg {
 }
 .sidebar-wrapper .nav-treeview > .nav-item > .nav-link:hover, .sidebar-wrapper .nav-treeview > .nav-item > .nav-link:focus {
   color: var(--lte-sidebar-submenu-hover-color);
+  background-color: var(--lte-sidebar-submenu-hover-bg);
 }
-.sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active, .sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active:hover, .sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active:focus {
+.sidebar-wrapper .nav-treeview > .nav-item > .nav-link.active {
   color: var(--lte-sidebar-submenu-active-color);
   background-color: var(--lte-sidebar-submenu-active-bg);
-}
-.sidebar-wrapper .nav-treeview > .nav-item > .nav-link:hover {
-  background-color: var(--lte-sidebar-submenu-hover-bg);
 }
 
 .sidebar-menu .nav-item > .nav-link {
@@ -13072,9 +13074,6 @@ textarea.form-control-lg {
   padding: 0;
   list-style: none;
 }
-.nav-indent .sidebar-menu .nav-treeview {
-  padding-right: 0.5rem;
-}
 .sidebar-menu .menu-open > .nav-treeview {
   display: block;
 }
@@ -13087,6 +13086,10 @@ textarea.form-control-lg {
 .sidebar-menu .nav-link > p > .nav-arrow {
   left: 1rem !important;
   right: auto !important;
+}
+
+.nav-indent .nav-treeview {
+  padding-right: 0.5rem;
 }
 
 .nav-compact.nav-indent .nav-treeview {
