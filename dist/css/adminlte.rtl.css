@@ -12838,6 +12838,76 @@ textarea.form-control-lg {
   top: 0;
   z-index: 1030;
 }
+@media (min-width: 576px) {
+  .fixed-header.sidebar-expand-sm .app-sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+  }
+  .fixed-header.sidebar-expand-sm .app-sidebar .sidebar-wrapper {
+    height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media (min-width: 768px) {
+  .fixed-header.sidebar-expand-md .app-sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+  }
+  .fixed-header.sidebar-expand-md .app-sidebar .sidebar-wrapper {
+    height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media (min-width: 992px) {
+  .fixed-header.sidebar-expand-lg .app-sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+  }
+  .fixed-header.sidebar-expand-lg .app-sidebar .sidebar-wrapper {
+    height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media (min-width: 1200px) {
+  .fixed-header.sidebar-expand-xl .app-sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+  }
+  .fixed-header.sidebar-expand-xl .app-sidebar .sidebar-wrapper {
+    height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .fixed-header.sidebar-expand-xxl .app-sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+  }
+  .fixed-header.sidebar-expand-xxl .app-sidebar .sidebar-wrapper {
+    height: calc(100vh - (calc(3.5rem + 1px)));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+.fixed-header.sidebar-expand .app-sidebar {
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+}
+.fixed-header.sidebar-expand .app-sidebar .sidebar-wrapper {
+  height: calc(100vh - (calc(3.5rem + 1px)));
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
 .app-sidebar {
   --lte-sidebar-hover-bg: rgba(0, 0, 0, 0.1);
@@ -14469,9 +14539,9 @@ html.maximized-card {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #fff;
+  background-color: var(--bs-body-bg, #fff);
   border-bottom: 0;
-  box-shadow: inset 0 1px 0 var(--bs-border-color), inset 0 -1px 0 var(--bs-border-color);
+  box-shadow: inset 0 1px 0 var(--bs-border-color, var(--bs-border-color)), inset 0 -1px 0 var(--bs-border-color, var(--bs-border-color));
 }
 .table.no-border,
 .table.no-border td,
