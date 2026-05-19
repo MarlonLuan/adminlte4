@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
-  <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Introduction | AdminLTE 4</title>
+    <title>Getting Started | AdminLTE 4</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -13,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="Introduction | AdminLTE 4" />
+    <meta name="title" content="Getting Started | AdminLTE 4" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -62,10 +61,7 @@
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
-  <!--end::Head-->
-  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary docs-page">
-    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
       <nav class="app-header navbar navbar-expand bg-body">
@@ -388,13 +384,13 @@
             >
               <li class="nav-header">START HERE</li>
               <li class="nav-item">
-                <a href="../docs/introduction.html" class="nav-link active">
+                <a href="../docs/introduction.html" class="nav-link">
                   <i class="nav-icon bi bi-download"></i>
                   <p>Installation</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../docs/getting-started.html" class="nav-link">
+                <a href="../docs/getting-started.html" class="nav-link active">
                   <i class="nav-icon bi bi-rocket-takeoff"></i>
                   <p>Getting Started</p>
                 </a>
@@ -588,244 +584,259 @@
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar (docs mode)-->
-      <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
         <div class="app-content-header">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Introduction</h3>
+                <h3 class="mb-0">Getting Started</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Docs</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Introduction</li>
+                  <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
                 </ol>
               </div>
             </div>
-            <!--end::Row-->
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content Header-->
-        <!--begin::App Content-->
         <div class="app-content">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <h2 id="what-is-adminlte">What is AdminLTE?</h2>
-            <p>
-              AdminLTE is a free, MIT-licensed admin dashboard template built on
-              <strong>Bootstrap 5.3.8</strong> with vanilla TypeScript (no jQuery). It ships
-              responsive layouts, a sidebar navigation system, light/dark/auto color mode, RTL
-              support, and a growing catalog of demo pages — calendar, kanban, chat, file manager,
-              invoice, profile, settings, and more.
-            </p>
-            <p>
-              It’s a <em>template</em>, not a component library. You drop the markup into your own
-              project (or framework templates) and customize the parts you need. Bootstrap 5 handles
-              the components; AdminLTE provides the application shell.
-            </p>
-            <p>
-              If you’ve never used AdminLTE before, start with
-              <a href="getting-started.html">Getting Started</a> — it walks through a working
-              dashboard in ten minutes.
-            </p>
-            <h2 id="installation-paths">Installation paths</h2>
-            <p>Pick the path that matches how you’ll actually use AdminLTE:</p>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Path</th>
-                  <th>Best for</th>
-                  <th>Setup time</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>CDN</strong></td>
-                  <td>Prototyping, demos, simple sites</td>
-                  <td>1 minute</td>
-                </tr>
-                <tr>
-                  <td><strong>npm + bundler</strong></td>
-                  <td>Production apps, framework projects (Laravel, Symfony, Rails)</td>
-                  <td>5 minutes</td>
-                </tr>
-                <tr>
-                  <td><strong>Build from source</strong></td>
-                  <td>You need to customize SCSS variables, sidebar width, breakpoints</td>
-                  <td>10 minutes</td>
-                </tr>
-                <tr>
-                  <td><strong>Composer</strong></td>
-                  <td>PHP projects that prefer Packagist over npm</td>
-                  <td>2 minutes</td>
-                </tr>
-              </tbody>
-            </table>
-            <h3 id="cdn--fastest-path">CDN — fastest path</h3>
-            <p>
-              Drop these four CSS tags into <code>&lt;head&gt;</code> and four script tags before
-              <code>&lt;/body&gt;</code>. No install, no build step:
-            </p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="html"
-            ><code><span class="line"><span style="color:#6A9955">&lt;!-- In &lt;head&gt; --&gt;</span></span>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <p>
+                      AdminLTE is an HTML template — there’s no build step required to use it. This
+                      page gets you to a working dashboard in about ten minutes, without npm,
+                      without a build pipeline, without learning Astro.
+                    </p>
+                    <p>
+                      If you’re integrating AdminLTE into a real project, the
+                      <a href="introduction.html">Installation</a> page covers npm, Composer, and
+                      source-build workflows.
+                    </p>
+                    <h5 id="1-grab-the-cdn-snippets">1. Grab the CDN snippets</h5>
+                    <p>
+                      Copy these tags into the <code>&lt;head&gt;</code> of a new HTML file. They
+                      pull AdminLTE, Bootstrap 5.3, Popper, OverlayScrollbars, and Bootstrap Icons
+                      from jsDelivr — no install needed.
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- AdminLTE 4 + Bootstrap 5.3 (CSS) --&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
-<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/css/adminlte.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#6A9955">&lt;!-- Before &lt;/body&gt; --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">link</span><span style="color:#9CDCFE"> rel</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;stylesheet&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/css/adminlte.min.css&quot;</span><span style="color:#808080"> /&gt;</span></span></code></pre>
+                    <p>And these just before <code>&lt;/body&gt;</code>:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- Bootstrap + Popper + AdminLTE (JS) --&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-rc7/dist/js/adminlte.min.js&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
-            <p>
-              Then copy any
-              <a href="https://github.com/ColorlibHQ/AdminLTE/tree/master/dist">demo page</a> HTML
-              into your own file. See <a href="getting-started.html">Getting Started</a> for the
-              minimum-viable layout.
-            </p>
-            <h3 id="npm--bundler">npm + bundler</h3>
-            <p>Requires Node.js 18+ and a bundler (Vite, Webpack, Rollup, esbuild, etc.).</p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> install</span><span style="color:#CE9178"> admin-lte@4.0.0-rc7</span></span></code></pre>
-            <p>Then import the CSS and JS in your app entry point:</p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="js"
-            ><code><span class="line"><span style="color:#6A9955">// CSS</span></span>
-<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;admin-lte/dist/css/adminlte.min.css&quot;</span></span>
-<span class="line"><span style="color:#6A9955">// Plus Bootstrap and dependency CSS</span></span>
-<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;bootstrap-icons/font/bootstrap-icons.css&quot;</span></span>
-<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;overlayscrollbars/styles/overlayscrollbars.css&quot;</span></span>
+                    <h5 id="2-the-minimum-viable-layout">2. The minimum viable layout</h5>
+                    <p>
+                      This is the smallest AdminLTE page that still feels like AdminLTE — a header,
+                      a collapsible sidebar, and a main content area. Drop it between the CSS and JS
+                      tags above:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;layout-fixed sidebar-expand-lg bg-body-tertiary&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-wrapper&quot;</span><span style="color:#808080">&gt;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A9955">// JS</span></span>
-<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;bootstrap&quot;</span></span>
-<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span></code></pre>
-            <p>
-              Yarn and pnpm work the same way — substitute <code>yarn add</code> or
-              <code>pnpm add</code> for the install.
-            </p>
-            <h3 id="build-from-source">Build from source</h3>
-            <p>
-              If you want to customize SCSS variables (sidebar width, breakpoints, brand colours),
-              clone the repo and build locally:
-            </p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">git</span><span style="color:#CE9178"> clone</span><span style="color:#CE9178"> https://github.com/ColorlibHQ/AdminLTE.git</span></span>
-<span class="line"><span style="color:#DCDCAA">cd</span><span style="color:#CE9178"> AdminLTE</span></span>
-<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> install</span></span>
-<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> dev</span><span style="color:#6A9955">          # dev server with hot-reload at localhost:3000</span></span>
-<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> production</span><span style="color:#6A9955">   # one-off production build (clean + lint + compile)</span></span></code></pre>
-            <p>
-              The compiled output lands in <code>dist/</code>. Edit
-              <code>src/scss/_variables.scss</code> or
-              <code>src/scss/_bootstrap-variables.scss</code>, then rerun the build. See
-              <a href="customization.html">Customization &amp; Theming</a> for which variables
-              matter.
-            </p>
-            <h3 id="composer">Composer</h3>
-            <p>For PHP projects:</p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="bash"
-            ><code><span class="line"><span style="color:#DCDCAA">composer</span><span style="color:#CE9178"> require</span><span style="color:#CE9178"> &quot;almasaeed2010/adminlte=4.0.0-rc7&quot;</span></span></code></pre>
-            <p>
-              The package is published from the same source tree — you get the
-              <code>dist/</code> folder ready to serve.
-            </p>
-            <h2 id="prerequisites">Prerequisites</h2>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Header --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">nav</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-header navbar navbar-expand bg-body&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;container-fluid&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;navbar-nav&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar&quot;</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-list&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">nav</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Sidebar --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar bg-body-secondary shadow&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar-brand&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-link&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-text fw-light&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">My Dashboard</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">span</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar-wrapper&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">nav</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;mt-2&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">ul</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav sidebar-menu flex-column&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;treeview&quot;</span><span style="color:#9CDCFE"> role</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;menu&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link active&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-speedometer&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Dashboard</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">li</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-item&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;#&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-link&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;nav-icon bi bi-bar-chart&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">                &lt;</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Reports</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">p</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">              &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">li</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;/</span><span style="color:#569CD6">ul</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">nav</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">    &lt;!-- Main content --&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">main</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-main&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-content-header&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;container-fluid&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">h3</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;mb-0&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Hello, AdminLTE</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h3</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-content&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;container-fluid&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-header&quot;</span><span style="color:#808080">&gt;&lt;</span><span style="color:#569CD6">h5</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-title&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Welcome</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h5</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">            &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-body&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">              Edit this file to start building your dashboard.</span></span>
+<span class="line"><span style="color:#808080">            &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">          &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">main</span><span style="color:#808080">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      Open it in a browser. The hamburger button at the top-left collapses the
+                      sidebar — that’s AdminLTE’s
+                      <a href="javascript/pushmenu.html">PushMenu</a> plugin working out of the box,
+                      wired by <code>data-lte-toggle=&quot;sidebar&quot;</code>.
+                    </p>
+                    <h5 id="3-whats-actually-happening">3. What’s actually happening</h5>
+                    <p>The four classes that do the heavy lifting:</p>
 
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Minimum</th>
-                  <th>Recommended</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Bootstrap</td>
-                  <td>5.3.0</td>
-                  <td>5.3.8 (pinned in <code>package.json</code>)</td>
-                </tr>
-                <tr>
-                  <td>Node.js</td>
-                  <td>18 LTS</td>
-                  <td>22 LTS (used by CI)</td>
-                </tr>
-                <tr>
-                  <td>Browser</td>
-                  <td>Modern evergreen</td>
-                  <td>Latest stable Chrome/Firefox/Safari/Edge</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>
-              AdminLTE 4 does <strong>not</strong> support Internet Explorer. If you need IE11, stay
-              on
-              <a href="https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.2.0">AdminLTE 3</a> or
-              earlier.
-            </p>
-            <h2 id="where-to-next">Where to next</h2>
-            <ul>
-              <li>
-                <strong><a href="getting-started.html">Getting Started</a></strong> — a working
-                dashboard in 10 minutes
-              </li>
-              <li>
-                <strong><a href="layout.html">Layout</a></strong> — the app-wrapper structure and
-                responsive options
-              </li>
-              <li>
-                <strong><a href="customization.html">Customization</a></strong> — change colours,
-                sidebar width, spacing
-              </li>
-              <li>
-                <strong><a href="migration.html">Migration from v3</a></strong> — upgrading an
-                existing AdminLTE 3 project
-              </li>
-            </ul>
-            <h2 id="releases-and-changelog">Releases and changelog</h2>
-            <p>
-              Always grab the latest from the
-              <a href="https://github.com/ColorlibHQ/AdminLTE/releases">GitHub releases page</a> —
-              that’s where the changelog lives.
-            </p>
-            <p>
-              Legacy releases:
-              <a href="https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.2.0">AdminLTE 3.2</a>
-              ·
-              <a href="https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.18">AdminLTE 2</a> ·
-              <a href="https://github.com/ColorlibHQ/AdminLTE/releases/tag/1.3.1">AdminLTE 1</a>
-            </p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Class</th>
+                          <th>What it does</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>app-wrapper</code></td>
+                          <td>
+                            The CSS grid root — defines header / sidebar / main / footer regions
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>app-header</code></td>
+                          <td>
+                            Stuck to the top of the viewport when <code>layout-fixed</code> is on
+                            the body
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>app-sidebar</code></td>
+                          <td>
+                            Collapsible side rail. Add <code>sidebar-expand-lg</code> to body to
+                            control breakpoint
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><code>app-main</code></td>
+                          <td>Scrollable content region — everything else lives here</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      The <a href="layout.html">Layout</a> page covers the full wrapper structure
+                      and the responsive options.
+                    </p>
+                    <h5 id="4-add-a-working-javascript-widget">
+                      4. Add a working JavaScript widget
+                    </h5>
+                    <p>
+                      AdminLTE ships seven JavaScript plugins. All of them are wired via
+                      <code>data-lte-*</code> attributes — no JavaScript code needed.
+                    </p>
+                    <p>
+                      Drop this in the content area to see the card-widget plugin in action (try the
+                      buttons in the card header):
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-header&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">h5</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-title&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Collapsible card</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h5</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-tools&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-sm btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-collapse&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;expand&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-dash-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;collapse&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-plus-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> type</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;button&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-sm btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-remove&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-x-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-body&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">    Click the minus icon to collapse; the X to remove.</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="5-where-to-go-next">5. Where to go next</h5>
+                    <p>You now have a working AdminLTE page. From here:</p>
+                    <ul>
+                      <li>
+                        <strong>Make it pretty</strong> →
+                        <a href="customization.html">Customization &amp; Theming</a> — change
+                        colors, fonts, and spacing via SCSS variables or CSS custom properties.
+                      </li>
+                      <li>
+                        <strong>Make it functional</strong> →
+                        <a href="javascript/layout.html">JavaScript Plugins</a> — full reference for
+                        all seven plugins.
+                      </li>
+                      <li>
+                        <strong>Make it dark</strong> → <a href="color-mode.html">Color Mode</a> —
+                        light/dark/auto toggle.
+                      </li>
+                      <li>
+                        <strong>Make it international</strong> →
+                        <a href="rtl.html">RTL Support</a> — right-to-left layouts for Arabic,
+                        Hebrew, Persian, etc.
+                      </li>
+                      <li>
+                        <strong>Add real widgets</strong> →
+                        <a href="integrations.html">Recommended Integrations</a> — date pickers,
+                        multi-selects, charts, rich text editors. AdminLTE keeps its dep tree lean;
+                        this page tells you which third-party libraries to drop in.
+                      </li>
+                    </ul>
+                    <p>
+                      If you’re upgrading an existing AdminLTE 3 project, see the
+                      <a href="migration.html">Migration from v3</a> guide for breaking changes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content-->
       </main>
-      <!--end::App Main-->
       <!--begin::Footer-->
       <footer class="app-footer">
         <!--begin::To the end-->
@@ -841,8 +852,6 @@
       </footer>
       <!--end::Footer-->
     </div>
-    <!--end::App Wrapper-->
-    <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
@@ -954,7 +963,5 @@
       })();
     </script>
     <!--end::Color Mode Toggle-->
-    <!--end::Script-->
   </body>
-  <!--end::Body-->
 </html>
