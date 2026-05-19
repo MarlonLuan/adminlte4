@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
-  <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>FAQ | AdminLTE 4</title>
+    <title>Customization &amp; Theming | AdminLTE 4</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -13,7 +12,7 @@
     <!--end::Accessibility Meta Tags-->
 
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="FAQ | AdminLTE 4" />
+    <meta name="title" content="Customization &amp; Theming | AdminLTE 4" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -62,10 +61,7 @@
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
-  <!--end::Head-->
-  <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary docs-page">
-    <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
       <nav class="app-header navbar navbar-expand bg-body">
@@ -414,7 +410,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../docs/customization.html" class="nav-link">
+                <a href="../docs/customization.html" class="nav-link active">
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Customization</p>
                 </a>
@@ -550,7 +546,7 @@
 
               <li class="nav-header">RESOURCES</li>
               <li class="nav-item">
-                <a href="../docs/faq.html" class="nav-link active">
+                <a href="../docs/faq.html" class="nav-link">
                   <i class="nav-icon bi bi-question-circle"></i>
                   <p>FAQ</p>
                 </a>
@@ -588,238 +584,348 @@
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar (docs mode)-->
-      <!--begin::App Main-->
       <main class="app-main">
-        <!--begin::App Content Header-->
         <div class="app-content-header">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">FAQ</h3>
+                <h3 class="mb-0">Customization &amp; Theming</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Docs</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                  <li class="breadcrumb-item active" aria-current="page">Customization</li>
                 </ol>
               </div>
             </div>
-            <!--end::Row-->
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content Header-->
-        <!--begin::App Content-->
         <div class="app-content">
-          <!--begin::Container-->
           <div class="container-fluid">
-            <p>
-              A grab bag of questions we get asked most often. If yours isn’t here,
-              <a href="https://github.com/ColorlibHQ/AdminLTE/discussions">open a Discussion</a> on
-              GitHub.
-            </p>
-            <h5 id="getting-started">Getting started</h5>
-            <h6 id="what-is-adminlte-exactly">What is AdminLTE, exactly?</h6>
-            <p>
-              A free, MIT-licensed admin dashboard <em>template</em>. It’s a set of HTML, CSS, and
-              JavaScript files built on top of Bootstrap 5.3 — not a framework, not an npm component
-              library. You drop it into your project, modify the markup to suit your app, and ship.
-            </p>
-            <h6 id="do-i-need-a-build-step-to-use-it">Do I need a build step to use it?</h6>
-            <p>
-              No. The <a href="getting-started.html">Getting Started</a> guide shows the CDN-only
-              approach — copy four <code>&lt;link&gt;</code> tags and four
-              <code>&lt;script&gt;</code> tags into your HTML and you’re done. The npm-based
-              workflow is there if you want to customise SCSS variables or tree-shake the
-              JavaScript.
-            </p>
-            <h6 id="which-bootstrap-version-does-v4-require">
-              Which Bootstrap version does v4 require?
-            </h6>
-            <p>
-              Bootstrap 5.3.x. The current <code>package.json</code> pins 5.3.8 — older 5.3 minors
-              should work but aren’t tested. Bootstrap 5.0/5.1/5.2 will not work (the colour-mode
-              and <code>data-bs-theme</code> system landed in 5.3).
-            </p>
-            <h6 id="can-i-use-adminlte-4-with-jquery">Can I use AdminLTE 4 with jQuery?</h6>
-            <p>
-              You don’t <em>need</em> jQuery — AdminLTE 4’s JavaScript is vanilla. If your existing
-              app already uses jQuery, it’ll coexist fine. But none of AdminLTE 4’s own plugins call
-              into jQuery, and there are no <code>$.fn.xxx()</code> plugin shims.
-            </p>
-            <h5 id="framework-integrations">Framework integrations</h5>
-            <h6 id="can-adminlte-be-used-with-wordpress">Can AdminLTE be used with WordPress?</h6>
-            <p>
-              Yes — it’s just HTML/CSS/JS. The typical path is to build a custom WordPress theme
-              that wraps AdminLTE’s markup around <code>wp_head()</code>, <code>wp_footer()</code>,
-              and WordPress’s loops. AdminLTE doesn’t ship a WordPress-specific build; the work of
-              porting nav-walker classes and authentication forms is yours.
-            </p>
-            <h6 id="laravel-symfony-yii-django-rails">Laravel? Symfony? Yii? Django? Rails?</h6>
-            <p>
-              All workable. AdminLTE is a server-rendered template — copy the demo pages into your
-              views/templates, replace static content with your framework’s template variables, and
-              wire up routes/auth as usual. Community Composer/Packagist packages exist for Laravel
-              and Symfony, though they typically lag the upstream version — verify they ship v4
-              before you depend on them.
-            </p>
-            <h6 id="react-vue-svelte-angular">React, Vue, Svelte, Angular?</h6>
-            <p>
-              Workable but less natural. AdminLTE’s JavaScript plugins use DOM lifecycle hooks
-              (<code>DOMContentLoaded</code>, MutationObserver patterns) which fight with framework
-              reconciliation. If you’re using a SPA framework, consider:
-            </p>
-            <ul>
-              <li>
-                Using AdminLTE <em>only</em> for CSS — keep the visual style, but write your own
-                React/Vue components for the interactive parts.
-              </li>
-              <li>
-                Or pick a component library built for your framework (PrimeReact, Vuetify, etc.).
-              </li>
-            </ul>
-            <p>
-              We don’t recommend wrapping AdminLTE’s jQuery-era plugins in SPA framework components
-              — it’s a maintenance burden that outweighs the visual win.
-            </p>
-            <h5 id="customization">Customization</h5>
-            <h6 id="how-do-i-change-the-primary-colour">How do I change the primary colour?</h6>
-            <p>
-              Override <code>--bs-primary</code> (and its RGB counterpart) on <code>:root</code>:
-            </p>
-            <pre
-              class="astro-code dark-plus"
-              style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
-              tabindex="0"
-              data-language="css"
-            ><code><span class="line"><span style="color:#D7BA7D">:root</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#9CDCFE">  --bs-primary</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#6610f2</span><span style="color:#D4D4D4">;</span></span>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <p>
+                      AdminLTE inherits Bootstrap 5.3’s CSS-custom-properties theming model and adds
+                      its own layer of SCSS variables on top. You can customize the look two ways:
+                    </p>
+                    <ol>
+                      <li>
+                        <strong>CSS custom properties</strong> — quick, no build step, works on
+                        prebuilt CSS.
+                      </li>
+                      <li>
+                        <strong>SCSS variables</strong> — slower (requires a build), but lets you
+                        change anything including grid breakpoints and sidebar width.
+                      </li>
+                    </ol>
+                    <h5 id="quick-wins-with-css-variables">Quick wins with CSS variables</h5>
+                    <p>
+                      Bootstrap and AdminLTE expose dozens of CSS custom properties on
+                      <code>:root</code>. Override them in your own stylesheet to retheme without
+                      rebuilding:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="css"
+                    ><code><span class="line"><span style="color:#D7BA7D">:root</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;light&quot;</span><span style="color:#D4D4D4">] {</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-primary</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#6610f2</span><span style="color:#D4D4D4">;        </span><span style="color:#6A9955">/* swap Bootstrap&#39;s blue for purple */</span></span>
 <span class="line"><span style="color:#9CDCFE">  --bs-primary-rgb</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">102</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">16</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">242</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-body-bg</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#f3f4f6</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4">] {</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-body-bg</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#14171c</span><span style="color:#D4D4D4">;        </span><span style="color:#6A9955">/* darker than Bootstrap&#39;s default */</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-body-color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#e9ecef</span><span style="color:#D4D4D4">;</span></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
-            <p>
-              For deeper control (sidebar width, breakpoints, spacing scale), see
-              <a href="customization.html">Customization &amp; Theming</a>.
-            </p>
-            <h6 id="how-do-i-add-a-date-picker--multi-select--rich-text-editor">
-              How do I add a date picker / multi-select / rich text editor?
-            </h6>
-            <p>
-              AdminLTE deliberately doesn’t bundle these — they’d bloat the framework. The
-              <a href="integrations.html">Recommended Integrations</a> page lists best-in-class
-              third-party libraries (Flatpickr, Tom Select, Quill, etc.) with copy-paste install
-              snippets.
-            </p>
-            <h6 id="can-i-use-fontawesome-instead-of-bootstrap-icons">
-              Can I use FontAwesome instead of Bootstrap Icons?
-            </h6>
-            <p>
-              Yes. Bootstrap Icons is the default in the demos because it’s MIT, ships with
-              Bootstrap, and is SVG-based — but nothing in AdminLTE’s CSS or JS requires it. Drop in
-              FontAwesome’s stylesheet and replace
-              <code>&lt;i class=&quot;bi bi-x&quot;&gt;</code> with
-              <code>&lt;i class=&quot;fas fa-x&quot;&gt;</code> throughout.
-            </p>
-            <h5 id="versions-and-updates">Versions and updates</h5>
-            <h6 id="how-do-i-get-notified-of-new-versions">
-              How do I get notified of new versions?
-            </h6>
-            <p>
-              <a href="https://github.com/ColorlibHQ/AdminLTE">Watch the GitHub repo</a>
-              (Releases-only mode) or subscribe to the RSS feed at
-              <code>https://github.com/ColorlibHQ/AdminLTE/releases.atom</code>.
-            </p>
-            <h6 id="wheres-the-adminlte-3-documentation">Where’s the AdminLTE 3 documentation?</h6>
-            <p>
-              Still online at <a href="https://adminlte.io/docs/3.2/">adminlte.io/docs/3.2</a> and
-              earlier versions are linked there. The v3 branch on GitHub continues to receive
-              critical bug fixes; new features land in v4 only.
-            </p>
-            <h6 id="how-do-i-upgrade-from-v3-to-v4">How do I upgrade from v3 to v4?</h6>
-            <p>
-              See the dedicated <a href="migration.html">Migration from v3</a> guide. The short
-              version: class names changed (<code>.wrapper</code> → <code>.app-wrapper</code>),
-              <code>data-toggle</code> → <code>data-bs-toggle</code>, dark mode uses
-              <code>data-bs-theme</code> instead of <code>.dark-mode</code>, and jQuery isn’t
-              required anymore.
-            </p>
-            <h5 id="licensing">Licensing</h5>
-            <h6 id="is-adminlte-free-for-commercial-use">Is AdminLTE free for commercial use?</h6>
-            <p>
-              Yes — MIT licensed. You can use it in commercial products, SaaS apps, client work,
-              anything. The only requirement is preserving the copyright notice in the source files
-              (<code>adminlte.css</code> / <code>adminlte.js</code>). You don’t need to display
-              attribution in the UI.
-            </p>
-            <h6 id="do-i-need-to-credit-adminlte-in-my-app">
-              Do I need to credit AdminLTE in my app?
-            </h6>
-            <p>
-              No. The MIT license requires you to keep the licence notice in the source files you
-              distribute — that’s it. You don’t have to mention AdminLTE in the rendered UI, your
-              About page, or your README.
-            </p>
-            <h6 id="can-i-sell-a-product-made-with-adminlte">
-              Can I sell a product made with AdminLTE?
-            </h6>
-            <p>
-              Yes. The MIT license explicitly permits this. You can also resell modified versions of
-              AdminLTE itself (theme marketplaces frequently do this) — just preserve the original
-              copyright notice.
-            </p>
-            <h5 id="troubleshooting">Troubleshooting</h5>
-            <h6 id="the-sidebar-doesnt-collapse-when-i-click-the-hamburger-menu">
-              The sidebar doesn’t collapse when I click the hamburger menu.
-            </h6>
-            <p>
-              Check that the PushMenu plugin is loaded. It’s bundled into <code>adminlte.js</code> —
-              make sure the script tag is on the page and <em>after</em> the markup it operates on.
-              Also verify your hamburger button has
-              <code>data-lte-toggle=&quot;sidebar&quot;</code> (not
-              <code>data-widget=&quot;pushmenu&quot;</code>, which is the v3 attribute).
-            </p>
-            <h6 id="dark-mode-doesnt-persist-after-refresh">
-              Dark mode doesn’t persist after refresh.
-            </h6>
-            <p>
-              The included <a href="color-mode.html">Color Mode</a> toggle writes to
-              <code>localStorage</code> under the key <code>lte-theme</code>. If you’re using a
-              different toggle implementation, make sure it both sets
-              <code>document.documentElement.setAttribute(&#39;data-bs-theme&#39;, ...)</code> and
-              writes to localStorage on change.
-            </p>
-            <h6 id="bootstrap-modal-closes-when-i-press-escape-but-the-adminlte-sidebar-closes-too">
-              Bootstrap modal closes when I press Escape, but the AdminLTE sidebar closes too.
-            </h6>
-            <p>
-              Fixed in v4.0.0 (#5993). If you’re still seeing this, you’re on an older RC — update
-              to the latest.
-            </p>
-            <h6 id="my-custom-scss-doesnt-override-adminltes-defaults">
-              My custom SCSS doesn’t override AdminLTE’s defaults.
-            </h6>
-            <p>
-              Put your overrides <em>before</em> the <code>@import</code> of AdminLTE’s SCSS.
-              AdminLTE uses <code>!default</code> on its variables, which means the first
-              declaration wins. See
-              <a href="customization.html#scss-variables">Customization &amp; Theming</a> for the
-              import order.
-            </p>
-            <h6 id="npm-install-fails-with-peer-dependency-errors">
-              <code>npm install</code> fails with peer dependency errors.
-            </h6>
-            <p>
-              We use an npm <code>overrides</code> block in <code>package.json</code> to keep peers
-              happy — make sure you’re on npm 8.3+ which respects them. If you’re on an older npm,
-              install with <code>--legacy-peer-deps</code>.
-            </p>
+                    <p>
+                      Components built on <code>var(--bs-primary)</code> (most of AdminLTE’s chrome)
+                      pick this up automatically.
+                    </p>
+                    <h6 id="common-variables-worth-knowing">Common variables worth knowing</h6>
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Variable</th>
+                          <th>Default</th>
+                          <th>What it controls</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><code>--bs-primary</code></td>
+                          <td><code>#0d6efd</code></td>
+                          <td>Brand colour, used in active sidebar items, primary buttons</td>
+                        </tr>
+                        <tr>
+                          <td><code>--bs-body-bg</code></td>
+                          <td><code>#fff</code> (light) / <code>#212529</code> (dark)</td>
+                          <td>Page background</td>
+                        </tr>
+                        <tr>
+                          <td><code>--bs-body-color</code></td>
+                          <td><code>#212529</code></td>
+                          <td>Default text colour</td>
+                        </tr>
+                        <tr>
+                          <td><code>--bs-border-color</code></td>
+                          <td><code>#dee2e6</code></td>
+                          <td>All hairline borders</td>
+                        </tr>
+                        <tr>
+                          <td><code>--bs-border-radius</code></td>
+                          <td><code>.375rem</code></td>
+                          <td>Default radius for cards, buttons, inputs</td>
+                        </tr>
+                        <tr>
+                          <td><code>--bs-border-radius-lg</code></td>
+                          <td><code>.5rem</code></td>
+                          <td>Larger radius, used for modals</td>
+                        </tr>
+                        <tr>
+                          <td><code>--bs-font-sans-serif</code></td>
+                          <td><code>system-ui, ...</code></td>
+                          <td>Default font stack</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      For the full list, see
+                      <a href="https://getbootstrap.com/docs/5.3/customize/css-variables/"
+                        >Bootstrap CSS variables</a
+                      >.
+                    </p>
+                    <h5 id="scss-variables">SCSS variables</h5>
+                    <p>
+                      If you’re building from source (cloned the repo or installed via npm + your
+                      own bundler), edit
+                      <a
+                        href="https://github.com/ColorlibHQ/AdminLTE/blob/master/src/scss/_variables.scss"
+                        ><code>src/scss/_variables.scss</code></a
+                      >
+                      and recompile.
+                    </p>
+                    <p>The most-overridden variables, with their defaults:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="scss"
+                    ><code><span class="line"><span style="color:#6A9955">// Sidebar</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-width</span><span style="color:#D4D4D4">:          </span><span style="color:#B5CEA8">250px</span><span style="color:#D4D4D4">;       </span><span style="color:#6A9955">// collapse to mini at ~70px</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-breakpoint</span><span style="color:#D4D4D4">:     lg;          </span><span style="color:#6A9955">// breakpoint at which sidebar starts off-canvas</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-padding-x</span><span style="color:#D4D4D4">:      </span><span style="color:#B5CEA8">.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-padding-y</span><span style="color:#D4D4D4">:      </span><span style="color:#B5CEA8">.5rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// Sidebar colours (light theme)</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-color</span><span style="color:#D4D4D4">:          </span><span style="color:#9CDCFE">$gray-800</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-hover-bg</span><span style="color:#D4D4D4">:       </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">$black</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">.1</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-active-color</span><span style="color:#D4D4D4">:   </span><span style="color:#9CDCFE">$black</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-menu-active-bg</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">rgba</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">$black</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">.1</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// Header</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-app-header-height</span><span style="color:#D4D4D4">:      </span><span style="color:#9CDCFE">$nav-link-height</span><span style="color:#D4D4D4"> + (</span><span style="color:#9CDCFE">$lte-app-header-link-padding-y</span><span style="color:#D4D4D4"> * </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-app-header-bottom-border-color</span><span style="color:#D4D4D4">: </span><span style="color:#DCDCAA">var</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">--#{$prefix}border-color</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// Transitions</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-transition-speed</span><span style="color:#D4D4D4">:       </span><span style="color:#B5CEA8">.3s</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-transition-fn</span><span style="color:#D4D4D4">:          </span><span style="color:#CE9178">ease-in-out</span><span style="color:#D4D4D4">;</span></span></code></pre>
+                    <p>
+                      Bootstrap’s own variables (button colours, font sizes, spacing scale,
+                      breakpoints) live in
+                      <a
+                        href="https://github.com/ColorlibHQ/AdminLTE/blob/master/src/scss/_bootstrap-variables.scss"
+                        ><code>src/scss/_bootstrap-variables.scss</code></a
+                      >. All values use <code>!default</code>, so override them in your own SCSS
+                      file <em>before</em> the import:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="scss"
+                    ><code><span class="line"><span style="color:#6A9955">// my-theme.scss</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 1. Your overrides FIRST</span></span>
+<span class="line"><span style="color:#9CDCFE">$primary</span><span style="color:#D4D4D4">:                </span><span style="color:#CE9178">#6610f2</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$lte-sidebar-width</span><span style="color:#D4D4D4">:      </span><span style="color:#B5CEA8">280px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">$border-radius</span><span style="color:#D4D4D4">:          </span><span style="color:#B5CEA8">.25rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 2. Then import AdminLTE (which imports Bootstrap)</span></span>
+<span class="line"><span style="color:#C586C0">@import</span><span style="color:#CE9178"> &quot;node_modules/admin-lte/src/scss/adminlte&quot;</span><span style="color:#D4D4D4">;</span></span></code></pre>
+                    <h5 id="recompiling-scss">Recompiling SCSS</h5>
+                    <p>If you cloned the repo, the build pipeline is already wired:</p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="bash"
+                    ><code><span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> install</span></span>
+<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> css</span><span style="color:#6A9955">           # one-off build → dist/css/</span></span>
+<span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> run</span><span style="color:#CE9178"> watch-css-main</span><span style="color:#6A9955">  # rebuild on save during development</span></span></code></pre>
+                    <p>
+                      For a project that uses AdminLTE as a dependency, point your bundler at
+                      <code>node_modules/admin-lte/src/scss/adminlte.scss</code>. Examples:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="js"
+                    ><code><span class="line"><span style="color:#6A9955">// Vite / Rollup / Webpack</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#CE9178"> &quot;admin-lte/src/scss/adminlte.scss&quot;</span></span></code></pre>
+                    <h5 id="custom-sidebar-branding">Custom sidebar branding</h5>
+                    <p>
+                      The <code>.sidebar-brand</code> element accepts text, an image, or both.
+                      Markup:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;sidebar-brand&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">a</span><span style="color:#9CDCFE"> href</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;/&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-link&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">img</span><span style="color:#9CDCFE"> src</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;/assets/logo.svg&quot;</span><span style="color:#9CDCFE"> alt</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;Logo&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-image opacity-75 shadow&quot;</span><span style="color:#808080"> /&gt;</span></span>
+<span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">span</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;brand-text fw-light&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">My Dashboard</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">span</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">a</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <p>
+                      To swap the logo when the sidebar collapses to its mini state, AdminLTE
+                      provides a built-in pattern — see the
+                      <a href="../layout/logo-switch.html">Logo Switch layout demo</a> for the
+                      markup.
+                    </p>
+                    <h5 id="dark-mode-customization">Dark mode customization</h5>
+                    <p>
+                      AdminLTE follows Bootstrap 5.3’s <code>data-bs-theme</code> attribute system.
+                      To customize dark-mode colours, scope your variables under
+                      <code>[data-bs-theme=&quot;dark&quot;]</code>:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="css"
+                    ><code><span class="line"><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#D4D4D4">] {</span></span>
+<span class="line"><span style="color:#9CDCFE">  --bs-primary</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#4dabf7</span><span style="color:#D4D4D4">;          </span><span style="color:#6A9955">/* lighter primary for dark backgrounds */</span></span>
+<span class="line"><span style="color:#9CDCFE">  --lte-sidebar-color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#e9ecef</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  --lte-sidebar-active-color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">#fff</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+                    <p>
+                      The <a href="color-mode.html">Color Mode</a> page covers the toggle markup and
+                      JavaScript that switches the attribute.
+                    </p>
+                    <h5 id="custom-sidebar-colour-scheme">Custom sidebar colour scheme</h5>
+                    <p>
+                      AdminLTE ships its sidebar styled for light mode, but the demos apply
+                      <code>data-bs-theme=&quot;dark&quot;</code> on <code>.app-sidebar</code> to
+                      get the dark sidebar variant against a light page. You can mix and match:
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- Light page, dark sidebar (the demo pattern) --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bg-body-tertiary&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar bg-body-secondary shadow&quot;</span><span style="color:#9CDCFE"> data-bs-theme</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;dark&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">    ...</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#6A9955">&lt;!-- Light page, light sidebar --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">body</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bg-body-tertiary&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">aside</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-sidebar bg-body shadow border-end&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#D4D4D4">    ...</span></span>
+<span class="line"><span style="color:#808080">  &lt;/</span><span style="color:#569CD6">aside</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">body</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="compact-mode">Compact mode</h5>
+                    <p>
+                      Add <code>.compact-mode</code> to <code>.app-wrapper</code> (or anywhere up
+                      the tree) to reduce padding throughout the layout — handy for data-dense
+                      dashboards. The dimensions for compact mode come from the
+                      <code>*-compact</code> variables in <code>_variables.scss</code>.
+                    </p>
+                    <pre
+                      class="astro-code dark-plus"
+                      style="background-color: #1e1e1e; color: #d4d4d4; overflow-x: auto"
+                      tabindex="0"
+                      data-language="html"
+                    ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;app-wrapper compact-mode&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#6A9955">  &lt;!-- header, sidebar, main content with tighter spacing --&gt;</span></span>
+<span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">div</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h5 id="when-to-recompile-vs-override-at-runtime">
+                      When to recompile vs. override at runtime
+                    </h5>
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Customization</th>
+                          <th>CSS variables</th>
+                          <th>SCSS rebuild</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Brand colours</td>
+                          <td>✅</td>
+                          <td>✅</td>
+                        </tr>
+                        <tr>
+                          <td>Body / text colours</td>
+                          <td>✅</td>
+                          <td>✅</td>
+                        </tr>
+                        <tr>
+                          <td>Border radius</td>
+                          <td>✅</td>
+                          <td>✅</td>
+                        </tr>
+                        <tr>
+                          <td>Sidebar width</td>
+                          <td>❌ (not a CSS var)</td>
+                          <td>✅</td>
+                        </tr>
+                        <tr>
+                          <td>Breakpoint changes</td>
+                          <td>❌</td>
+                          <td>✅</td>
+                        </tr>
+                        <tr>
+                          <td>Spacing scale</td>
+                          <td>❌</td>
+                          <td>✅</td>
+                        </tr>
+                        <tr>
+                          <td>Font sizes</td>
+                          <td>partial</td>
+                          <td>✅ (full control)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p>
+                      Use CSS variables for everything you can — it survives AdminLTE upgrades
+                      without merge conflicts. Reserve SCSS overrides for structural changes
+                      (sidebar width, breakpoints) that CSS variables don’t cover.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--end::Container-->
         </div>
-        <!--end::App Content-->
       </main>
-      <!--end::App Main-->
       <!--begin::Footer-->
       <footer class="app-footer">
         <!--begin::To the end-->
@@ -835,8 +941,6 @@
       </footer>
       <!--end::Footer-->
     </div>
-    <!--end::App Wrapper-->
-    <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
@@ -948,7 +1052,5 @@
       })();
     </script>
     <!--end::Color Mode Toggle-->
-    <!--end::Script-->
   </body>
-  <!--end::Body-->
 </html>
