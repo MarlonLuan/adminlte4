@@ -4,6 +4,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>FAQ | AdminLTE 4</title>
 
+    <!--begin::Theme Init (prevents flash of incorrect theme on load, #6043)-->
+    <script>
+      (() => {
+        'use strict';
+        const root = document.documentElement;
+
+        // Applications with their own theming opt out of AdminLTE's color mode
+        // entirely, here as well as in the bundle.
+        if (root.getAttribute('data-lte-color-mode') === 'off') {
+          return;
+        }
+
+        const STORAGE_KEY = 'lte-theme';
+        let stored = null;
+        try {
+          stored = localStorage.getItem(STORAGE_KEY);
+        } catch {
+          // localStorage may be unavailable (private mode, sandboxed iframe).
+        }
+        // Mirror the precedence in color-mode.ts: the visitor's stored choice
+        // wins, then a theme this page declared itself, then the OS preference.
+        const authored = root.getAttribute('data-bs-theme');
+        let resolved = 'light';
+        if (stored === 'dark' || stored === 'light') {
+          resolved = stored;
+        } else if (authored === 'dark' || authored === 'light') {
+          resolved = authored;
+        } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
+          resolved = 'dark';
+        }
+        root.setAttribute('data-bs-theme', resolved);
+        root.style.colorScheme = resolved;
+        // Flag values computed here, so the bundle does not mistake them for a
+        // theme the page declared and stop following the OS preference.
+        if (resolved !== authored) {
+          root.setAttribute('data-lte-theme-resolved', '');
+        }
+      })();
+    </script>
+    <!--end::Theme Init-->
+
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
@@ -16,11 +57,11 @@
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
-      content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS. Fully accessible with WCAG 2.1 AA compliance."
+      content="AdminLTE is a free Bootstrap 5 admin dashboard template with almost 50 example pages, built with vanilla JS and designed with accessibility in mind."
     />
     <meta
       name="keywords"
-      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant"
+      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel"
     />
     <!--end::Primary Meta Tags-->
 
@@ -60,6 +101,9 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
+    <link rel="stylesheet" href="../css/adminlte-docs.css" />
+
+    <!--email_off-->
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary docs-page faq-page">
     <div class="app-wrapper">
@@ -70,7 +114,13 @@
           <!--begin::Start Navbar Links-->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+              <a
+                class="nav-link"
+                data-lte-toggle="sidebar"
+                href="#"
+                role="button"
+                aria-label="Toggle sidebar"
+              >
                 <i class="bi bi-list"></i>
               </a>
             </li>
@@ -90,19 +140,46 @@
           </ul>
           <!--end::Start Navbar Links-->
 
+          <!--begin::Navbar Search-->
+          <form
+            class="navbar-search d-none d-md-block ms-3"
+            role="search"
+            action="../pages/search-results.html"
+          >
+            <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <div class="navbar-search-field">
+              <input
+                type="search"
+                id="navbar-search-input"
+                name="q"
+                class="form-control"
+                placeholder="Search…"
+                autocomplete="off"
+              />
+              <button class="navbar-search-submit" type="submit" aria-label="Submit search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <!--end::Navbar Search-->
+
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="bi bi-search"></i>
+            <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
+            <li class="nav-item d-md-none">
+              <a class="nav-link" href="../pages/search-results.html" aria-label="Search">
+                <i class="bi bi-search" aria-hidden="true"></i>
               </a>
             </li>
-            <!--end::Navbar Search-->
-
+            <!--end::Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a
+                class="nav-link"
+                data-bs-toggle="dropdown"
+                href="#"
+                aria-label="Messages: 3 unread"
+              >
                 <i class="bi bi-chat-text"></i>
                 <span class="navbar-badge badge text-bg-danger">3</span>
               </a>
@@ -113,17 +190,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../assets/img/user1-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         Brad Diesel
                         <span class="float-end fs-7 text-danger"
                           ><i class="bi bi-star-fill"></i
                         ></span>
-                      </h3>
+                      </p>
                       <p class="fs-7">Call me whenever you can...</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -139,17 +216,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../assets/img/user8-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         John Pierce
                         <span class="float-end fs-7 text-secondary">
                           <i class="bi bi-star-fill"></i>
                         </span>
-                      </h3>
+                      </p>
                       <p class="fs-7">I got your message bro</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -165,17 +242,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../assets/img/user3-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         Nora Silvester
                         <span class="float-end fs-7 text-warning">
                           <i class="bi bi-star-fill"></i>
                         </span>
-                      </h3>
+                      </p>
                       <p class="fs-7">The subject goes here</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -192,7 +269,12 @@
 
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a
+                class="nav-link"
+                data-bs-toggle="dropdown"
+                href="#"
+                aria-label="Notifications: 15 unread"
+              >
                 <i class="bi bi-bell-fill"></i>
                 <span class="navbar-badge badge text-bg-warning">15</span>
               </a>
@@ -219,9 +301,43 @@
             </li>
             <!--end::Notifications Dropdown Menu-->
 
+            <!--begin::Language Menu-->
+            <!-- Markup only: swapping the locale is the application's job. The docs
+           Recipes page shows how to wire this to a real locale switch. -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="language-menu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Change language, current language English"
+              >
+                <i class="bi bi-translate" aria-hidden="true"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-menu">
+                <li>
+                  <a class="dropdown-item active" href="#" hreflang="en" aria-current="true">
+                    English
+                    <i class="bi bi-check-lg ms-2" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="#" hreflang="es">Español</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="fr">Français</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="de">Deutsch</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="ar">العربية</a></li>
+              </ul>
+            </li>
+            <!--end::Language Menu-->
+
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
-              <a class="nav-link" href="#" data-lte-toggle="fullscreen">
+              <a
+                class="nav-link"
+                href="#"
+                data-lte-toggle="fullscreen"
+                aria-label="Toggle fullscreen"
+              >
                 <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                 <i data-lte-icon="minimize" class="bi bi-fullscreen-exit d-none"></i>
               </a>
@@ -293,7 +409,7 @@
                 <img
                   src="../assets/img/user2-160x160.jpg"
                   class="user-image rounded-circle shadow"
-                  alt="User Image"
+                  alt="Alexander Pierce"
                 />
                 <span class="d-none d-md-inline">Alexander Pierce</span>
               </a>
@@ -303,7 +419,7 @@
                   <img
                     src="../assets/img/user2-160x160.jpg"
                     class="rounded-circle shadow"
-                    alt="User Image"
+                    alt="Alexander Pierce"
                   />
                   <p>
                     Alexander Pierce - Web Developer
@@ -359,26 +475,30 @@
           </a>
         </div>
         <!--end::Sidebar Brand-->
+        <!--begin::Sidebar Search-->
+        <div class="sidebar-search" role="search">
+          <label for="sidebar-search-input" class="visually-hidden">Filter docs</label>
+          <input
+            type="search"
+            id="sidebar-search-input"
+            class="form-control form-control-sm"
+            placeholder="Filter docs…"
+            autocomplete="off"
+            data-lte-toggle="sidebar-search"
+            data-lte-target="#docs-navigation"
+          />
+          <p class="fs-7 text-secondary mt-2 mb-0" data-lte-search-empty role="status" hidden>
+            No matching pages.
+          </p>
+        </div>
+        <!--end::Sidebar Search-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
-          <nav class="mt-2">
-            <!-- Back to preview CTA -->
-            <div class="px-3 pb-2">
-              <a
-                href="../index.html"
-                class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
-              >
-                <i class="bi bi-arrow-left" aria-hidden="true"></i>
-                Back to live preview
-              </a>
-            </div>
-
+          <nav class="mt-2" aria-label="Documentation navigation">
             <!--begin::Sidebar Menu-->
             <ul
               class="nav sidebar-menu flex-column"
               data-lte-toggle="treeview"
-              role="navigation"
-              aria-label="Documentation navigation"
               data-accordion="false"
               id="docs-navigation"
             >
@@ -422,6 +542,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../docs/colors.html" class="nav-link">
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Colors</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../docs/rtl.html" class="nav-link">
                   <i class="nav-icon bi bi-text-paragraph"></i>
                   <p>RTL Support</p>
@@ -454,6 +580,18 @@
                     <a href="../docs/components/main-sidebar.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Main Sidebar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../docs/components/card.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Card</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../docs/components/miscellaneous.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Miscellaneous</p>
                     </a>
                   </li>
                 </ul>
@@ -507,6 +645,12 @@
                     <a href="../docs/javascript/fullscreen.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Fullscreen</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../docs/javascript/sidebar-search.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Sidebar Search</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -579,6 +723,17 @@
               </li>
             </ul>
             <!--end::Sidebar Menu-->
+
+            <!-- Back to preview CTA (bottom of sidebar) -->
+            <div class="p-3 mt-3 border-top border-secondary border-opacity-25">
+              <a
+                href="../index.html"
+                class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
+              >
+                <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                Back to live preview
+              </a>
+            </div>
           </nav>
         </div>
         <!--end::Sidebar Wrapper-->
@@ -589,13 +744,15 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">FAQ</h3>
+                <h1 class="mb-0 fs-3">FAQ</h1>
               </div>
               <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">FAQ</li>
-                </ol>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
@@ -610,7 +767,7 @@
               </span>
               <h1 class="faq-hero-title">How can we help?</h1>
               <p class="faq-hero-lead">
-                Quick answers to the 21 questions we get asked most often. Use the search to jump to
+                Quick answers to the 26 questions we get asked most often. Use the search to jump to
                 anything, or click a topic below.
               </p>
               <form class="faq-search" role="search" onsubmit="return false;">
@@ -619,7 +776,7 @@
                   type="search"
                   id="faq-search-input"
                   class="form-control form-control-lg"
-                  placeholder="Search the FAQ…"
+                  placeholder="Search the FAQ&hellip;"
                   aria-label="Search the FAQ"
                   autocomplete="off"
                 />
@@ -649,7 +806,7 @@
               <a href="#getting-started" class="faq-chip faq-chip-primary">
                 <i class="bi bi-rocket-takeoff" aria-hidden="true"></i>
                 <span>Getting started</span>
-                <span class="faq-chip-count">4</span> </a
+                <span class="faq-chip-count">5</span> </a
               ><a href="#framework-integrations" class="faq-chip faq-chip-info">
                 <i class="bi bi-puzzle" aria-hidden="true"></i>
                 <span>Framework integrations</span>
@@ -657,7 +814,7 @@
               ><a href="#customization" class="faq-chip faq-chip-warning">
                 <i class="bi bi-palette" aria-hidden="true"></i>
                 <span>Customization</span>
-                <span class="faq-chip-count">3</span> </a
+                <span class="faq-chip-count">4</span> </a
               ><a href="#versions" class="faq-chip faq-chip-success">
                 <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
                 <span>Versions and updates</span>
@@ -669,7 +826,7 @@
               ><a href="#troubleshooting" class="faq-chip faq-chip-danger">
                 <i class="bi bi-wrench-adjustable" aria-hidden="true"></i>
                 <span>Troubleshooting</span>
-                <span class="faq-chip-count">5</span>
+                <span class="faq-chip-count">8</span>
               </a>
             </nav>
 
@@ -682,7 +839,7 @@
                   </span>
                   <div>
                     <h2 class="faq-section-title">Getting started</h2>
-                    <p class="faq-section-count">4 questions</p>
+                    <p class="faq-section-count">5 questions</p>
                   </div>
                 </header>
                 <div class="faq-section-items">
@@ -751,7 +908,49 @@
                       You don't <em>need</em> jQuery — AdminLTE 4's JavaScript is vanilla. If your
                       existing app already uses jQuery, it'll coexist fine. But none of AdminLTE 4's
                       own plugins call into jQuery, and there are no <code>$.fn.xxx()</code> plugin
-                      shims.
+                      shims.<br /><br />The v3 <code>plugins/</code> folder is gone too. Every
+                      widget it bundled has a vanilla-JS successor — see the
+                      <a href="migration.html#third-party-plugin-replacements"
+                        >plugin replacement table</a
+                      >
+                      for the full mapping (Select2 → Tom Select, DataTables → Tabulator, Summernote
+                      → Quill, and so on).
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text">Does AdminLTE 4 support Select2?</span>
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      AdminLTE 4 recommends
+                      <a href="https://tom-select.js.org/" target="_blank" rel="noopener"
+                        >Tom Select</a
+                      >
+                      instead. It covers everything people reach for Select2 to do — searchable
+                      dropdowns, multi-select, tagging, clearable selections, AJAX-backed options,
+                      virtual scrolling over large datasets, keyboard navigation — in roughly
+                      <strong>20&nbsp;kB gzip</strong>, against Select2's
+                      <strong>~50&nbsp;kB</strong> once jQuery is counted.
+                      <code>forms/advanced.html</code> demos all of it, including a paginated
+                      remote-data field with request cancellation, and there's a
+                      <a href="../forms/advanced.html#select2">line-by-line API mapping</a> if
+                      you're porting existing code.<br /><br />Select2 itself is still maintained
+                      (4.1.0 shipped in 2026), but it is still a jQuery plugin — its UMD wrapper
+                      hard-requires jQuery and there is no jQuery-free build. Bundling it would put
+                      jQuery back into a framework whose entire v4 premise is not needing it, and
+                      none of the official Vue/React/Django/Laravel ports could consume it.<br /><br />If
+                      you're locked into Select2 anyway, AdminLTE ships an optional
+                      <strong>styling-only</strong> compatibility sheet — see
+                      <a href="integrations.html#select2-compatibility-theme"
+                        >Select2 compatibility theme</a
+                      >. You bring the plugin; it makes Select2 match Bootstrap 5.3, dark mode and
+                      modals included. No jQuery is added to AdminLTE.
                     </div>
                   </details>
                 </div>
@@ -845,7 +1044,7 @@
                   </span>
                   <div>
                     <h2 class="faq-section-title">Customization</h2>
-                    <p class="faq-section-count">3 questions</p>
+                    <p class="faq-section-count">4 questions</p>
                   </div>
                 </header>
                 <div class="faq-section-items">
@@ -861,16 +1060,71 @@
                     </summary>
                     <div class="faq-answer">
                       <p>
-                        Override <code>--bs-primary</code> (and its RGB counterpart) on
-                        <code>:root</code>:
+                        Bootstrap compiles <code>$primary</code> into its components, so overriding
+                        <code>--bs-primary</code> alone repaints <code>.text-primary</code> and
+                        <code>.bg-primary</code> but leaves <code>.btn-primary</code>, pagination,
+                        checkboxes and the focus ring blue. Two things actually work:
                       </p>
-                      <pre class="astro-code"><code>:root {
-  --bs-primary: #6610f2;
-  --bs-primary-rgb: 102, 16, 242;
-}</code></pre>
+                      <p>
+                        <strong>With Sass</strong> — set <code>$primary</code> before importing
+                        AdminLTE and everything is compiled with it:
+                      </p>
+                      <pre class="astro-code"><code>$primary: #6610f2;
+@import "admin-lte/src/scss/adminlte";</code></pre>
+                      <p>
+                        <strong>Without a build step</strong> — load the opt-in palette sheet and
+                        name your colour on <code>&lt;html&gt;</code>; it rewires the components
+                        that bake the hex:
+                      </p>
+                      <pre
+                        class="astro-code"
+                      ><code>&lt;link rel="stylesheet" href="css/adminlte-colors.css"&gt;
+&lt;html lang="en" data-lte-primary="indigo"&gt;</code></pre>
                       <p class="mb-0">
-                        For deeper control (sidebar width, breakpoints, spacing scale), see
+                        A brand colour outside the palette needs only <code>--bs-primary</code> plus
+                        that attribute — see <a href="colors.html">Colors &amp; Skins</a>. For
+                        sidebar width, breakpoints and the spacing scale, see
                         <a href="customization.html">Customization &amp; Theming</a>.
+                      </p>
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text"
+                        >Where did the v3 colours go — <code>bg-navy</code>, <code>bg-teal</code>,
+                        the sidebar skins? Can I add my brand colour?</span
+                      >
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      <p>
+                        They live in an opt-in stylesheet,
+                        <code>dist/css/adminlte-colors.css</code> (≈ 8 kB gzipped), so they cost
+                        nothing unless you load it: fourteen redesigned colours — every one readable
+                        with white text — with the full <code>.bg-*</code>, <code>.text-bg-*</code>,
+                        <code>.card-*</code>, <code>.callout-*</code>,
+                        <code>.bg-gradient-*</code> families. A sidebar "skin" is just
+                        <code
+                          >&lt;aside class="app-sidebar text-bg-navy" data-bs-theme="dark"&gt;</code
+                        >.
+                      </p>
+                      <p class="mb-0">
+                        Want the AdminLTE 3 colours exactly as they were? Load
+                        <code>dist/css/adminlte-colors-v3.css</code> instead — the 18 v3 colours
+                        under their original names and values, same class families. Your own colour
+                        is a one-liner in Sass,
+                        <code>$lte-palette-custom: ("brand": #0f766e)</code>. To make one of them
+                        Bootstrap's <code>primary</code> — buttons, links, pagination, form focus —
+                        add <code>data-lte-primary="teal"</code> to <code>&lt;html&gt;</code>.
+                        Everything — palette, presets, the brand-colour checker — is on
+                        <a href="colors.html">Colors</a>; try skins live on the
+                        <a href="../UI/colors.html">Colors demo</a> or the
+                        <a href="../generate/theme.html">Theme Customize</a> page.
                       </p>
                     </div>
                   </details>
@@ -1048,7 +1302,7 @@
                   </span>
                   <div>
                     <h2 class="faq-section-title">Troubleshooting</h2>
-                    <p class="faq-section-count">5 questions</p>
+                    <p class="faq-section-count">8 questions</p>
                   </div>
                 </header>
                 <div class="faq-section-items">
@@ -1096,6 +1350,29 @@
                         <i class="bi bi-question-lg" aria-hidden="true"></i>
                       </span>
                       <span class="faq-q-text"
+                        >My own theming keeps getting overwritten by AdminLTE.</span
+                      >
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      Turn the bundled switcher off with
+                      <code>&lt;html data-lte-color-mode="off"&gt;</code>. ColorMode then never
+                      writes <code>data-bs-theme</code> — not on load, not on a toggle click, not
+                      when the OS preference changes — so your own switcher (or a custom Bootstrap
+                      theme name) stays in control. If you only need a server-rendered default
+                      instead, render <code>data-bs-theme</code> on <code>&lt;html&gt;</code> and it
+                      is respected as long as the visitor hasn't picked a theme themselves. See
+                      <a href="color-mode.html">Color Mode</a>.
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text"
                         >Bootstrap modal closes when I press Escape, but the AdminLTE sidebar closes
                         too.</span
                       >
@@ -1106,6 +1383,45 @@
                     <div class="faq-answer">
                       Fixed in v4.0.0 (#5993). If you're still seeing this, you're on an older RC —
                       update to the latest.
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text"
+                        >Printing adds the URL after every link and a box around buttons.</span
+                      >
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      Those are AdminLTE's print defaults, meant for reading a page on paper. For a
+                      page that prints as a document — an invoice or work order that goes to a
+                      customer — add <code>&lt;html data-lte-print="plain"&gt;</code> (it works on
+                      any container too) and both go away, while text stays black on white. See the
+                      <a href="recipes.html">Recipes</a> page.
+                    </div>
+                  </details>
+                  <details class="faq-item" data-faq-item>
+                    <summary>
+                      <span class="faq-q-icon">
+                        <i class="bi bi-question-lg" aria-hidden="true"></i>
+                      </span>
+                      <span class="faq-q-text">The sidebar and header no longer print.</span>
+                      <span class="faq-q-chevron">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                      </span>
+                    </summary>
+                    <div class="faq-answer">
+                      By design: the shell — header, sidebar and footer — is navigation, and
+                      printing it spent 200px of every sheet on a menu and pushed the content onto
+                      extra pages (#6113). The content now gets the full width of the paper, as it
+                      did in v3. Add <code>&lt;html data-lte-print="app"&gt;</code> to print the
+                      whole layout again, or Bootstrap's <code>.d-print-flex</code> /
+                      <code>.d-print-block</code> to bring back one piece of it.
                     </div>
                   </details>
                   <details class="faq-item" data-faq-item>
@@ -1205,12 +1521,13 @@
     ></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="../js/adminlte.js"></script>
-    <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+    <!--end::Required Plugin(AdminLTE)-->
+    <!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
       const Default = {
@@ -1239,71 +1556,47 @@
         }
       });
     </script>
-    <!--end::OverlayScrollbars Configure--><!--begin::Color Mode Toggle (#6010)-->
+    <!--end::OverlayScrollbars Configure-->
+    <!--begin::Charts follow the colour mode-->
     <script>
+      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
+      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
+      // a global default before any chart is created — this runs before the chart
+      // pages' own scripts — and keep every chart that has a `chart.id` in step
+      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
       (() => {
         'use strict';
-
-        const STORAGE_KEY = 'lte-theme';
-
-        const getStoredTheme = () => localStorage.getItem(STORAGE_KEY);
-        const setStoredTheme = (theme) => localStorage.setItem(STORAGE_KEY, theme);
-
-        const prefersDark = () => globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        const getPreferredTheme = () => {
-          const stored = getStoredTheme();
-          if (stored) return stored;
-          return prefersDark() ? 'dark' : 'light';
-        };
-
-        const setTheme = (theme) => {
-          const resolved = theme === 'auto' ? (prefersDark() ? 'dark' : 'light') : theme;
-          document.documentElement.setAttribute('data-bs-theme', resolved);
-        };
-
-        setTheme(getPreferredTheme());
-
-        const showActiveTheme = (theme) => {
-          // Highlight the active dropdown option
-          document.querySelectorAll('[data-bs-theme-value]').forEach((el) => {
-            el.classList.remove('active');
-            el.setAttribute('aria-pressed', 'false');
-            const check = el.querySelector('.bi-check-lg');
-            if (check) check.classList.add('d-none');
-          });
-          const active = document.querySelector(`[data-bs-theme-value="${theme}"]`);
-          if (active) {
-            active.classList.add('active');
-            active.setAttribute('aria-pressed', 'true');
-            const check = active.querySelector('.bi-check-lg');
-            if (check) check.classList.remove('d-none');
+        const mode = () =>
+          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
+        // theme.mode also sets a dark chart background — keep the card's instead.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.Apex ||= {};
+        const apex = globalThis.Apex;
+        apex.theme = { mode: mode() };
+        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
+        new MutationObserver(() => {
+          const next = mode();
+          apex.theme = { mode: next };
+          const instances = apex._chartInstances || [];
+          for (const { chart } of instances) {
+            chart.updateOptions({ theme: { mode: next } }, false, false);
           }
-          // Sync the topbar trigger icon
-          document.querySelectorAll('[data-lte-theme-icon]').forEach((icon) => {
-            icon.classList.toggle('d-none', icon.dataset.lteThemeIcon !== theme);
-          });
-        };
-
-        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-          const stored = getStoredTheme();
-          if (!stored || stored === 'auto') setTheme(getPreferredTheme());
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-          showActiveTheme(getPreferredTheme());
-          document.querySelectorAll('[data-bs-theme-value]').forEach((toggle) => {
-            toggle.addEventListener('click', () => {
-              const theme = toggle.getAttribute('data-bs-theme-value');
-              setStoredTheme(theme);
-              setTheme(theme);
-              showActiveTheme(theme);
-            });
-          });
+        }).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme'],
         });
       })();
     </script>
+    <!--end::Charts follow the colour mode-->
+
+    <!--begin::Color Mode Toggle-->
+    <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode
+     module (since 4.1) — no page script needed. Only the no-flash snippet
+     in <head> stays inline, because it must run before first paint. -->
     <!--end::Color Mode Toggle-->
+
+    <!--email_on-->
 
     <script>
       // FAQ live search + clear button

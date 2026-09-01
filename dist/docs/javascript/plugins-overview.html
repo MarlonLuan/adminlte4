@@ -4,6 +4,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>JavaScript Plugins Overview | AdminLTE 4</title>
 
+    <!--begin::Theme Init (prevents flash of incorrect theme on load, #6043)-->
+    <script>
+      (() => {
+        'use strict';
+        const root = document.documentElement;
+
+        // Applications with their own theming opt out of AdminLTE's color mode
+        // entirely, here as well as in the bundle.
+        if (root.getAttribute('data-lte-color-mode') === 'off') {
+          return;
+        }
+
+        const STORAGE_KEY = 'lte-theme';
+        let stored = null;
+        try {
+          stored = localStorage.getItem(STORAGE_KEY);
+        } catch {
+          // localStorage may be unavailable (private mode, sandboxed iframe).
+        }
+        // Mirror the precedence in color-mode.ts: the visitor's stored choice
+        // wins, then a theme this page declared itself, then the OS preference.
+        const authored = root.getAttribute('data-bs-theme');
+        let resolved = 'light';
+        if (stored === 'dark' || stored === 'light') {
+          resolved = stored;
+        } else if (authored === 'dark' || authored === 'light') {
+          resolved = authored;
+        } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
+          resolved = 'dark';
+        }
+        root.setAttribute('data-bs-theme', resolved);
+        root.style.colorScheme = resolved;
+        // Flag values computed here, so the bundle does not mistake them for a
+        // theme the page declared and stop following the OS preference.
+        if (resolved !== authored) {
+          root.setAttribute('data-lte-theme-resolved', '');
+        }
+      })();
+    </script>
+    <!--end::Theme Init-->
+
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
@@ -16,11 +57,11 @@
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
-      content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS. Fully accessible with WCAG 2.1 AA compliance."
+      content="AdminLTE is a free Bootstrap 5 admin dashboard template with almost 50 example pages, built with vanilla JS and designed with accessibility in mind."
     />
     <meta
       name="keywords"
-      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant"
+      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel"
     />
     <!--end::Primary Meta Tags-->
 
@@ -60,6 +101,9 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="../../css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
+    <link rel="stylesheet" href="../../css/adminlte-docs.css" />
+
+    <!--email_off-->
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary docs-page">
     <div class="app-wrapper">
@@ -70,7 +114,13 @@
           <!--begin::Start Navbar Links-->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+              <a
+                class="nav-link"
+                data-lte-toggle="sidebar"
+                href="#"
+                role="button"
+                aria-label="Toggle sidebar"
+              >
                 <i class="bi bi-list"></i>
               </a>
             </li>
@@ -90,19 +140,46 @@
           </ul>
           <!--end::Start Navbar Links-->
 
+          <!--begin::Navbar Search-->
+          <form
+            class="navbar-search d-none d-md-block ms-3"
+            role="search"
+            action="../../pages/search-results.html"
+          >
+            <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <div class="navbar-search-field">
+              <input
+                type="search"
+                id="navbar-search-input"
+                name="q"
+                class="form-control"
+                placeholder="Search…"
+                autocomplete="off"
+              />
+              <button class="navbar-search-submit" type="submit" aria-label="Submit search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <!--end::Navbar Search-->
+
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="bi bi-search"></i>
+            <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
+            <li class="nav-item d-md-none">
+              <a class="nav-link" href="../../pages/search-results.html" aria-label="Search">
+                <i class="bi bi-search" aria-hidden="true"></i>
               </a>
             </li>
-            <!--end::Navbar Search-->
-
+            <!--end::Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a
+                class="nav-link"
+                data-bs-toggle="dropdown"
+                href="#"
+                aria-label="Messages: 3 unread"
+              >
                 <i class="bi bi-chat-text"></i>
                 <span class="navbar-badge badge text-bg-danger">3</span>
               </a>
@@ -113,17 +190,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../../assets/img/user1-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         Brad Diesel
                         <span class="float-end fs-7 text-danger"
                           ><i class="bi bi-star-fill"></i
                         ></span>
-                      </h3>
+                      </p>
                       <p class="fs-7">Call me whenever you can...</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -139,17 +216,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../../assets/img/user8-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         John Pierce
                         <span class="float-end fs-7 text-secondary">
                           <i class="bi bi-star-fill"></i>
                         </span>
-                      </h3>
+                      </p>
                       <p class="fs-7">I got your message bro</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -165,17 +242,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../../assets/img/user3-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         Nora Silvester
                         <span class="float-end fs-7 text-warning">
                           <i class="bi bi-star-fill"></i>
                         </span>
-                      </h3>
+                      </p>
                       <p class="fs-7">The subject goes here</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -192,7 +269,12 @@
 
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a
+                class="nav-link"
+                data-bs-toggle="dropdown"
+                href="#"
+                aria-label="Notifications: 15 unread"
+              >
                 <i class="bi bi-bell-fill"></i>
                 <span class="navbar-badge badge text-bg-warning">15</span>
               </a>
@@ -219,9 +301,43 @@
             </li>
             <!--end::Notifications Dropdown Menu-->
 
+            <!--begin::Language Menu-->
+            <!-- Markup only: swapping the locale is the application's job. The docs
+           Recipes page shows how to wire this to a real locale switch. -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="language-menu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Change language, current language English"
+              >
+                <i class="bi bi-translate" aria-hidden="true"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-menu">
+                <li>
+                  <a class="dropdown-item active" href="#" hreflang="en" aria-current="true">
+                    English
+                    <i class="bi bi-check-lg ms-2" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="#" hreflang="es">Español</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="fr">Français</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="de">Deutsch</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="ar">العربية</a></li>
+              </ul>
+            </li>
+            <!--end::Language Menu-->
+
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
-              <a class="nav-link" href="#" data-lte-toggle="fullscreen">
+              <a
+                class="nav-link"
+                href="#"
+                data-lte-toggle="fullscreen"
+                aria-label="Toggle fullscreen"
+              >
                 <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                 <i data-lte-icon="minimize" class="bi bi-fullscreen-exit d-none"></i>
               </a>
@@ -293,7 +409,7 @@
                 <img
                   src="../../assets/img/user2-160x160.jpg"
                   class="user-image rounded-circle shadow"
-                  alt="User Image"
+                  alt="Alexander Pierce"
                 />
                 <span class="d-none d-md-inline">Alexander Pierce</span>
               </a>
@@ -303,7 +419,7 @@
                   <img
                     src="../../assets/img/user2-160x160.jpg"
                     class="rounded-circle shadow"
-                    alt="User Image"
+                    alt="Alexander Pierce"
                   />
                   <p>
                     Alexander Pierce - Web Developer
@@ -359,26 +475,30 @@
           </a>
         </div>
         <!--end::Sidebar Brand-->
+        <!--begin::Sidebar Search-->
+        <div class="sidebar-search" role="search">
+          <label for="sidebar-search-input" class="visually-hidden">Filter docs</label>
+          <input
+            type="search"
+            id="sidebar-search-input"
+            class="form-control form-control-sm"
+            placeholder="Filter docs…"
+            autocomplete="off"
+            data-lte-toggle="sidebar-search"
+            data-lte-target="#docs-navigation"
+          />
+          <p class="fs-7 text-secondary mt-2 mb-0" data-lte-search-empty role="status" hidden>
+            No matching pages.
+          </p>
+        </div>
+        <!--end::Sidebar Search-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
-          <nav class="mt-2">
-            <!-- Back to preview CTA -->
-            <div class="px-3 pb-2">
-              <a
-                href="../../index.html"
-                class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
-              >
-                <i class="bi bi-arrow-left" aria-hidden="true"></i>
-                Back to live preview
-              </a>
-            </div>
-
+          <nav class="mt-2" aria-label="Documentation navigation">
             <!--begin::Sidebar Menu-->
             <ul
               class="nav sidebar-menu flex-column"
               data-lte-toggle="treeview"
-              role="navigation"
-              aria-label="Documentation navigation"
               data-accordion="false"
               id="docs-navigation"
             >
@@ -422,6 +542,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../../docs/colors.html" class="nav-link">
+                  <i class="nav-icon bi bi-palette"></i>
+                  <p>Colors</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../../docs/rtl.html" class="nav-link">
                   <i class="nav-icon bi bi-text-paragraph"></i>
                   <p>RTL Support</p>
@@ -454,6 +580,18 @@
                     <a href="../../docs/components/main-sidebar.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Main Sidebar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/components/card.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Card</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/components/miscellaneous.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Miscellaneous</p>
                     </a>
                   </li>
                 </ul>
@@ -507,6 +645,12 @@
                     <a href="../../docs/javascript/fullscreen.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Fullscreen</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../docs/javascript/sidebar-search.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Sidebar Search</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -579,6 +723,17 @@
               </li>
             </ul>
             <!--end::Sidebar Menu-->
+
+            <!-- Back to preview CTA (bottom of sidebar) -->
+            <div class="p-3 mt-3 border-top border-secondary border-opacity-25">
+              <a
+                href="../../index.html"
+                class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
+              >
+                <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                Back to live preview
+              </a>
+            </div>
           </nav>
         </div>
         <!--end::Sidebar Wrapper-->
@@ -589,14 +744,16 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">JavaScript Plugins Overview</h3>
+                <h1 class="mb-0 fs-3">JavaScript Plugins Overview</h1>
               </div>
               <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Docs</a></li>
-                  <li class="breadcrumb-item"><a href="#">JavaScript</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Overview</li>
-                </ol>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Docs</a></li>
+                    <li class="breadcrumb-item"><a href="#">JavaScript</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
@@ -608,86 +765,98 @@
                 <div class="card">
                   <div class="card-body">
                     <p>
-                      AdminLTE ships seven JavaScript plugins as a single bundle
+                      AdminLTE ships eight JavaScript plugins as a single bundle
                       (<code>adminlte.js</code>). Each one is exported from the package root, can be
                       triggered via <code>data-lte-*</code> attributes for declarative use, and
                       exposes a programmatic API for code-driven control.
                     </p>
                     <h5 id="at-a-glance">At a glance</h5>
 
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Plugin</th>
-                          <th>Data API</th>
-                          <th>Programmatic</th>
-                          <th>Documentation</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><strong>PushMenu</strong></td>
-                          <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
-                          <td>
-                            <code>.toggle()</code> / <code>.expand()</code> /
-                            <code>.collapse()</code>
-                          </td>
-                          <td><a href="pushmenu.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Treeview</strong></td>
-                          <td><code>data-lte-toggle=&quot;treeview&quot;</code> on parent menu</td>
-                          <td>
-                            <code>.toggle()</code> / <code>.open()</code> / <code>.close()</code>
-                          </td>
-                          <td><a href="treeview.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>CardWidget</strong></td>
-                          <td>
-                            <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
-                            <code>card-remove</code>, <code>card-maximize</code>
-                          </td>
-                          <td>
-                            <code>.toggle()</code> / <code>.collapse()</code> /
-                            <code>.expand()</code> / <code>.remove()</code> /
-                            <code>.maximize()</code> / <code>.minimize()</code> /
-                            <code>.toggleMaximize()</code>
-                          </td>
-                          <td><a href="card-widget.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>DirectChat</strong></td>
-                          <td><code>data-lte-toggle=&quot;chat-pane&quot;</code></td>
-                          <td><code>.toggle()</code></td>
-                          <td><a href="direct-chat.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>FullScreen</strong></td>
-                          <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
-                          <td>
-                            <code>.toggleFullScreen()</code> / <code>.inFullScreen()</code> /
-                            <code>.outFullscreen()</code>
-                          </td>
-                          <td><a href="fullscreen.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>Layout</strong></td>
-                          <td>(auto-applied to <code>&lt;body&gt;</code>)</td>
-                          <td><code>.holdTransition(time)</code></td>
-                          <td><a href="layout.html">Reference</a></td>
-                        </tr>
-                        <tr>
-                          <td><strong>AccessibilityManager</strong></td>
-                          <td>(helper function: <code>initAccessibility()</code>)</td>
-                          <td>
-                            <code>.announce()</code> / <code>.focusElement()</code> /
-                            <code>.trapFocus()</code> / <code>.addLandmarks()</code>
-                          </td>
-                          <td><a href="accessibility.html">Reference</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Plugin</th>
+                            <th>Data API</th>
+                            <th>Programmatic</th>
+                            <th>Documentation</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><strong>PushMenu</strong></td>
+                            <td><code>data-lte-toggle=&quot;sidebar&quot;</code></td>
+                            <td>
+                              <code>.toggle()</code> / <code>.expand()</code> /
+                              <code>.collapse()</code>
+                            </td>
+                            <td><a href="pushmenu.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Treeview</strong></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;treeview&quot;</code> on parent menu
+                            </td>
+                            <td>
+                              <code>.toggle()</code> / <code>.open()</code> / <code>.close()</code>
+                            </td>
+                            <td><a href="treeview.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>CardWidget</strong></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;card-collapse&quot;</code>,
+                              <code>card-remove</code>, <code>card-maximize</code>
+                            </td>
+                            <td>
+                              <code>.toggle()</code> / <code>.collapse()</code> /
+                              <code>.expand()</code> / <code>.remove()</code> /
+                              <code>.maximize()</code> / <code>.minimize()</code> /
+                              <code>.toggleMaximize()</code>
+                            </td>
+                            <td><a href="card-widget.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>DirectChat</strong></td>
+                            <td><code>data-lte-toggle=&quot;chat-pane&quot;</code></td>
+                            <td><code>.toggle()</code></td>
+                            <td><a href="direct-chat.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>FullScreen</strong></td>
+                            <td><code>data-lte-toggle=&quot;fullscreen&quot;</code></td>
+                            <td>
+                              <code>.toggleFullScreen()</code> / <code>.inFullScreen()</code> /
+                              <code>.outFullscreen()</code>
+                            </td>
+                            <td><a href="fullscreen.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>SidebarSearch</strong></td>
+                            <td>
+                              <code>data-lte-toggle=&quot;sidebar-search&quot;</code> on an input
+                            </td>
+                            <td><code>.search(term)</code> / <code>.clear()</code></td>
+                            <td><a href="sidebar-search.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Layout</strong></td>
+                            <td>(auto-applied to <code>&lt;body&gt;</code>)</td>
+                            <td><code>.holdTransition(time)</code></td>
+                            <td><a href="layout.html">Reference</a></td>
+                          </tr>
+                          <tr>
+                            <td><strong>AccessibilityManager</strong></td>
+                            <td>(helper function: <code>initAccessibility()</code>)</td>
+                            <td>
+                              <code>.announce()</code> / <code>.focusElement()</code> /
+                              <code>.trapFocus()</code> / <code>.addLandmarks()</code>
+                            </td>
+                            <td><a href="accessibility.html">Reference</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="two-ways-to-use-them">Two ways to use them</h5>
                     <h6 id="1-data-api-declarative">1. Data API (declarative)</h6>
                     <p>
@@ -708,7 +877,7 @@
 <span class="line"><span style="color:#808080">  &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-header&quot;</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">h3</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-title&quot;</span><span style="color:#808080">&gt;</span><span style="color:#D4D4D4">Title</span><span style="color:#808080">&lt;/</span><span style="color:#569CD6">h3</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">    &lt;</span><span style="color:#569CD6">div</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-tools&quot;</span><span style="color:#808080">&gt;</span></span>
-<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-collapse&quot;</span><span style="color:#808080">&gt;</span></span>
+<span class="line"><span style="color:#808080">      &lt;</span><span style="color:#569CD6">button</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;btn btn-tool&quot;</span><span style="color:#9CDCFE"> data-lte-toggle</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;card-collapse&quot;</span><span style="color:#9CDCFE"> aria-label</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;Collapse card&quot;</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;expand&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-dash-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">        &lt;</span><span style="color:#569CD6">i</span><span style="color:#9CDCFE"> data-lte-icon</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;collapse&quot;</span><span style="color:#9CDCFE"> class</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">&quot;bi bi-plus-lg&quot;</span><span style="color:#808080">&gt;&lt;/</span><span style="color:#569CD6">i</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#808080">      &lt;/</span><span style="color:#569CD6">button</span><span style="color:#808080">&gt;</span></span>
@@ -720,14 +889,16 @@
                       The bundle attaches all data-API listeners on <code>DOMContentLoaded</code>.
                       Dynamically-injected elements still work for the
                       <a href="pushmenu.html">PushMenu</a>,
-                      <a href="card-widget.html">CardWidget</a>, and
-                      <a href="treeview.html">Treeview</a> plugins, which use event delegation.
+                      <a href="card-widget.html">CardWidget</a>,
+                      <a href="treeview.html">Treeview</a>, and
+                      <a href="sidebar-search.html">SidebarSearch</a> plugins, which use event
+                      delegation.
                     </p>
                     <h6 id="2-programmatic-imperative">2. Programmatic (imperative)</h6>
                     <p>
                       When you need to control a plugin from your own code — eg. open the sidebar
-                      after a successful login, or expand a card on a route change — instantiate the
-                      class directly:
+                      after a successful login, or expand a card on a route change — retrieve the
+                      instance the data API already created, or create one on demand (since 4.1):
                     </p>
                     <pre
                       class="astro-code dark-plus"
@@ -735,14 +906,15 @@
                       tabindex="0"
                       data-language="js"
                     ><code><span class="line"><span style="color:#6A9955">// ESM (bundler import)</span></span>
-<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">CardWidget</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">Treeview</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">CardWidget</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> &quot;admin-lte&quot;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A9955">// Sidebar</span></span>
-<span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> PushMenu</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">body</span><span style="color:#D4D4D4">, {}).</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#6A9955">// Sidebar: the data API creates the instance on load — just fetch it</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> sidebar</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;.app-sidebar&quot;</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getInstance</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">sidebar</span><span style="color:#D4D4D4">)?.</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#6A9955">// Card maximize</span></span>
+<span class="line"><span style="color:#6A9955">// Card maximize: reuses the existing instance, or creates one</span></span>
 <span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> card</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;#chart-card&quot;</span><span style="color:#D4D4D4">)</span></span>
-<span class="line"><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> CardWidget</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">card</span><span style="color:#D4D4D4">, {}).</span><span style="color:#DCDCAA">maximize</span><span style="color:#D4D4D4">()</span></span></code></pre>
+<span class="line"><span style="color:#9CDCFE">CardWidget</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getOrCreateInstance</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">card</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">maximize</span><span style="color:#D4D4D4">()</span></span></code></pre>
                     <p>Or use the globals (UMD bundle, no build step):</p>
                     <pre
                       class="astro-code dark-plus"
@@ -751,12 +923,38 @@
                       data-language="html"
                     ><code><span class="line"><span style="color:#808080">&lt;</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span>
 <span class="line"><span style="color:#6A9955">  // The bundle assigns to window.adminlte</span></span>
-<span class="line"><span style="color:#569CD6">  new</span><span style="color:#9CDCFE"> adminlte</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">PushMenu</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">body</span><span style="color:#D4D4D4">, {}).</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#9CDCFE">  adminlte</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getInstance</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;.app-sidebar&quot;</span><span style="color:#D4D4D4">))?.</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
 <span class="line"><span style="color:#808080">&lt;/</span><span style="color:#569CD6">script</span><span style="color:#808080">&gt;</span></span></code></pre>
+                    <h6 id="component-lifecycle">Component lifecycle</h6>
+                    <p>Every component follows the same Bootstrap-style contract:</p>
+                    <ul>
+                      <li>
+                        <code>Component.getInstance(element)</code> — the instance created for that
+                        element, or <code>null</code>.
+                      </li>
+                      <li>
+                        <code>Component.getOrCreateInstance(element, config?)</code> — reuse or
+                        create (config only applies on creation).
+                      </li>
+                      <li>
+                        <code>instance.dispose()</code> — unregister the instance;
+                        <code>getInstance()</code> returns <code>null</code> afterwards.
+                      </li>
+                    </ul>
+                    <p>
+                      One instance is kept per element in a registry backed by a
+                      <code>WeakMap</code>, so instances are garbage-collected together with their
+                      elements (nothing to clean up on Hotwired Turbo navigations). The data API
+                      listens with <strong>delegated document-level handlers</strong>, which means
+                      toggles inside content inserted after page load — AJAX partials, Turbo Frames
+                      — work without any re-initialisation.
+                    </p>
                     <h5 id="listening-to-plugin-events">Listening to plugin events</h5>
                     <p>
-                      Every plugin fires a <code>CustomEvent</code> or <code>Event</code> on the
-                      element it operates on. Listen for these to coordinate with your own code:
+                      Every plugin fires bubbling <code>CustomEvent</code>s on its root element (the
+                      card, the nav item, the sidebar) — listen on <code>document</code> for global
+                      hooks or on the element itself for scoped ones. Actions with a “before” event
+                      are cancelable: call <code>preventDefault()</code> to veto them.
                     </p>
                     <pre
                       class="astro-code dark-plus"
@@ -767,96 +965,135 @@
 <span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;Card expanded:&quot;</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">target</span><span style="color:#D4D4D4">)</span></span>
 <span class="line"><span style="color:#D4D4D4">})</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;open.lte.push-menu&quot;</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
-<span class="line"><span style="color:#6A9955">  // user opened the sidebar — eg. analytics call</span></span>
+<span class="line"><span style="color:#6A9955">// Veto card removal until the user confirmed</span></span>
+<span class="line"><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;remove.lte.card-widget&quot;</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">e</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=&gt;</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">  if</span><span style="color:#D4D4D4"> (!</span><span style="color:#DCDCAA">confirm</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">&quot;Remove this card?&quot;</span><span style="color:#D4D4D4">)) {</span></span>
+<span class="line"><span style="color:#9CDCFE">    e</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">preventDefault</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
 <span class="line"><span style="color:#D4D4D4">})</span></span></code></pre>
                     <h6 id="event-name-reference">Event name reference</h6>
 
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Plugin</th>
-                          <th>Event</th>
-                          <th>Fired when</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>PushMenu</td>
-                          <td><code>open.lte.push-menu</code></td>
-                          <td>Sidebar expanded</td>
-                        </tr>
-                        <tr>
-                          <td>PushMenu</td>
-                          <td><code>collapse.lte.push-menu</code></td>
-                          <td>Sidebar collapsed</td>
-                        </tr>
-                        <tr>
-                          <td>Treeview</td>
-                          <td><code>expanded.lte.treeview</code></td>
-                          <td>Submenu opened</td>
-                        </tr>
-                        <tr>
-                          <td>Treeview</td>
-                          <td><code>collapsed.lte.treeview</code></td>
-                          <td>Submenu closed</td>
-                        </tr>
-                        <tr>
-                          <td>Treeview</td>
-                          <td><code>load.lte.treeview</code></td>
-                          <td>Pre-opened submenu detected on page load</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>expanded.lte.card-widget</code></td>
-                          <td>Card expanded</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>collapsed.lte.card-widget</code></td>
-                          <td>Card collapsed</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>remove.lte.card-widget</code></td>
-                          <td>Card removed</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>maximized.lte.card-widget</code></td>
-                          <td>Card maximized</td>
-                        </tr>
-                        <tr>
-                          <td>CardWidget</td>
-                          <td><code>minimized.lte.card-widget</code></td>
-                          <td>Card minimized</td>
-                        </tr>
-                        <tr>
-                          <td>DirectChat</td>
-                          <td><code>expanded.lte.direct-chat</code></td>
-                          <td>Contacts pane opened</td>
-                        </tr>
-                        <tr>
-                          <td>DirectChat</td>
-                          <td><code>collapsed.lte.direct-chat</code></td>
-                          <td>Contacts pane closed</td>
-                        </tr>
-                        <tr>
-                          <td>FullScreen</td>
-                          <td><code>maximized.lte.fullscreen</code></td>
-                          <td>Entered fullscreen</td>
-                        </tr>
-                        <tr>
-                          <td>FullScreen</td>
-                          <td><code>minimized.lte.fullscreen</code></td>
-                          <td>Exited fullscreen</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Plugin</th>
+                            <th>Before (cancelable)</th>
+                            <th>After</th>
+                            <th>Fired for</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>PushMenu</td>
+                            <td><code>open.lte.push-menu</code></td>
+                            <td><code>opened.lte.push-menu</code></td>
+                            <td>Sidebar expanding</td>
+                          </tr>
+                          <tr>
+                            <td>PushMenu</td>
+                            <td><code>collapse.lte.push-menu</code></td>
+                            <td><code>collapsed.lte.push-menu</code></td>
+                            <td>Sidebar collapsing</td>
+                          </tr>
+                          <tr>
+                            <td>Treeview</td>
+                            <td><code>expand.lte.treeview</code></td>
+                            <td><code>expanded.lte.treeview</code></td>
+                            <td>Submenu opening (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>Treeview</td>
+                            <td><code>collapse.lte.treeview</code></td>
+                            <td><code>collapsed.lte.treeview</code></td>
+                            <td>Submenu closing (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>Treeview</td>
+                            <td>—</td>
+                            <td><code>load.lte.treeview</code></td>
+                            <td>Pre-opened submenu detected on page load</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td><code>expand.lte.card-widget</code></td>
+                            <td><code>expanded.lte.card-widget</code></td>
+                            <td>Card expanding (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td><code>collapse.lte.card-widget</code></td>
+                            <td><code>collapsed.lte.card-widget</code></td>
+                            <td>Card collapsing (after fires post-animation)</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td><code>remove.lte.card-widget</code></td>
+                            <td><code>removed.lte.card-widget</code></td>
+                            <td>
+                              Card removal (the card leaves the DOM after <code>removed</code>)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td>—</td>
+                            <td><code>maximized.lte.card-widget</code></td>
+                            <td>Card maximized</td>
+                          </tr>
+                          <tr>
+                            <td>CardWidget</td>
+                            <td>—</td>
+                            <td><code>minimized.lte.card-widget</code></td>
+                            <td>Card minimized</td>
+                          </tr>
+                          <tr>
+                            <td>DirectChat</td>
+                            <td>—</td>
+                            <td><code>expanded.lte.direct-chat</code></td>
+                            <td>Contacts pane opened</td>
+                          </tr>
+                          <tr>
+                            <td>DirectChat</td>
+                            <td>—</td>
+                            <td><code>collapsed.lte.direct-chat</code></td>
+                            <td>Contacts pane closed</td>
+                          </tr>
+                          <tr>
+                            <td>FullScreen</td>
+                            <td>—</td>
+                            <td><code>maximized.lte.fullscreen</code></td>
+                            <td>Entered fullscreen</td>
+                          </tr>
+                          <tr>
+                            <td>FullScreen</td>
+                            <td>—</td>
+                            <td><code>minimized.lte.fullscreen</code></td>
+                            <td>Exited fullscreen</td>
+                          </tr>
+                          <tr>
+                            <td>SidebarSearch</td>
+                            <td>—</td>
+                            <td><code>filtered.lte.sidebar-search</code></td>
+                            <td>
+                              Menu filtered (<code>detail: { query, matches }</code>;
+                              <code>matches</code> is <code>-1</code> on clear)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>ColorMode</td>
+                            <td>—</td>
+                            <td><code>changed.lte.color-mode</code></td>
+                            <td>
+                              Theme changed (<code>detail: { theme, resolved }</code>, fired on
+                              <code>document</code>)
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <p>
-                      All events bubble. Attach listeners to <code>document</code> or
-                      <code>document.body</code> for global hooks, or to a specific card / sidebar
-                      element for scoped listeners.
+                      All events bubble (since 4.1). The “after” events of animated actions fire
+                      when the animation completes, not when it starts.
                     </p>
                     <h5 id="configuring-via-data-attributes">Configuring via data attributes</h5>
                     <p>
@@ -886,84 +1123,92 @@
                       to:
                     </p>
 
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Class</th>
-                          <th>Set by</th>
-                          <th>Where</th>
-                          <th>Meaning</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><code>sidebar-collapse</code></td>
-                          <td>PushMenu</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Sidebar collapsed (desktop mini state, or mobile-closed)</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-open</code></td>
-                          <td>PushMenu</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Mobile sidebar explicitly opened by user</td>
-                        </tr>
-                        <tr>
-                          <td><code>sidebar-mini</code></td>
-                          <td>PushMenu</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Mini-sidebar mode active</td>
-                        </tr>
-                        <tr>
-                          <td><code>menu-open</code></td>
-                          <td>Treeview</td>
-                          <td><code>.nav-item</code></td>
-                          <td>Submenu is currently expanded</td>
-                        </tr>
-                        <tr>
-                          <td><code>collapsed-card</code></td>
-                          <td>CardWidget</td>
-                          <td><code>.card</code></td>
-                          <td>Card body/footer are collapsed</td>
-                        </tr>
-                        <tr>
-                          <td><code>maximized-card</code></td>
-                          <td>CardWidget</td>
-                          <td><code>&lt;html&gt;</code> and <code>.card</code></td>
-                          <td>Card is in fullscreen mode</td>
-                        </tr>
-                        <tr>
-                          <td><code>direct-chat-contacts-open</code></td>
-                          <td>DirectChat</td>
-                          <td><code>.direct-chat</code></td>
-                          <td>Contacts pane visible</td>
-                        </tr>
-                        <tr>
-                          <td><code>hold-transition</code></td>
-                          <td>Layout</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Transitions disabled briefly (during resize, etc.)</td>
-                        </tr>
-                        <tr>
-                          <td><code>app-loaded</code></td>
-                          <td>Layout</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>Initial page-load animation finished</td>
-                        </tr>
-                        <tr>
-                          <td><code>reduce-motion</code></td>
-                          <td>AccessibilityManager</td>
-                          <td><code>&lt;body&gt;</code></td>
-                          <td>OS <code>prefers-reduced-motion</code> detected</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="table-responsive" tabindex="0">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Class</th>
+                            <th>Set by</th>
+                            <th>Where</th>
+                            <th>Meaning</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><code>sidebar-collapse</code></td>
+                            <td>PushMenu</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Sidebar collapsed (desktop mini state, or mobile-closed)</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-open</code></td>
+                            <td>PushMenu</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Mobile sidebar explicitly opened by user</td>
+                          </tr>
+                          <tr>
+                            <td><code>sidebar-mini</code></td>
+                            <td>PushMenu</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Mini-sidebar mode active</td>
+                          </tr>
+                          <tr>
+                            <td><code>menu-open</code></td>
+                            <td>Treeview</td>
+                            <td><code>.nav-item</code></td>
+                            <td>Submenu is currently expanded</td>
+                          </tr>
+                          <tr>
+                            <td><code>collapsed-card</code></td>
+                            <td>CardWidget</td>
+                            <td><code>.card</code></td>
+                            <td>Card body/footer are collapsed</td>
+                          </tr>
+                          <tr>
+                            <td><code>maximized-card</code></td>
+                            <td>CardWidget</td>
+                            <td><code>&lt;html&gt;</code> and <code>.card</code></td>
+                            <td>Card is in fullscreen mode</td>
+                          </tr>
+                          <tr>
+                            <td><code>direct-chat-contacts-open</code></td>
+                            <td>DirectChat</td>
+                            <td><code>.direct-chat</code></td>
+                            <td>Contacts pane visible</td>
+                          </tr>
+                          <tr>
+                            <td><code>hold-transition</code></td>
+                            <td>Layout</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Transitions disabled briefly (during resize, etc.)</td>
+                          </tr>
+                          <tr>
+                            <td><code>app-loaded</code></td>
+                            <td>Layout</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>Initial page-load animation finished</td>
+                          </tr>
+                          <tr>
+                            <td><code>reduce-motion</code></td>
+                            <td>AccessibilityManager</td>
+                            <td><code>&lt;body&gt;</code></td>
+                            <td>OS <code>prefers-reduced-motion</code> detected</td>
+                          </tr>
+                          <tr>
+                            <td><code>menu-open</code></td>
+                            <td>SidebarSearch</td>
+                            <td><code>.nav-item</code></td>
+                            <td>Submenu expanded to reveal a match (restored on clear)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                     <h5 id="production-vs-source">Production vs source</h5>
                     <p>
                       The plugins live in
                       <a href="https://github.com/ColorlibHQ/master/src/ts"><code>src/ts/</code></a>
                       as TypeScript modules. The published <code>dist/js/adminlte.js</code> is a
-                      Rollup bundle of all seven, exporting them under a single
+                      Rollup bundle of all eight, exporting them under a single
                       <code>adminlte</code> namespace (UMD) or named imports (ESM).
                     </p>
                     <p>
@@ -1017,12 +1262,13 @@
     ></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="../../js/adminlte.js"></script>
-    <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+    <!--end::Required Plugin(AdminLTE)-->
+    <!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
       const Default = {
@@ -1051,70 +1297,46 @@
         }
       });
     </script>
-    <!--end::OverlayScrollbars Configure--><!--begin::Color Mode Toggle (#6010)-->
+    <!--end::OverlayScrollbars Configure-->
+    <!--begin::Charts follow the colour mode-->
     <script>
+      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
+      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
+      // a global default before any chart is created — this runs before the chart
+      // pages' own scripts — and keep every chart that has a `chart.id` in step
+      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
       (() => {
         'use strict';
-
-        const STORAGE_KEY = 'lte-theme';
-
-        const getStoredTheme = () => localStorage.getItem(STORAGE_KEY);
-        const setStoredTheme = (theme) => localStorage.setItem(STORAGE_KEY, theme);
-
-        const prefersDark = () => globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        const getPreferredTheme = () => {
-          const stored = getStoredTheme();
-          if (stored) return stored;
-          return prefersDark() ? 'dark' : 'light';
-        };
-
-        const setTheme = (theme) => {
-          const resolved = theme === 'auto' ? (prefersDark() ? 'dark' : 'light') : theme;
-          document.documentElement.setAttribute('data-bs-theme', resolved);
-        };
-
-        setTheme(getPreferredTheme());
-
-        const showActiveTheme = (theme) => {
-          // Highlight the active dropdown option
-          document.querySelectorAll('[data-bs-theme-value]').forEach((el) => {
-            el.classList.remove('active');
-            el.setAttribute('aria-pressed', 'false');
-            const check = el.querySelector('.bi-check-lg');
-            if (check) check.classList.add('d-none');
-          });
-          const active = document.querySelector(`[data-bs-theme-value="${theme}"]`);
-          if (active) {
-            active.classList.add('active');
-            active.setAttribute('aria-pressed', 'true');
-            const check = active.querySelector('.bi-check-lg');
-            if (check) check.classList.remove('d-none');
+        const mode = () =>
+          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
+        // theme.mode also sets a dark chart background — keep the card's instead.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.Apex ||= {};
+        const apex = globalThis.Apex;
+        apex.theme = { mode: mode() };
+        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
+        new MutationObserver(() => {
+          const next = mode();
+          apex.theme = { mode: next };
+          const instances = apex._chartInstances || [];
+          for (const { chart } of instances) {
+            chart.updateOptions({ theme: { mode: next } }, false, false);
           }
-          // Sync the topbar trigger icon
-          document.querySelectorAll('[data-lte-theme-icon]').forEach((icon) => {
-            icon.classList.toggle('d-none', icon.dataset.lteThemeIcon !== theme);
-          });
-        };
-
-        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-          const stored = getStoredTheme();
-          if (!stored || stored === 'auto') setTheme(getPreferredTheme());
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-          showActiveTheme(getPreferredTheme());
-          document.querySelectorAll('[data-bs-theme-value]').forEach((toggle) => {
-            toggle.addEventListener('click', () => {
-              const theme = toggle.getAttribute('data-bs-theme-value');
-              setStoredTheme(theme);
-              setTheme(theme);
-              showActiveTheme(theme);
-            });
-          });
+        }).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme'],
         });
       })();
     </script>
+    <!--end::Charts follow the colour mode-->
+
+    <!--begin::Color Mode Toggle-->
+    <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode
+     module (since 4.1) — no page script needed. Only the no-flash snippet
+     in <head> stays inline, because it must run before first paint. -->
     <!--end::Color Mode Toggle-->
+
+    <!--email_on-->
   </body>
 </html>

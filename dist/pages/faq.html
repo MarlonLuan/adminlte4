@@ -4,6 +4,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>AdminLTE 4 | FAQ</title>
 
+    <!--begin::Theme Init (prevents flash of incorrect theme on load, #6043)-->
+    <script>
+      (() => {
+        'use strict';
+        const root = document.documentElement;
+
+        // Applications with their own theming opt out of AdminLTE's color mode
+        // entirely, here as well as in the bundle.
+        if (root.getAttribute('data-lte-color-mode') === 'off') {
+          return;
+        }
+
+        const STORAGE_KEY = 'lte-theme';
+        let stored = null;
+        try {
+          stored = localStorage.getItem(STORAGE_KEY);
+        } catch {
+          // localStorage may be unavailable (private mode, sandboxed iframe).
+        }
+        // Mirror the precedence in color-mode.ts: the visitor's stored choice
+        // wins, then a theme this page declared itself, then the OS preference.
+        const authored = root.getAttribute('data-bs-theme');
+        let resolved = 'light';
+        if (stored === 'dark' || stored === 'light') {
+          resolved = stored;
+        } else if (authored === 'dark' || authored === 'light') {
+          resolved = authored;
+        } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
+          resolved = 'dark';
+        }
+        root.setAttribute('data-bs-theme', resolved);
+        root.style.colorScheme = resolved;
+        // Flag values computed here, so the bundle does not mistake them for a
+        // theme the page declared and stop following the OS preference.
+        if (resolved !== authored) {
+          root.setAttribute('data-lte-theme-resolved', '');
+        }
+      })();
+    </script>
+    <!--end::Theme Init-->
+
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <meta name="color-scheme" content="light dark" />
@@ -16,11 +57,11 @@
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
-      content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS. Fully accessible with WCAG 2.1 AA compliance."
+      content="AdminLTE is a free Bootstrap 5 admin dashboard template with almost 50 example pages, built with vanilla JS and designed with accessibility in mind."
     />
     <meta
       name="keywords"
-      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel, WCAG compliant"
+      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard, accessible admin panel"
     />
     <!--end::Primary Meta Tags-->
 
@@ -70,7 +111,13 @@
           <!--begin::Start Navbar Links-->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+              <a
+                class="nav-link"
+                data-lte-toggle="sidebar"
+                href="#"
+                role="button"
+                aria-label="Toggle sidebar"
+              >
                 <i class="bi bi-list"></i>
               </a>
             </li>
@@ -90,19 +137,46 @@
           </ul>
           <!--end::Start Navbar Links-->
 
+          <!--begin::Navbar Search-->
+          <form
+            class="navbar-search d-none d-md-block ms-3"
+            role="search"
+            action="../pages/search-results.html"
+          >
+            <label for="navbar-search-input" class="visually-hidden">Search</label>
+            <div class="navbar-search-field">
+              <input
+                type="search"
+                id="navbar-search-input"
+                name="q"
+                class="form-control"
+                placeholder="Search…"
+                autocomplete="off"
+              />
+              <button class="navbar-search-submit" type="submit" aria-label="Submit search">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <!--end::Navbar Search-->
+
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="bi bi-search"></i>
+            <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
+            <li class="nav-item d-md-none">
+              <a class="nav-link" href="../pages/search-results.html" aria-label="Search">
+                <i class="bi bi-search" aria-hidden="true"></i>
               </a>
             </li>
-            <!--end::Navbar Search-->
-
+            <!--end::Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a
+                class="nav-link"
+                data-bs-toggle="dropdown"
+                href="#"
+                aria-label="Messages: 3 unread"
+              >
                 <i class="bi bi-chat-text"></i>
                 <span class="navbar-badge badge text-bg-danger">3</span>
               </a>
@@ -113,17 +187,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../assets/img/user1-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         Brad Diesel
                         <span class="float-end fs-7 text-danger"
                           ><i class="bi bi-star-fill"></i
                         ></span>
-                      </h3>
+                      </p>
                       <p class="fs-7">Call me whenever you can...</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -139,17 +213,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../assets/img/user8-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         John Pierce
                         <span class="float-end fs-7 text-secondary">
                           <i class="bi bi-star-fill"></i>
                         </span>
-                      </h3>
+                      </p>
                       <p class="fs-7">I got your message bro</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -165,17 +239,17 @@
                     <div class="flex-shrink-0">
                       <img
                         src="../assets/img/user3-128x128.jpg"
-                        alt="User Avatar"
+                        alt=""
                         class="img-size-50 rounded-circle me-3"
                       />
                     </div>
                     <div class="flex-grow-1">
-                      <h3 class="dropdown-item-title">
+                      <p class="dropdown-item-title">
                         Nora Silvester
                         <span class="float-end fs-7 text-warning">
                           <i class="bi bi-star-fill"></i>
                         </span>
-                      </h3>
+                      </p>
                       <p class="fs-7">The subject goes here</p>
                       <p class="fs-7 text-secondary">
                         <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
@@ -192,7 +266,12 @@
 
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a
+                class="nav-link"
+                data-bs-toggle="dropdown"
+                href="#"
+                aria-label="Notifications: 15 unread"
+              >
                 <i class="bi bi-bell-fill"></i>
                 <span class="navbar-badge badge text-bg-warning">15</span>
               </a>
@@ -219,9 +298,43 @@
             </li>
             <!--end::Notifications Dropdown Menu-->
 
+            <!--begin::Language Menu-->
+            <!-- Markup only: swapping the locale is the application's job. The docs
+           Recipes page shows how to wire this to a real locale switch. -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="language-menu"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Change language, current language English"
+              >
+                <i class="bi bi-translate" aria-hidden="true"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language-menu">
+                <li>
+                  <a class="dropdown-item active" href="#" hreflang="en" aria-current="true">
+                    English
+                    <i class="bi bi-check-lg ms-2" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li><a class="dropdown-item" href="#" hreflang="es">Español</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="fr">Français</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="de">Deutsch</a></li>
+                <li><a class="dropdown-item" href="#" hreflang="ar">العربية</a></li>
+              </ul>
+            </li>
+            <!--end::Language Menu-->
+
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
-              <a class="nav-link" href="#" data-lte-toggle="fullscreen">
+              <a
+                class="nav-link"
+                href="#"
+                data-lte-toggle="fullscreen"
+                aria-label="Toggle fullscreen"
+              >
                 <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                 <i data-lte-icon="minimize" class="bi bi-fullscreen-exit d-none"></i>
               </a>
@@ -293,7 +406,7 @@
                 <img
                   src="../assets/img/user2-160x160.jpg"
                   class="user-image rounded-circle shadow"
-                  alt="User Image"
+                  alt="Alexander Pierce"
                 />
                 <span class="d-none d-md-inline">Alexander Pierce</span>
               </a>
@@ -303,7 +416,7 @@
                   <img
                     src="../assets/img/user2-160x160.jpg"
                     class="rounded-circle shadow"
-                    alt="User Image"
+                    alt="Alexander Pierce"
                   />
                   <p>
                     Alexander Pierce - Web Developer
@@ -363,26 +476,30 @@
           <!--end::Brand Link-->
         </div>
         <!--end::Sidebar Brand-->
+        <!--begin::Sidebar Search-->
+        <div class="sidebar-search" role="search">
+          <label for="sidebar-search-input" class="visually-hidden">Filter menu</label>
+          <input
+            type="search"
+            id="sidebar-search-input"
+            class="form-control form-control-sm"
+            placeholder="Filter menu…"
+            autocomplete="off"
+            data-lte-toggle="sidebar-search"
+            data-lte-target="#navigation"
+          />
+          <p class="fs-7 text-secondary mt-2 mb-0" data-lte-search-empty role="status" hidden>
+            No matching pages.
+          </p>
+        </div>
+        <!--end::Sidebar Search-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
-          <nav class="mt-2">
-            <!-- Docs CTA -->
-            <div class="px-3 pb-2">
-              <a
-                href="../docs/introduction.html"
-                class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
-              >
-                <i class="bi bi-book" aria-hidden="true"></i>
-                View documentation
-              </a>
-            </div>
-
+          <nav class="mt-2" aria-label="Main navigation">
             <!--begin::Sidebar Menu-->
             <ul
               class="nav sidebar-menu flex-column"
               data-lte-toggle="treeview"
-              role="navigation"
-              aria-label="Main navigation"
               data-accordion="false"
               id="navigation"
             >
@@ -414,6 +531,12 @@
                     </a>
                   </li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a href="../starter.html" class="nav-link">
+                  <i class="nav-icon bi bi-file-earmark"></i>
+                  <p>Starter Page</p>
+                </a>
               </li>
               <li class="nav-item">
                 <a href="../generate/theme.html" class="nav-link">
@@ -448,6 +571,12 @@
                       <p>Cards</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="../widgets/social.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Social &amp; Post</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -455,7 +584,7 @@
                   <i class="nav-icon bi bi-clipboard-fill"></i>
                   <p>
                     Layout Options
-                    <span class="nav-badge badge text-bg-secondary me-3">7</span>
+                    <span class="nav-badge badge text-bg-secondary me-3">12</span>
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -521,6 +650,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="../layout/top-nav.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Top Nav <small>+ No Sidebar</small></p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="../layout/layout-rtl.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Layout RTL</p>
@@ -553,6 +688,18 @@
                     <a href="../UI/timeline.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Timeline</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../UI/ribbons.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Ribbons</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../UI/colors.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Colors</p>
                     </a>
                   </li>
                 </ul>
@@ -620,6 +767,18 @@
                       <p>Wizard</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="../forms/advanced.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Advanced Elements</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../forms/editors.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Editors</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -641,6 +800,23 @@
                     <a href="../tables/data.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Data Tables</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-graph-up"></i>
+                  <p>
+                    Charts
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../charts/apexcharts.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>ApexCharts</p>
                     </a>
                   </li>
                 </ul>
@@ -705,6 +881,18 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="../pages/gallery.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Gallery</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../pages/search-results.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Search Results</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="../pages/pricing.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Pricing</p>
@@ -747,6 +935,12 @@
                   </li>
                 </ul>
               </li>
+              <li class="nav-item">
+                <a href="../users.html" class="nav-link">
+                  <i class="nav-icon bi bi-people"></i>
+                  <p>Users</p>
+                </a>
+              </li>
 
               <li class="nav-header">EXAMPLES</li>
               <li class="nav-item">
@@ -777,6 +971,12 @@
                         <a href="../examples/register.html" class="nav-link">
                           <i class="nav-icon bi bi-circle"></i>
                           <p>Register</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../examples/forgot-password.html" class="nav-link">
+                          <i class="nav-icon bi bi-circle"></i>
+                          <p>Forgot Password</p>
                         </a>
                       </li>
                     </ul>
@@ -900,6 +1100,17 @@
               </li>
             </ul>
             <!--end::Sidebar Menu-->
+
+            <!-- Docs CTA (bottom of sidebar) -->
+            <div class="p-3 mt-3 border-top border-secondary border-opacity-25">
+              <a
+                href="../docs/introduction.html"
+                class="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-center gap-2"
+              >
+                <i class="bi bi-book" aria-hidden="true"></i>
+                View documentation
+              </a>
+            </div>
           </nav>
         </div>
         <!--end::Sidebar Wrapper-->
@@ -910,13 +1121,15 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">FAQ</h3>
+                <h1 class="mb-0 fs-3">FAQ</h1>
               </div>
               <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">FAQ</li>
-                </ol>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
@@ -942,7 +1155,7 @@
                     <input
                       type="search"
                       class="form-control"
-                      placeholder="Search the FAQ…"
+                      placeholder="Search the FAQ&hellip;"
                       aria-label="Search the FAQ"
                     />
                   </div>
@@ -1256,12 +1469,13 @@
     ></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="../js/adminlte.js"></script>
-    <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+    <!--end::Required Plugin(AdminLTE)-->
+    <!--begin::OverlayScrollbars Configure-->
     <script>
       const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
       const Default = {
@@ -1290,70 +1504,44 @@
         }
       });
     </script>
-    <!--end::OverlayScrollbars Configure--><!--begin::Color Mode Toggle (#6010)-->
+    <!--end::OverlayScrollbars Configure-->
+    <!--begin::Charts follow the colour mode-->
     <script>
+      // ApexCharts draws light-theme tooltips and axis text unless told otherwise,
+      // which is unreadable in dark mode (#6105). Give it the page's colour mode as
+      // a global default before any chart is created — this runs before the chart
+      // pages' own scripts — and keep every chart that has a `chart.id` in step
+      // when the mode changes (ColorMode, the OS in auto mode, or your own code).
       (() => {
         'use strict';
-
-        const STORAGE_KEY = 'lte-theme';
-
-        const getStoredTheme = () => localStorage.getItem(STORAGE_KEY);
-        const setStoredTheme = (theme) => localStorage.setItem(STORAGE_KEY, theme);
-
-        const prefersDark = () => globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        const getPreferredTheme = () => {
-          const stored = getStoredTheme();
-          if (stored) return stored;
-          return prefersDark() ? 'dark' : 'light';
-        };
-
-        const setTheme = (theme) => {
-          const resolved = theme === 'auto' ? (prefersDark() ? 'dark' : 'light') : theme;
-          document.documentElement.setAttribute('data-bs-theme', resolved);
-        };
-
-        setTheme(getPreferredTheme());
-
-        const showActiveTheme = (theme) => {
-          // Highlight the active dropdown option
-          document.querySelectorAll('[data-bs-theme-value]').forEach((el) => {
-            el.classList.remove('active');
-            el.setAttribute('aria-pressed', 'false');
-            const check = el.querySelector('.bi-check-lg');
-            if (check) check.classList.add('d-none');
-          });
-          const active = document.querySelector(`[data-bs-theme-value="${theme}"]`);
-          if (active) {
-            active.classList.add('active');
-            active.setAttribute('aria-pressed', 'true');
-            const check = active.querySelector('.bi-check-lg');
-            if (check) check.classList.remove('d-none');
+        const mode = () =>
+          document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+        // `Apex` is ApexCharts' global-options object; it must exist before the library loads.
+        // theme.mode also sets a dark chart background — keep the card's instead.
+        // eslint-disable-next-line unicorn/no-global-object-property-assignment
+        globalThis.Apex ||= {};
+        const apex = globalThis.Apex;
+        apex.theme = { mode: mode() };
+        apex.chart = Object.assign(apex.chart || {}, { background: 'transparent' });
+        new MutationObserver(() => {
+          const next = mode();
+          apex.theme = { mode: next };
+          const instances = apex._chartInstances || [];
+          for (const { chart } of instances) {
+            chart.updateOptions({ theme: { mode: next } }, false, false);
           }
-          // Sync the topbar trigger icon
-          document.querySelectorAll('[data-lte-theme-icon]').forEach((icon) => {
-            icon.classList.toggle('d-none', icon.dataset.lteThemeIcon !== theme);
-          });
-        };
-
-        globalThis.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-          const stored = getStoredTheme();
-          if (!stored || stored === 'auto') setTheme(getPreferredTheme());
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-          showActiveTheme(getPreferredTheme());
-          document.querySelectorAll('[data-bs-theme-value]').forEach((toggle) => {
-            toggle.addEventListener('click', () => {
-              const theme = toggle.getAttribute('data-bs-theme-value');
-              setStoredTheme(theme);
-              setTheme(theme);
-              showActiveTheme(theme);
-            });
-          });
+        }).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-bs-theme'],
         });
       })();
     </script>
+    <!--end::Charts follow the colour mode-->
+
+    <!--begin::Color Mode Toggle-->
+    <!-- The light/dark/auto switcher ships in adminlte.js as the ColorMode
+     module (since 4.1) — no page script needed. Only the no-flash snippet
+     in <head> stays inline, because it must run before first paint. -->
     <!--end::Color Mode Toggle-->
   </body>
 </html>
